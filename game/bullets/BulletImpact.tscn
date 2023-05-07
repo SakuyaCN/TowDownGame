@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1nmqks4w64d5"]
+
+[ext_resource type="Texture2D" uid="uid://cwlw4ffpgbk40" path="res://game/bullets/assets/collision.png" id="1_1t0e8"]
+[ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="2_fwlsh"]
+[ext_resource type="Texture2D" uid="uid://6cng77rsgedk" path="res://game/bullets/assets/lights2.png" id="3_16pe5"]
+[ext_resource type="Texture2D" uid="uid://ddlvmuahansnr" path="res://game/bullets/assets/lights3.png" id="4_tawqx"]
+[ext_resource type="Texture2D" uid="uid://cnt7wsl68tsp7" path="res://game/bullets/assets/lights4.png" id="5_iefla"]
+[ext_resource type="Texture2D" uid="uid://ddwakkjkwrph2" path="res://game/bullets/assets/lights5.png" id="6_gebtl"]
+
+[sub_resource type="Animation" id="Animation_mtdxt"]
+resource_name = "new_animation"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_fwlsh"), ExtResource("3_16pe5"), ExtResource("4_tawqx"), ExtResource("5_iefla"), ExtResource("6_gebtl")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_1t0e8"), null]
+}
+
+[sub_resource type="Animation" id="Animation_iaho4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_1t0e8")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bixs0"]
+_data = {
+"RESET": SubResource("Animation_iaho4"),
+"new_animation": SubResource("Animation_mtdxt")
+}
+
+[node name="BulletImpact" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_1t0e8")
+offset = Vector2(8, 0)
+hframes = 4
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_bixs0")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3.5, -1.5)
+energy = 0.5
+texture = ExtResource("6_gebtl")

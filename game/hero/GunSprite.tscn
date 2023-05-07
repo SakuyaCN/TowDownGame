@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bncou3e2wgqsq"]
+
+[ext_resource type="Texture2D" uid="uid://bqrgqtaev8wfk" path="res://game/hero/gun sprite.png" id="1_5c3v6"]
+[ext_resource type="Script" path="res://game/hero/GunSprite.gd" id="2_r70tb"]
+[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_1a5xv"]
+[ext_resource type="AudioStream" uid="uid://d4mevr6oaxkeu" path="res://audio/GUNAuto_Phantom Fire_01.wav" id="4_1klv6"]
+
+[sub_resource type="Animation" id="Animation_4mjfa"]
+resource_name = "run"
+length = 0.15
+loop_mode = 2
+step = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+
+[sub_resource type="Animation" id="Animation_0xp66"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
+_data = {
+"run": SubResource("Animation_4mjfa"),
+"shoot": SubResource("Animation_0xp66")
+}
+
+[node name="GunSprite" type="Node2D"]
+texture_filter = 1
+position = Vector2(2, -7)
+script = ExtResource("2_r70tb")
+bullet_scene = ExtResource("3_1a5xv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+texture = ExtResource("1_5c3v6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lo2pw")
+}
+
+[node name="shoot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1klv6")
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]

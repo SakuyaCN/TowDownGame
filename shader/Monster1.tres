@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://fcxkdl7vtu75"]
+
+[ext_resource type="Shader" path="res://shader/Monster1.gdshader" id="1_qxgfr"]
+
+[resource]
+shader = ExtResource("1_qxgfr")
+shader_parameter/active = true
+shader_parameter/tint = Color(0.980392, 1, 0.917647, 1)

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdc7huj4d7tnk"]
+
+[sub_resource type="Gradient" id="Gradient_jlf4i"]
+offsets = PackedFloat32Array(0.00271739, 0.826087, 1)
+colors = PackedColorArray(0.992252, 1, 0.0484131, 1, 0.486275, 0.486275, 0.486275, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gmjer"]
+gradient = SubResource("Gradient_jlf4i")
+
+[sub_resource type="Curve" id="Curve_7mvyc"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.776942, 2), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lf28g"]
+curve = SubResource("Curve_7mvyc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6wlxw"]
+emission_shape = 2
+emission_sphere_radius = 0.01
+particle_flag_disable_z = true
+direction = Vector3(50, 0, 0)
+spread = 80.83
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 16.42
+scale_curve = SubResource("CurveTexture_lf28g")
+color_ramp = SubResource("GradientTexture1D_gmjer")
+
+[sub_resource type="GDScript" id="GDScript_yppws"]
+script/source = "extends GPUParticles2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	emitting = true
+"
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+position = Vector2(10, -1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_6wlxw")
+lifetime = 0.22
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = true
+script = SubResource("GDScript_yppws")

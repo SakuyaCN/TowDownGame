@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu576cs21f7sb"]
+
+[ext_resource type="Script" path="res://game/bullets/Bullet.gd" id="1_itggg"]
+[ext_resource type="PackedScene" uid="uid://c1nmqks4w64d5" path="res://game/bullets/BulletImpact.tscn" id="2_jgryv"]
+[ext_resource type="PackedScene" uid="uid://b5pc5whok7ley" path="res://game/bullets/BulletSmoke.tscn" id="2_m4y2i"]
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2147483650
+script = ExtResource("1_itggg")
+bullet_impact = ExtResource("2_jgryv")
+bullet_smoke = ExtResource("2_m4y2i")
