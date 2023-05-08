@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjqkfg0gdxyar"]
+
+[ext_resource type="Texture2D" uid="uid://2yrxu1443dxn" path="res://Sprites/crosshair186.png" id="1_ypqcj"]
+[ext_resource type="Script" path="res://ui/widgets/Crosshair.gd" id="2_2cupp"]
+
+[sub_resource type="Animation" id="Animation_u3k8l"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xmesh"]
+_data = {
+"idle": SubResource("Animation_u3k8l")
+}
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 20.0
+offset_bottom = 19.0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("1_ypqcj")
+expand_mode = 1
+script = ExtResource("2_2cupp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_xmesh")
+}

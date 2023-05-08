@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8fluhc5dx881"]
+
+[ext_resource type="PackedScene" uid="uid://dnts11pkdf041" path="res://joystick/virtual_joystick.tscn" id="1_3jux1"]
+[ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
+[ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_fcs2f"]
+
+[node name="ControlUI" type="CanvasLayer"]
+script = ExtResource("1_hodr7")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Virtual Joystick" parent="Control" instance=ExtResource("1_3jux1")]
+layout_mode = 1
+offset_left = 50.0
+offset_top = -177.0
+offset_right = 200.0
+offset_bottom = -27.0
+clampzone_size = 30.0
+visibility_mode = 1
+
+[node name="Virtual Joystick2" parent="Control" instance=ExtResource("1_3jux1")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = -177.0
+offset_right = -50.0
+offset_bottom = -27.0
+grow_horizontal = 0
+use_input_actions = false
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS:"
+
+[node name="TextureRect" parent="." instance=ExtResource("3_fcs2f")]
+
+[connection signal="onTouch" from="Control/Virtual Joystick2" to="." method="_on_virtual_joystick_2_on_touch"]

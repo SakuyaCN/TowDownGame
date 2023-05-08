@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c711joqeud4pp"]
+[gd_scene load_steps=10 format=3 uid="uid://c711joqeud4pp"]
 
-[ext_resource type="PackedScene" uid="uid://c6j2qr1b7t22x" path="res://game/hero/Hero.tscn" id="1_riyjw"]
+[ext_resource type="PackedScene" uid="uid://8lekrqo3cykw" path="res://game/hero/Hero.tscn" id="1_riyjw"]
 [ext_resource type="Texture2D" uid="uid://c3y5uu5smfsdr" path="res://game/map/top down tileset.png" id="2_74jn2"]
 [ext_resource type="PackedScene" uid="uid://c7j6t5pvwoh0b" path="res://game/monster/Monster 1/Monster1.tscn" id="3_0mfvw"]
+[ext_resource type="PackedScene" uid="uid://co11lqs3cpuyb" path="res://game/monster/Monster 2/Monster2.tscn" id="4_e8llc"]
 [ext_resource type="AudioStream" uid="uid://ey17xlhrg0fa" path="res://audio/Cut and Run.mp3" id="4_g3akw"]
+[ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="5_783f4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a8w01"]
 vertices = PackedVector2Array(662, -45, 668, 377, -38, 372, -31, -43)
@@ -754,7 +756,7 @@ texture = ExtResource("2_74jn2")
 9:13/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_07pfy"]
-uv_clipping = true
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 2147483649
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
@@ -778,17 +780,23 @@ tile_set = SubResource("TileSet_07pfy")
 format = 2
 layer_0/y_sort_enabled = true
 layer_0/y_sort_origin = 7
-layer_0/tile_data = PackedInt32Array(1179671, 393216, 14, 1245201, 262144, 16, 851979, 196608, 16, 589846, 196608, 13, 786449, 196608, 13, 524298, 196608, 13, 589834, 196608, 13, 524299, 196608, 13, 589835, 196608, 13, 524300, 196608, 13, 589836, 196608, 13, 524301, 196608, 13, 589837, 196608, 13, 524302, 196608, 13, 589838, 196608, 13, 524303, 196608, 13, 589839, 196608, 13, 524304, 196608, 13, 589840, 196608, 13, 524305, 196608, 13, 589841, 196608, 13, 524306, 196608, 13, 589842, 196608, 13, 524307, 196608, 13, 589843, 196608, 13, 524308, 196608, 13, 589844, 196608, 13, 524309, 196608, 13, 589845, 196608, 13, 524310, 196608, 13, 524311, 196608, 13, 589847, 196608, 13, 524312, 196608, 13, 589848, 196608, 13, 524313, 196608, 13, 589849, 196608, 13)
+layer_0/tile_data = PackedInt32Array(1179671, 393216, 14, 1245201, 262144, 16, 851979, 196608, 16, 786449, 196608, 13, 720913, 196608, 13, 720915, 196608, 13, 589847, 458752, 13, 1048587, 589824, 13, 589844, 655360, 0, 655380, 655360, 1, 589845, 720896, 0, 655381, 720896, 1)
 
 [node name="Monster1" parent="TileMap2" instance=ExtResource("3_0mfvw")]
 position = Vector2(140, 197)
 
 [node name="Hero" parent="TileMap2" instance=ExtResource("1_riyjw")]
-position = Vector2(262, 182)
+position = Vector2(362, 196)
+
+[node name="Monster2" parent="TileMap2" instance=ExtResource("4_e8llc")]
+position = Vector2(264, 96)
+SPEED = 50.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_g3akw")
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.207843, 0.207843, 0.207843, 1)
+color = Color(0.909804, 0.909804, 0.909804, 1)
+
+[node name="ControlUI" parent="." instance=ExtResource("5_783f4")]

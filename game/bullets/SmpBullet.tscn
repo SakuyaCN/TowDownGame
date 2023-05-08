@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://game/bullets/SmpBullet.gd" id="1_ebbkv"]
 [ext_resource type="PackedScene" uid="uid://c1nmqks4w64d5" path="res://game/bullets/BulletImpact.tscn" id="2_g3qun"]
-[ext_resource type="Texture2D" uid="uid://d17cf3q4mvge3" path="res://Sprites/Bullet_3.png" id="2_mc3qm"]
 [ext_resource type="PackedScene" uid="uid://b5pc5whok7ley" path="res://game/bullets/BulletSmoke.tscn" id="2_p80ey"]
+[ext_resource type="Texture2D" uid="uid://b0xrkqm36m7yi" path="res://Sprites/Bullet_11.png" id="4_xjsqv"]
 [ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="5_6uggj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m3nq5"]
@@ -20,7 +20,7 @@ speed = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_mc3qm")
+texture = ExtResource("4_xjsqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m3nq5")

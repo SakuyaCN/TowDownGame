@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxrfu5s45qvon"]
+
+[ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="1_jusu7"]
+[ext_resource type="Script" path="res://ui/widgets/HitLabel.gd" id="1_p8e6f"]
+
+[node name="HitLabel" type="Label"]
+texture_filter = 1
+offset_left = -26.0
+offset_top = -14.0
+offset_right = 23.0
+offset_bottom = 12.0
+pivot_offset = Vector2(24, 13)
+theme_override_fonts/font = ExtResource("1_jusu7")
+text = "-10"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_p8e6f")

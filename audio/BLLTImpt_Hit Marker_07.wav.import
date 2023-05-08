@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cayj5w16w73b5"
+path="res://.godot/imported/BLLTImpt_Hit Marker_07.wav-10b25b7788ca3cdf6576a09a2dc1383d.sample"
+
+[deps]
+
+source_file="res://audio/BLLTImpt_Hit Marker_07.wav"
+dest_files=["res://.godot/imported/BLLTImpt_Hit Marker_07.wav-10b25b7788ca3cdf6576a09a2dc1383d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
