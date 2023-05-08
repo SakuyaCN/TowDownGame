@@ -53,17 +53,18 @@ func flip_h(flip:bool):
 func hitFlash(collisionResult,bullet:Bullet):
 	if is_die:
 		return
+	Utils.freezeFrame(bullet.gun.time_scale)
 	onHit(bullet.hurt)
 	audio_hit.play(0.17)
 	Utils.showHitLabel(bullet.hurt,self)
 	var speed = bullet.knockback_speed - knockback_def
 	if speed > 0:
-		velocity = -collisionResult.get_normal() * speed
+		velocity = -(global_position.direction_to(Utils.player.global_position)) * speed
 		hit = true
 	#var materialFlash = ShaderMaterial.new()
 	#materialFlash.shader = load("res://shader/Monster1.gdshader")
 	#sprite_body.get_node("AnimatedSprite2D").material = materialFlash
-	await get_tree().create_timer(0.1).timeout.connect(func timeout():
+	await get_tree().create_timer(bullet.knockback_time).timeout.connect(func timeout():
 		sprite_body.get_node("AnimatedSprite2D").material = null; hit = false )
 
 func onHit(hit_num):

@@ -786,7 +786,7 @@ layer_0/tile_data = PackedInt32Array(1179671, 393216, 14, 1245201, 262144, 16, 8
 position = Vector2(140, 197)
 
 [node name="Hero" parent="TileMap2" instance=ExtResource("1_riyjw")]
-position = Vector2(362, 196)
+position = Vector2(290, 155)
 
 [node name="Monster2" parent="TileMap2" instance=ExtResource("4_e8llc")]
 position = Vector2(264, 96)

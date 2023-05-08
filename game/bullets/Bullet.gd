@@ -7,8 +7,10 @@ class_name Bullet
 @export var hurt = 1
 @export var speed = 200
 @export var knockback_speed = 50
+@export var knockback_time = 0.1
 
 var player:Player
+var gun:BaseGun
 
 var timer = Timer.new()
 
@@ -27,8 +29,13 @@ func start(local:Vector2,pos:Vector2):
 	global_position = local
 	velocity = local.direction_to(pos)
 
+func fire():
+	velocity = Vector2(speed, 0).rotated(rotation)
+
 func _process(delta):
-	var collisionResult = move_and_collide(velocity * speed * delta)
+	if Utils.freeze_frame:
+		delta = 0.0
+	var collisionResult = move_and_collide(velocity * delta)
 	if collisionResult:
 		var coller = collisionResult.get_collider()
 		if coller is BaseMonster:

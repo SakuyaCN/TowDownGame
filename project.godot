@@ -67,7 +67,7 @@ pointing/emulate_touch_from_mouse=true
 
 [physics]
 
-common/physics_ticks_per_second=90
+common/physics_ticks_per_second=144
 
 [rendering]
 

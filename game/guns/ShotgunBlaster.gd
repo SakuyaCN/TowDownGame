@@ -14,15 +14,16 @@ func _process(delta):
 		_shoot()
 
 func _shoot():
-	var mouse_pos = get_global_mouse_position()
-	var direction = (mouse_pos - gun_tip.global_position).normalized()
+	player.set_knockback(knockback_speed)
 	gun_tip.rotation = direction.angle()
-	var b = bullet_scene.instantiate()
-	b.setOnwer(player)
-	get_tree().root.add_child(b)
-	b.position = gun_tip.global_position
-	b.rotation = gun_tip.rotation
-	fire(b)
+	for i in 3:
+		var b = bullet_scene.instantiate()
+		b.setOnwer(player)
+		b.knockback_speed = knockback_speed
+		get_tree().root.add_child(b)
+		b.position = gun_tip.global_position
+		b.rotation = gun_tip.rotation + deg_to_rad(-15 + i * 15)
+		fire(b)
 	
 	call_deferred("_shootAnim")
 	can_shoot = false

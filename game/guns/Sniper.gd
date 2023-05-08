@@ -14,6 +14,7 @@ func _process(delta):
 		_shoot()
 
 func _shoot():
+	player.set_knockback(knockback_speed)
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - gun_tip.global_position).normalized()
 	gun_tip.rotation = direction.angle()

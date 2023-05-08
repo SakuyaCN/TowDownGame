@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/hero/Hero.gd" id="1_83vm3"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_b1ar1"]
 [ext_resource type="Texture2D" uid="uid://una51ckgrsef" path="res://game/hero/Hero Blue 54x53 Sprite.png" id="2_raa3j"]
-[ext_resource type="PackedScene" uid="uid://cc68iu3txq1go" path="res://game/guns/GunSprite.tscn" id="4_wv8vc"]
+[ext_resource type="PackedScene" uid="uid://ccvrpwx3tbxa5" path="res://game/guns/ShotgunBlaster.tscn" id="4_0887m"]
 [ext_resource type="Script" path="res://game/hero/Camera2D.gd" id="5_0yxxd"]
 [ext_resource type="Texture2D" uid="uid://cxkg2hxdgf34a" path="res://Sprites/light.png" id="6_ubvix"]
 
@@ -249,7 +249,7 @@ sprite_frames = SubResource("SpriteFrames_8ifjs")
 animation = &"run"
 frame_progress = 0.399088
 
-[node name="GunSprite" parent="body" instance=ExtResource("4_wv8vc")]
+[node name="GunSprite" parent="body" instance=ExtResource("4_0887m")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)

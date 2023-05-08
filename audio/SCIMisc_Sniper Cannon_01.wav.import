@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dld3bg1tnwyb5"
+path="res://.godot/imported/SCIMisc_Sniper Cannon_01.wav-a712f6ad6e7006008ee9cf606695dd85.sample"
+
+[deps]
+
+source_file="res://audio/SCIMisc_Sniper Cannon_01.wav"
+dest_files=["res://.godot/imported/SCIMisc_Sniper Cannon_01.wav-a712f6ad6e7006008ee9cf606695dd85.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

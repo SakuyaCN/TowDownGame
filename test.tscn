@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn4vs4bgw7ny0"]
+
+[sub_resource type="GDScript" id="GDScript_c02wl"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_pressed(\"shoot\"):
+		queue_redraw()
+
+func _draw():
+	for i in 3:
+		var a = -45 + i * 45
+		print(a)
+		draw_circle(get_global_mouse_position().rotated(deg_to_rad(-45 + i * 45)),15,Color.ANTIQUE_WHITE)
+"
+
+[node name="test" type="Node2D"]
+script = SubResource("GDScript_c02wl")

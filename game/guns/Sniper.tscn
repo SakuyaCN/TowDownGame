@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc68iu3txq1go"]
+[gd_scene load_steps=8 format=3 uid="uid://dk6y6b7rnk5gi"]
 
-[ext_resource type="Script" path="res://game/guns/GunSprite.gd" id="2_r70tb"]
-[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_1a5xv"]
-[ext_resource type="Texture2D" uid="uid://c3pvw3wpadkd2" path="res://Sprites/The Tiny Alchemist - Guns/gun2.png" id="3_tt37n"]
-[ext_resource type="AudioStream" uid="uid://cca6pboy8k8y8" path="res://audio/GUNAuto_Assault Rifle A Fire_01.wav" id="4_0red2"]
+[ext_resource type="Script" path="res://game/guns/Sniper.gd" id="1_6o8qy"]
+[ext_resource type="Texture2D" uid="uid://cfpfj57q4vtrj" path="res://Sprites/The Tiny Alchemist - Guns/gun4.png" id="2_g5sf4"]
+[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="2_vj41m"]
+[ext_resource type="AudioStream" uid="uid://dld3bg1tnwyb5" path="res://audio/SCIMisc_Sniper Cannon_01.wav" id="4_r0dx1"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -34,13 +34,15 @@ _data = {
 [node name="GunSprite" type="Node2D"]
 texture_filter = 1
 position = Vector2(2, -7)
-script = ExtResource("2_r70tb")
-bullet_scene = ExtResource("3_1a5xv")
-time_scale = 0.0
-freeze_frame = 0
+script = ExtResource("1_6o8qy")
+bullet_scene = ExtResource("2_vj41m")
+fire_rate = 1.0
+knockback_speed = 150
+freeze_frame = 5
+shake_vector = Vector2(5, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_tt37n")
+texture = ExtResource("2_g5sf4")
 offset = Vector2(6, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -53,7 +55,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_0red2")
+stream = ExtResource("4_r0dx1")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(11, -1)
