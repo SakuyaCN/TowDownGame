@@ -2,9 +2,10 @@ extends CharacterBody2D
 class_name Player
 @onready var anim = $body/AnimatedSprite2D
 @onready var body = $body
-@onready var gun = $body/GunSprite
-@onready var gun_player = $body/GunSprite/AnimationPlayer
-@onready var camera = $Camera2D
+@onready var gun_root = $body/GunRoot
+#@onready var gun_player = $body/GunSprite/AnimationPlayer
+
+var gun = null
 
 const SPEED = 100.0
 var is_run = false
@@ -14,8 +15,25 @@ var knockback_speed = 0 #后坐力速度
 var look_dir = null
 
 func _ready():
+	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
 	Utils.player = self
-	gun.setOwner(self)
+	PlayerData.add_weapons([Utils.weapon_list["0"].instantiate(),Utils.weapon_list["1"].instantiate(),Utils.weapon_list["2"].instantiate()])
+
+func changeWeapon(weapon_id):
+	for item in gun_root.get_children():
+		item.set_use(item.name == str(weapon_id))
+		
+
+func playerWeaponListChange():
+	for weapon_id in PlayerData.player_weapon_list:
+		if !gun_root.has_node(str(weapon_id)):
+			var local_gun = PlayerData.player_weapon_list[weapon_id] as BaseGun
+			local_gun.name = str(weapon_id)
+			gun_root.add_child(local_gun)
+			local_gun.setOwner(self)
+			if gun == null:
+				gun = local_gun
+				gun.set_use(true)
 
 func _physics_process(delta):
 	if Utils.freeze_frame:
@@ -31,7 +49,7 @@ func _physics_process(delta):
 	move_and_slide()
 	changeAnim(direction)
 	
-	if OS.get_name() != "Windows" && look_dir != null:
+	if gun && OS.get_name() != "Windows" && look_dir != null:
 		gun.look_at(look_dir)
 	else:
 		gun.look_at(get_global_mouse_position())
@@ -56,32 +74,29 @@ func setGunLookat(dir):
 func changeAnim(direction):
 	if direction != Vector2.ZERO:
 		is_run = true
-		if direction.y != 0:
-			if direction.y < 0:
-				#gun.z_index = -1
-				anim.play("run_top")
-			if direction.y > 0:
-				anim.play("run_down")
+		if (direction.x > 0 && body.scale.x != 1) || (direction.x < 0 && body.scale.x != -1):
+			animPlay("run_back",-1.0,true)
 		else:
-			if (direction.x > 0 && body.scale.x != 1) || (direction.x < 0 && body.scale.x != -1):
-				anim.play_backwards("run")
-			else:
-				anim.play("run")
+			animPlay("run")
 	else:
 		is_run = false
-		anim.play("idle")
+		animPlay("idle")
 	gunAnim()
+
+func animPlay(anim_name,speed = 1.0,is_back = false):
+	if anim.animation != anim_name:
+		anim.play(anim_name,speed,is_back)
 
 func gunAnim():
 	if is_shoot:
 		pass
-	if is_run && !gun_player.is_playing():
+	if is_run:
 		$GPUParticles2D.emitting = true
-		gun_player.play("run")
-	elif !is_run && gun_player.is_playing():
-		gun_player.stop()
+		#gun_player.play("run")
+	elif !is_run:
+		#gun_player.stop()
 		$GPUParticles2D.emitting = false
 		
 
 func cameraSnake(step):
-	camera.shootShake(step)
+	get_tree().call_group("camera","shootShake",step)

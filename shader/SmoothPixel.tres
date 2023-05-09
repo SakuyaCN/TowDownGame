@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b1rr1d7kl8ium"]
+
+[ext_resource type="Shader" path="res://game/map/test.gdshader" id="1_xpa4r"]
+
+[resource]
+shader = ExtResource("1_xpa4r")

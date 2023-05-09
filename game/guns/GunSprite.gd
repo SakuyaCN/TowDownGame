@@ -1,18 +1,5 @@
 extends "res://game/guns/BaseGun.gd"
 
-func _ready():
-	timer.wait_time = 1.0 / fire_rate
-
-func setOwner(player):
-	self.player = player
-
-func _process(delta):
-	super._process(delta)
-	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
-		_shoot()
-	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-		_shoot()
-
 func _shoot():
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - gun_tip.global_position).normalized()

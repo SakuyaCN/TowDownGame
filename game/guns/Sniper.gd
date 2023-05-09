@@ -1,10 +1,5 @@
 extends "res://game/guns/BaseGun.gd"
 
-func _ready():
-	timer.wait_time = 1.0 / fire_rate
-
-func setOwner(player):
-	self.player = player
 
 func _process(delta):
 	super._process(delta)

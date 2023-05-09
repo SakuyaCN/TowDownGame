@@ -11,6 +11,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$Control/Label.text = "FPS:%s" %Engine.get_frames_per_second()
 
-
 func _on_virtual_joystick_2_on_touch(vector) -> void:
 	Utils.player.setGunLookat(vector)

@@ -98,5 +98,4 @@ libraries = {
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(3.5, -1.5)
-energy = 0.5
 texture = ExtResource("6_gebtl")

@@ -3,6 +3,7 @@ class_name BaseGun
 
 const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 
+@export var weapon_id = 0
 @export var bullet_scene : PackedScene
 @export var fire_rate = 5.0
 @export var can_shoot = true
@@ -20,6 +21,33 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 var tween:Tween
 var direction:Vector2
 var player:Player
+var is_use = false
+
+func _ready() -> void:
+	set_use(false)
+	timer.wait_time = 1.0 / fire_rate
+
+func setOwner(player):
+	self.player = player
+
+func _process(delta):
+	if Utils.freeze_frame:
+		delta = 0.0
+	var mouse_pos = get_global_mouse_position()
+	direction = (mouse_pos - gun_tip.global_position).normalized()
+	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
+		_shoot()
+	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
+		_shoot()
+
+func set_use(use:bool):
+	is_use = use
+	set_physics_process(is_use)
+	set_process(is_use)
+	visible = is_use
+	if player && is_use:
+		player.gun = self
+	PlayerData.emit_signal("onWeaponChanged")
 
 func fire(bullet):
 	bullet.knockback_speed = knockback_speed
@@ -37,11 +65,8 @@ func _physics_process(delta):
 		Engine.time_scale = 1
 		return
 
+func _shoot() -> void:
+	pass
+
 func _shootAnim():
 	player.cameraSnake(shake_vector * direction)
-
-func _process(delta):
-	if Utils.freeze_frame:
-		delta = 0.0
-	var mouse_pos = get_global_mouse_position()
-	direction = (mouse_pos - gun_tip.global_position).normalized()

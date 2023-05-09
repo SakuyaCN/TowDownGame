@@ -10,7 +10,6 @@
 radius = 3.16228
 
 [node name="SmpBullet" type="CharacterBody2D"]
-texture_filter = 1
 collision_layer = 0
 collision_mask = 2147483650
 script = ExtResource("1_ebbkv")
@@ -26,5 +25,4 @@ texture = ExtResource("4_xjsqv")
 shape = SubResource("CircleShape2D_m3nq5")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.5
 texture = ExtResource("5_6uggj")

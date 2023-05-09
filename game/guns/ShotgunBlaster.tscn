@@ -32,12 +32,14 @@ _data = {
 }
 
 [node name="GunSprite" type="Node2D"]
-texture_filter = 1
 position = Vector2(2, -7)
 script = ExtResource("1_msend")
+weapon_id = 1
 bullet_scene = ExtResource("2_uf13k")
 fire_rate = 2.0
-shake_vector = Vector2(2, 2)
+knockback_speed = 80
+freeze_frame = 2
+shake_vector = Vector2(3, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tws2b")

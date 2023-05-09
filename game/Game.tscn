@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt2iuuqln8s3e"]
+
+[ext_resource type="PackedScene" uid="uid://c711joqeud4pp" path="res://game/map/test.tscn" id="1_14x22"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qr2c1"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Game" type="Node2D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+audio_listener_enable_2d = true
+size = Vector2i(384, 216)
+
+[node name="test" parent="SubViewport" instance=ExtResource("1_14x22")]
+
+[node name="ViewPortTextureRect" type="TextureRect" parent="."]
+offset_right = 384.0
+offset_bottom = 216.0
+texture = SubResource("ViewportTexture_qr2c1")

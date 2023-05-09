@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
-[ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_fcs2f"]
+[ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
 
 [node name="ControlUI" type="CanvasLayer"]
 script = ExtResource("1_hodr7")
@@ -21,4 +21,22 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "FPS:"
 
-[node name="TextureRect" parent="." instance=ExtResource("3_fcs2f")]
+[node name="GameUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_cj0m0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -24.0
+offset_right = 220.0
+offset_bottom = -4.0
+grow_vertical = 0

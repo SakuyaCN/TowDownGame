@@ -1,5 +1,11 @@
 extends Node
 
+const weapon_list = {
+	"0" = preload("res://game/guns/GunSprite.tscn"),
+	"1" = preload("res://game/guns/ShotgunBlaster.tscn"),
+	"2" = preload("res://game/guns/Sniper.tscn")
+}
+
 const hitlabel = preload("res://ui/widgets/HitLabel.tscn")
 
 var player:Player
