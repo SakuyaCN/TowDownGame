@@ -1,20 +1,6 @@
 extends "res://game/guns/BaseGun.gd"
 
-
-func _process(delta):
-	super._process(delta)
-	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
-		_shoot()
-	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-		_shoot()
-	queue_redraw()
-
-func _draw():
-	var point = $GunTip.position + Vector2($GunTip.global_position.distance_to(get_global_mouse_position()),0)
-	draw_line($GunTip.position+Vector2(5,0),point-Vector2(5,0),Color.WHITE,1)
-
 func _shoot():
-	player.set_knockback(knockback_speed)
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - gun_tip.global_position).normalized()
 	gun_tip.rotation = direction.angle()

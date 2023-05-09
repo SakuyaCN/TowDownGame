@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk6y6b7rnk5gi"]
+[gd_scene load_steps=8 format=3 uid="uid://ckphrf0ytu8c5"]
 
-[ext_resource type="Script" path="res://game/guns/Sniper.gd" id="1_6o8qy"]
-[ext_resource type="Texture2D" uid="uid://cfpfj57q4vtrj" path="res://Sprites/The Tiny Alchemist - Guns/gun4.png" id="2_g5sf4"]
-[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="2_vj41m"]
-[ext_resource type="AudioStream" uid="uid://dld3bg1tnwyb5" path="res://audio/SCIMisc_Sniper Cannon_01.wav" id="4_r0dx1"]
+[ext_resource type="Script" path="res://game/guns/BabyZapZap.gd" id="1_taix2"]
+[ext_resource type="Texture2D" uid="uid://dvj87mlcwsq0d" path="res://Sprites/The Tiny Alchemist - Guns/gun3.png" id="2_5ow14"]
+[ext_resource type="PackedScene" uid="uid://ccdubmgcb7k5i" path="res://game/bullets/BabyBullet.tscn" id="3_r3k3a"]
+[ext_resource type="AudioStream" uid="uid://xm8xpj5ft83s" path="res://audio/GUNPis_Pistol Fire_01.wav" id="4_388xn"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -33,19 +33,18 @@ _data = {
 
 [node name="GunSprite" type="Node2D"]
 position = Vector2(2, -7)
-script = ExtResource("1_6o8qy")
-weapon_id = 2
-image = ExtResource("2_g5sf4")
-weapon_name = "Sniper"
-bullet_scene = ExtResource("2_vj41m")
-damage = 5
+script = ExtResource("1_taix2")
+weapon_id = 3
+image = ExtResource("2_5ow14")
+weapon_name = "BabyZapZap"
+bullet_scene = ExtResource("3_r3k3a")
 fire_rate = 1.5
-knockback_speed = 150
-freeze_frame = 5
-shake_vector = Vector2(5, 5)
+knockback_speed = 0
+time_scale = 0.0
+freeze_frame = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_g5sf4")
+texture = ExtResource("2_5ow14")
 offset = Vector2(6, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -58,9 +57,9 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_r0dx1")
+stream = ExtResource("4_388xn")
 
 [node name="GunTip" type="Node2D" parent="."]
-position = Vector2(11, -1)
+position = Vector2(7, -1)
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]

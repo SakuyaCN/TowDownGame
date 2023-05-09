@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://game/hero/Camera2D.gd" id="4_fy4ut"]
 [ext_resource type="AudioStream" uid="uid://ey17xlhrg0fa" path="res://audio/Cut and Run.mp3" id="4_g3akw"]
 [ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="5_783f4"]
-[ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="8_xglhl"]
+[ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_8kxis"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a8w01"]
 vertices = PackedVector2Array(555, 18, 557, 351, -15, 350, -14, 18)
@@ -798,22 +798,29 @@ layer_0/y_sort_enabled = true
 layer_0/y_sort_origin = 7
 layer_0/tile_data = PackedInt32Array(1179671, 393216, 14, 1245201, 262144, 16, 851979, 196608, 16, 786449, 196608, 13, 720913, 196608, 13, 720915, 196608, 13, 589847, 458752, 13, 1048587, 589824, 13, 589844, 655360, 0, 655380, 655360, 1, 589845, 720896, 0, 655381, 720896, 1)
 
-[node name="PlayerRoot" type="Node2D" parent="."]
+[node name="PlayerRoot" type="Node2D" parent="TileMap2"]
+y_sort_enabled = true
 
-[node name="Hero" parent="PlayerRoot" instance=ExtResource("1_riyjw")]
+[node name="Hero" parent="TileMap2/PlayerRoot" instance=ExtResource("1_riyjw")]
 position = Vector2(290, 155)
 
-[node name="Anchor" type="Node2D" parent="PlayerRoot"]
+[node name="Anchor" type="Node2D" parent="TileMap2/PlayerRoot"]
 script = SubResource("GDScript_sryy0")
 
-[node name="Camera2D" type="Camera2D" parent="PlayerRoot/Anchor"]
+[node name="Camera2D" type="Camera2D" parent="TileMap2/PlayerRoot/Anchor"]
 position_smoothing_enabled = true
 script = ExtResource("4_fy4ut")
 
-[node name="Monster1" parent="." instance=ExtResource("3_0mfvw")]
+[node name="PointLight2D" type="PointLight2D" parent="TileMap2/PlayerRoot/Anchor/Camera2D"]
+position = Vector2(0, -6)
+shadow_enabled = true
+texture = ExtResource("6_8kxis")
+texture_scale = 0.5
+
+[node name="Monster1" parent="TileMap2" instance=ExtResource("3_0mfvw")]
 position = Vector2(140, 197)
 
-[node name="Monster2" parent="." instance=ExtResource("4_e8llc")]
+[node name="Monster2" parent="TileMap2" instance=ExtResource("4_e8llc")]
 position = Vector2(78, 61)
 SPEED = 50.0
 
@@ -822,12 +829,10 @@ stream = ExtResource("4_g3akw")
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.176471, 0.176471, 0.176471, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
-
-[node name="TextureRect" parent="." instance=ExtResource("8_xglhl")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

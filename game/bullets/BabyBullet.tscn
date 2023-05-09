@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccdubmgcb7k5i"]
+
+[ext_resource type="Script" path="res://game/bullets/SmpBullet.gd" id="1_wyxm3"]
+[ext_resource type="PackedScene" uid="uid://c1nmqks4w64d5" path="res://game/bullets/BulletImpact.tscn" id="2_ogl25"]
+[ext_resource type="PackedScene" uid="uid://b5pc5whok7ley" path="res://game/bullets/BulletSmoke.tscn" id="3_jq64f"]
+[ext_resource type="Texture2D" uid="uid://b0xrkqm36m7yi" path="res://Sprites/Bullet_11.png" id="4_3f6k5"]
+[ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="5_bq71x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3nq5"]
+radius = 1.0
+
+[node name="SmpBullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2147483650
+motion_mode = 1
+script = ExtResource("1_wyxm3")
+bullet_impact = ExtResource("2_ogl25")
+bullet_smoke = ExtResource("3_jq64f")
+speed = 350
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_3f6k5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m3nq5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("5_bq71x")
+texture_scale = 0.5

@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk6y6b7rnk5gi"]
+[gd_scene load_steps=8 format=3 uid="uid://cejb2ertrl0o6"]
 
-[ext_resource type="Script" path="res://game/guns/Sniper.gd" id="1_6o8qy"]
-[ext_resource type="Texture2D" uid="uid://cfpfj57q4vtrj" path="res://Sprites/The Tiny Alchemist - Guns/gun4.png" id="2_g5sf4"]
-[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="2_vj41m"]
-[ext_resource type="AudioStream" uid="uid://dld3bg1tnwyb5" path="res://audio/SCIMisc_Sniper Cannon_01.wav" id="4_r0dx1"]
+[ext_resource type="Script" path="res://game/guns/AlienRifle.gd" id="1_hv6am"]
+[ext_resource type="Texture2D" uid="uid://c0lagowo2jim3" path="res://Sprites/The Tiny Alchemist - Guns/gun7.png" id="2_knpti"]
+[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_v01pf"]
+[ext_resource type="AudioStream" uid="uid://coik2iggjwfeg" path="res://audio/GUNAuto_Assault Rifle B Fire_01.wav" id="4_4hi3x"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -33,19 +33,18 @@ _data = {
 
 [node name="GunSprite" type="Node2D"]
 position = Vector2(2, -7)
-script = ExtResource("1_6o8qy")
-weapon_id = 2
-image = ExtResource("2_g5sf4")
-weapon_name = "Sniper"
-bullet_scene = ExtResource("2_vj41m")
-damage = 5
-fire_rate = 1.5
-knockback_speed = 150
-freeze_frame = 5
-shake_vector = Vector2(5, 5)
+script = ExtResource("1_hv6am")
+weapon_id = 4
+image = ExtResource("2_knpti")
+bullet_scene = ExtResource("3_v01pf")
+damage = 2
+fire_rate = 7.0
+knockback_speed = 80
+freeze_frame = 4
+shake_vector = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_g5sf4")
+texture = ExtResource("2_knpti")
 offset = Vector2(6, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -58,7 +57,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_r0dx1")
+stream = ExtResource("4_4hi3x")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(11, -1)

@@ -16,7 +16,6 @@ var is_die = false
 var is_flip
 
 func _ready():
-	print(SPEED)
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
 	add_child(navigationAgent2D)

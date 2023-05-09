@@ -34,7 +34,10 @@ _data = {
 [node name="GunSprite" type="Node2D"]
 position = Vector2(2, -7)
 script = ExtResource("2_r70tb")
+image = ExtResource("3_tt37n")
+weapon_name = "BlasterRifle"
 bullet_scene = ExtResource("3_1a5xv")
+damage = 2
 knockback_speed = 10
 knockback_time = 0.05
 time_scale = 0.0

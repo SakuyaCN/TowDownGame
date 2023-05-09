@@ -2,6 +2,7 @@ extends Node
 
 signal playerWeaponListChange()
 signal onWeaponChanged()
+signal onWeaponChangeAnim()
 
 var player_weapon_list = {}
 
@@ -25,10 +26,11 @@ func changeWeapon(weapon_id:int):
 		return
 	if player_weapon_list.has(weapon_id):
 		is_change_weapon = true
+		emit_signal("onWeaponChangeAnim",weapon_id)
 		Utils.player.changeWeapon(weapon_id)
-		Engine.time_scale = 0.3
+		#Engine.time_scale = 0.1
 
 func _physics_process(delta: float) -> void:
-	if is_change_weapon && Engine.get_physics_frames() % 60== 0:
+	if is_change_weapon && Engine.get_physics_frames() % 90 == 0:
 		Engine.time_scale = 1
 		is_change_weapon = false

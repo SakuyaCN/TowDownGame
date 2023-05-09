@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cu2k5qoyt6ke7"
+path="res://.godot/imported/GUNAuto_Assault Rifle D Fire_06.wav-33a39c85485b88216eca9646c7595ffe.sample"
+
+[deps]
+
+source_file="res://audio/GUNAuto_Assault Rifle D Fire_06.wav"
+dest_files=["res://.godot/imported/GUNAuto_Assault Rifle D Fire_06.wav-33a39c85485b88216eca9646c7595ffe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

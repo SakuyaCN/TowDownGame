@@ -4,7 +4,10 @@ class_name BaseGun
 const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 
 @export var weapon_id = 0
+@export var image:Texture
+@export var weapon_name:String = "Gun"
 @export var bullet_scene : PackedScene
+@export var damage = 1
 @export var fire_rate = 5.0
 @export var can_shoot = true
 @export var recoil_duration = 0.2
@@ -17,6 +20,7 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @onready var gun_tip = $GunTip
 @onready var audio = $AudioStreamPlayer2D
 @onready var timer = $shoot_timer
+@onready var gun_image = $Sprite2D
 
 var tween:Tween
 var direction:Vector2
@@ -24,6 +28,7 @@ var player:Player
 var is_use = false
 
 func _ready() -> void:
+	gun_image.texture = image
 	set_use(false)
 	timer.wait_time = 1.0 / fire_rate
 
@@ -49,7 +54,8 @@ func set_use(use:bool):
 		player.gun = self
 	PlayerData.emit_signal("onWeaponChanged")
 
-func fire(bullet):
+func fire(bullet:Bullet):
+	bullet.hurt = damage
 	bullet.knockback_speed = knockback_speed
 	bullet.knockback_time = knockback_time
 	bullet.gun = self

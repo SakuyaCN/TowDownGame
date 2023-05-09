@@ -176,8 +176,9 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c17pa"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bvhe3"]
+radius = 7.0
+height = 20.0
 
 [node name="Monster2" type="CharacterBody2D"]
 collision_layer = 3
@@ -200,5 +201,5 @@ animation = &"idle"
 frame_progress = 0.773265
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -5)
-shape = SubResource("CircleShape2D_c17pa")
+position = Vector2(1, -9)
+shape = SubResource("CapsuleShape2D_bvhe3")
