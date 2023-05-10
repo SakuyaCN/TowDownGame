@@ -8,14 +8,16 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @export var weapon_name:String = "Gun"
 @export var bullet_scene : PackedScene
 @export var damage = 1
+@export var bullet_speed = 200
 @export var fire_rate = 5.0
-@export var can_shoot = true
 @export var recoil_duration = 0.2
 @export var knockback_speed = 50
 @export var knockback_time = 0.1
 @export var time_scale = 0.1
 @export var freeze_frame = 3
+@export var recoil = 0
 @export var shake_vector = Vector2.ZERO
+
 
 @onready var gun_tip = $GunTip
 @onready var audio = $AudioStreamPlayer2D
@@ -26,6 +28,7 @@ var tween:Tween
 var direction:Vector2
 var player:Player
 var is_use = false
+var can_shoot = true
 
 func _ready() -> void:
 	gun_image.texture = image
@@ -54,12 +57,17 @@ func set_use(use:bool):
 		player.gun = self
 	PlayerData.emit_signal("onWeaponChanged")
 
-func fire(bullet:Bullet):
+func fire(bullet:Bullet,is_bullet = true):
+	bullet.speed = bullet_speed
 	bullet.hurt = damage
 	bullet.knockback_speed = knockback_speed
 	bullet.knockback_time = knockback_time
 	bullet.gun = self
-	bullet.fire()
+	if is_bullet:
+		bullet.fire()
+	
+	if recoil > 0 && is_bullet:
+		player.set_knockback(recoil)
 
 func _physics_process(delta):
 	if Utils.freeze_frame:
@@ -76,3 +84,6 @@ func _shoot() -> void:
 
 func _shootAnim():
 	player.cameraSnake(shake_vector * direction)
+	var ins = particles_pre.instantiate()
+	ins.position = gun_tip.position
+	add_child(ins)

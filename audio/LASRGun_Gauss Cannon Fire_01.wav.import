@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4f7djdambyhk"
+path="res://.godot/imported/LASRGun_Gauss Cannon Fire_01.wav-0df2efb7026ddf802378f2f6f58b60b3.sample"
+
+[deps]
+
+source_file="res://audio/LASRGun_Gauss Cannon Fire_01.wav"
+dest_files=["res://.godot/imported/LASRGun_Gauss Cannon Fire_01.wav-0df2efb7026ddf802378f2f6f58b60b3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/guns/BabyZapZap.gd" id="1_taix2"]
 [ext_resource type="Texture2D" uid="uid://dvj87mlcwsq0d" path="res://Sprites/The Tiny Alchemist - Guns/gun3.png" id="2_5ow14"]
 [ext_resource type="PackedScene" uid="uid://ccdubmgcb7k5i" path="res://game/bullets/BabyBullet.tscn" id="3_r3k3a"]
-[ext_resource type="AudioStream" uid="uid://xm8xpj5ft83s" path="res://audio/GUNPis_Pistol Fire_01.wav" id="4_388xn"]
+[ext_resource type="AudioStream" uid="uid://xm8xpj5ft83s" path="res://audio/GUNPis_Pistol Fire_01.wav" id="4_ty4b7"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -38,6 +38,7 @@ weapon_id = 3
 image = ExtResource("2_5ow14")
 weapon_name = "BabyZapZap"
 bullet_scene = ExtResource("3_r3k3a")
+bullet_speed = 350
 fire_rate = 1.5
 knockback_speed = 0
 time_scale = 0.0
@@ -57,7 +58,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_388xn")
+stream = ExtResource("4_ty4b7")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(7, -1)

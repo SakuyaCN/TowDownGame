@@ -22,4 +22,4 @@ func onWeaponChangeAnim(weapon_id):
 	weapon_change_image.texture = weapon.image
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(weapon_change_image,"modulate:a",1.0,0.3).from(0.0)
-	tween.tween_property(weapon_change_image,"modulate:a",0.0,0.3).from(1.0)
+	tween.tween_property(weapon_change_image,"modulate:a",0.0,0.3).from(1.0).set_delay(0.5)

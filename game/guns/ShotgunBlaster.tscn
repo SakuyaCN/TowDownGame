@@ -41,6 +41,7 @@ bullet_scene = ExtResource("2_uf13k")
 fire_rate = 2.0
 knockback_speed = 80
 freeze_frame = 2
+recoil = 100
 shake_vector = Vector2(3, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

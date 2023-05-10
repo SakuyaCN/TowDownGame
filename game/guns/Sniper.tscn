@@ -39,9 +39,11 @@ image = ExtResource("2_g5sf4")
 weapon_name = "Sniper"
 bullet_scene = ExtResource("2_vj41m")
 damage = 5
+bullet_speed = 500
 fire_rate = 1.5
 knockback_speed = 150
 freeze_frame = 5
+recoil = 35
 shake_vector = Vector2(5, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/guns/AlienRifle.gd" id="1_hv6am"]
 [ext_resource type="Texture2D" uid="uid://c0lagowo2jim3" path="res://Sprites/The Tiny Alchemist - Guns/gun7.png" id="2_knpti"]
 [ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_v01pf"]
-[ext_resource type="AudioStream" uid="uid://coik2iggjwfeg" path="res://audio/GUNAuto_Assault Rifle B Fire_01.wav" id="4_4hi3x"]
+[ext_resource type="AudioStream" uid="uid://coik2iggjwfeg" path="res://audio/GUNAuto_Assault Rifle B Fire_01.wav" id="4_ysjra"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -41,6 +41,7 @@ damage = 2
 fire_rate = 7.0
 knockback_speed = 80
 freeze_frame = 4
+recoil = 15
 shake_vector = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -57,7 +58,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_4hi3x")
+stream = ExtResource("4_ysjra")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(11, -1)

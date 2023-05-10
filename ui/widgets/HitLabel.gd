@@ -8,4 +8,4 @@ func _ready() -> void:
 	tween.tween_callback(self.queue_free).set_delay(1)
 
 func setNumber(number):
-	text = "-"+str(number)
+	text = str(number)

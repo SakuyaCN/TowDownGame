@@ -19,11 +19,13 @@ func _ready():
 	Utils.player = self
 	PlayerData.add_weapons(
 		[
-			Utils.weapon_list["0"].instantiate(),
-			Utils.weapon_list["1"].instantiate(),
-			Utils.weapon_list["2"].instantiate(),
+			Utils.weapon_list["7"].instantiate(),
+			Utils.weapon_list["6"].instantiate(),
+			Utils.weapon_list["5"].instantiate(),
+			Utils.weapon_list["4"].instantiate(),
 			Utils.weapon_list["3"].instantiate(),
-			Utils.weapon_list["4"].instantiate()
+			Utils.weapon_list["2"].instantiate(),
+			#Utils.weapon_list["4"].instantiate()
 		])
 
 func changeWeapon(weapon_id):
@@ -63,9 +65,9 @@ func _physics_process(delta):
 		setGunLookat(get_global_mouse_position())
 
 func set_knockback(knockback_speed):
-	self.knockback_speed = knockback_speed / 3
+	self.knockback_speed = knockback_speed
 	is_knockback = true
-	await get_tree().create_timer(0.1).timeout.connect(func timeout():
+	await get_tree().create_timer(0.05).timeout.connect(func timeout():
 		is_knockback = false;self.knockback_speed = 0)
 
 func setGunLookat(dir):

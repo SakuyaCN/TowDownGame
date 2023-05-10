@@ -14,7 +14,6 @@ func _draw():
 	draw_line($GunTip.position+Vector2(5,0),point-Vector2(5,0),Color.WHITE,1)
 
 func _shoot():
-	player.set_knockback(knockback_speed)
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - gun_tip.global_position).normalized()
 	gun_tip.rotation = direction.angle()
@@ -35,7 +34,6 @@ func _shootAnim():
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(self, "position", position, timer.wait_time).from(position + Vector2(-1, -1))
 	tween.tween_property($Sprite2D, "scale", Vector2(1,1), timer.wait_time).from(Vector2(0.5, 1.1))
-	add_child(particles_pre.instantiate())
 
 func _on_timer_timeout():
 	can_shoot = true

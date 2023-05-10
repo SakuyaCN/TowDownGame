@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://qbdaailvdirq"
+path="res://.godot/imported/GUNCano_Quad Cannon Fire Double_01.wav-c56ed8b7d08c5c1524c1ae1c9b3322ee.sample"
+
+[deps]
+
+source_file="res://audio/GUNCano_Quad Cannon Fire Double_01.wav"
+dest_files=["res://.godot/imported/GUNCano_Quad Cannon Fire Double_01.wav-c56ed8b7d08c5c1524c1ae1c9b3322ee.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

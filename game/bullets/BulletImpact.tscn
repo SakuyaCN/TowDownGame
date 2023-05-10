@@ -88,7 +88,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_1t0e8")
 offset = Vector2(8, 0)
 hframes = 4
-frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "new_animation"
@@ -98,4 +97,4 @@ libraries = {
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(3.5, -1.5)
-texture = ExtResource("6_gebtl")
+texture = ExtResource("2_fwlsh")

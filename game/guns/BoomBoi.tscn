@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=3 uid="uid://b5766vf0e5ckg"]
+
+[ext_resource type="Script" path="res://game/guns/BoomBoi.gd" id="1_5fns6"]
+[ext_resource type="Texture2D" uid="uid://bsxk02hl7i4a6" path="res://Sprites/The Tiny Alchemist - Guns/gun5.png" id="2_7wcnc"]
+[ext_resource type="Texture2D" uid="uid://6cng77rsgedk" path="res://game/bullets/assets/lights2.png" id="3_5vsnc"]
+[ext_resource type="PackedScene" uid="uid://cu576cs21f7sb" path="res://game/bullets/Bullet.tscn" id="3_7tj4b"]
+[ext_resource type="AudioStream" uid="uid://bi4ghhps0bmv4" path="res://audio/ELECArc_Gauss Cannon Electric Arc_01.wav" id="3_t173q"]
+
+[sub_resource type="Gradient" id="Gradient_17ibg"]
+colors = PackedColorArray(0.202513, 0.970151, 1, 1, 0.502386, 0.816418, 1, 1)
+
+[sub_resource type="Curve" id="Curve_gtmmr"]
+_data = [Vector2(0, 0.572727), 0.0, 0.0, 0, 0, Vector2(0.614458, 0.809091), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_urfko"]
+curve = SubResource("Curve_gtmmr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vqneb"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 5, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_urfko")
+
+[sub_resource type="Gradient" id="Gradient_m380u"]
+offsets = PackedFloat32Array(0.57037, 1)
+colors = PackedColorArray(0.584314, 0.92549, 0.945098, 0.639216, 0.462745, 0.854902, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gxsir"]
+gradient = SubResource("Gradient_m380u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1lxr"]
+particle_flag_disable_z = true
+spread = 90.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+angular_velocity_min = 5.0
+angular_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_min = 0.3
+scale_curve = SubResource("CurveTexture_urfko")
+color_ramp = SubResource("GradientTexture1D_gxsir")
+
+[sub_resource type="Animation" id="Animation_4mjfa"]
+resource_name = "run"
+length = 0.15
+loop_mode = 2
+step = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+
+[sub_resource type="Animation" id="Animation_0xp66"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
+_data = {
+"run": SubResource("Animation_4mjfa"),
+"shoot": SubResource("Animation_0xp66")
+}
+
+[node name="GunSprite" type="Node2D"]
+position = Vector2(2, -7)
+script = ExtResource("1_5fns6")
+weapon_id = 6
+image = ExtResource("2_7wcnc")
+weapon_name = "BoomBoi"
+bullet_scene = ExtResource("3_7tj4b")
+fire_rate = 1.0
+knockback_speed = 200
+freeze_frame = 7
+recoil = 100
+shake_vector = Vector2(7, 7)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(4, -1)
+target_position = Vector2(1000, 0)
+
+[node name="Line2D" type="Line2D" parent="RayCast2D"]
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(1, 0)
+points = PackedVector2Array(0, 0, 100, 0)
+width = 0.0
+default_color = Color(1.2, 1.2, 1.2, 1)
+gradient = SubResource("Gradient_17ibg")
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+antialiased = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="RayCast2D/Line2D"]
+self_modulate = Color(2, 2, 2, 1)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_vqneb")
+lifetime = 0.3
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="RayCast2D"]
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(33, 0)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_f1lxr")
+texture = ExtResource("3_5vsnc")
+lifetime = 0.3
+preprocess = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7wcnc")
+offset = Vector2(6, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lo2pw")
+}
+
+[node name="shoot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
+stream = ExtResource("3_t173q")
+
+[node name="GunTip" type="Node2D" parent="."]
+position = Vector2(11, -1)
+
+[node name="tick" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

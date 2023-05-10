@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c711joqeud4pp"]
+[gd_scene load_steps=15 format=3 uid="uid://c711joqeud4pp"]
 
 [ext_resource type="Script" path="res://game/map/test.gd" id="1_pyo8t"]
 [ext_resource type="PackedScene" uid="uid://8lekrqo3cykw" path="res://game/hero/Hero.tscn" id="1_riyjw"]
@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c7j6t5pvwoh0b" path="res://game/monster/Monster 1/Monster1.tscn" id="3_0mfvw"]
 [ext_resource type="PackedScene" uid="uid://co11lqs3cpuyb" path="res://game/monster/Monster 2/Monster2.tscn" id="4_e8llc"]
 [ext_resource type="Script" path="res://game/hero/Camera2D.gd" id="4_fy4ut"]
-[ext_resource type="AudioStream" uid="uid://ey17xlhrg0fa" path="res://audio/Cut and Run.mp3" id="4_g3akw"]
 [ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="5_783f4"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_8kxis"]
+[ext_resource type="AudioStream" uid="uid://dd8rqtd44vwn1" path="res://audio/bgm/Cephalopod.mp3" id="9_cl2yq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a8w01"]
 vertices = PackedVector2Array(555, 18, 557, 351, -15, 350, -14, 18)
@@ -777,6 +777,14 @@ func _physics_process(delta: float) -> void:
 	global_position = Vector2(x,y)
 "
 
+[sub_resource type="Environment" id="Environment_wve7b"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.6
+glow_blend_mode = 1
+glow_hdr_threshold = 0.2
+
 [node name="test" type="NavigationRegion2D"]
 navigation_polygon = SubResource("NavigationPolygon_a8w01")
 script = ExtResource("1_pyo8t")
@@ -825,7 +833,8 @@ position = Vector2(78, 61)
 SPEED = 50.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_g3akw")
+stream = ExtResource("9_cl2yq")
+volume_db = -10.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -834,5 +843,8 @@ color = Color(0, 0, 0, 1)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wve7b")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://d05ce2okxp00o"]
+
+[ext_resource type="Script" path="res://game/guns/AlienMachine.gd" id="1_4ntsq"]
+[ext_resource type="Texture2D" uid="uid://diisnhqtfoian" path="res://Sprites/The Tiny Alchemist - Guns/gun8.png" id="2_a7fs4"]
+[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_rvr62"]
+[ext_resource type="AudioStream" uid="uid://b8x6lyrdx6i6a" path="res://audio/GUNAuto_Plasmid Machinegun Single_01.wav" id="4_rsdcs"]
+
+[sub_resource type="Animation" id="Animation_4mjfa"]
+resource_name = "run"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+
+[sub_resource type="Animation" id="Animation_0xp66"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
+_data = {
+"run": SubResource("Animation_4mjfa"),
+"shoot": SubResource("Animation_0xp66")
+}
+
+[node name="GunSprite" type="Node2D"]
+position = Vector2(2, -7)
+script = ExtResource("1_4ntsq")
+weapon_id = 7
+image = ExtResource("2_a7fs4")
+weapon_name = "AlienMachine"
+bullet_scene = ExtResource("3_rvr62")
+bullet_speed = 250
+fire_rate = 10.0
+shake_vector = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_a7fs4")
+offset = Vector2(6, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lo2pw")
+}
+
+[node name="shoot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
+stream = ExtResource("4_rsdcs")
+
+[node name="GunTip" type="Node2D" parent="."]
+position = Vector2(19, 1)
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]

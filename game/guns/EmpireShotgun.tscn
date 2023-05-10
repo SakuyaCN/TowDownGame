@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcv0qtflr50wt"]
+
+[ext_resource type="Script" path="res://game/guns/EmpireShotgun.gd" id="1_nbdk4"]
+[ext_resource type="Texture2D" uid="uid://dijcgwkaw1w7u" path="res://Sprites/The Tiny Alchemist - Guns/gun13.png" id="2_psynq"]
+[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_fnttn"]
+[ext_resource type="AudioStream" uid="uid://qbdaailvdirq" path="res://audio/GUNCano_Quad Cannon Fire Double_01.wav" id="4_jsjqs"]
+
+[sub_resource type="Animation" id="Animation_4mjfa"]
+resource_name = "run"
+length = 0.2
+loop_mode = 2
+step = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_0xp66"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
+_data = {
+"run": SubResource("Animation_4mjfa"),
+"shoot": SubResource("Animation_0xp66")
+}
+
+[node name="GunSprite" type="Node2D"]
+position = Vector2(2, -7)
+script = ExtResource("1_nbdk4")
+weapon_id = 5
+image = ExtResource("2_psynq")
+weapon_name = "EmpireShotgun"
+bullet_scene = ExtResource("3_fnttn")
+damage = 2
+fire_rate = 1.5
+knockback_speed = 100
+freeze_frame = 5
+recoil = 50
+shake_vector = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+texture = ExtResource("2_psynq")
+offset = Vector2(6, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lo2pw")
+}
+
+[node name="shoot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
+stream = ExtResource("4_jsjqs")
+
+[node name="GunTip" type="Node2D" parent="."]
+position = Vector2(8, -1)
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]

@@ -42,6 +42,8 @@ knockback_speed = 10
 knockback_time = 0.05
 time_scale = 0.0
 freeze_frame = 1
+recoil = 5
+shake_vector = Vector2(1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_tt37n")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2qbx7rxn2t04"]
+
+[ext_resource type="Script" path="res://game/bullets/BulletShell.gd" id="1_682hm"]
+[ext_resource type="Texture2D" uid="uid://c1mqiyxfhjt4j" path="res://Sprites/shell_case.png" id="1_m41g5"]
+
+[node name="BulletShell" type="RigidBody2D"]
+self_modulate = Color(2, 2, 2, 1)
+script = ExtResource("1_682hm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_m41g5")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("1_m41g5")
+texture_scale = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
