@@ -3,10 +3,6 @@ extends "res://game/guns/BaseGun.gd"
 
 func _process(delta):
 	super._process(delta)
-	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
-		_shoot()
-	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-		_shoot()
 	queue_redraw()
 
 func _draw():
@@ -30,7 +26,6 @@ func _shoot():
 
 func _shootAnim():
 	super._shootAnim()
-	audio.play()
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(self, "position", position, timer.wait_time).from(position + Vector2(-1, -1))
 	tween.tween_property($Sprite2D, "scale", Vector2(1,1), timer.wait_time).from(Vector2(0.5, 1.1))

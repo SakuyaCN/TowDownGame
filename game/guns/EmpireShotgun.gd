@@ -1,13 +1,5 @@
 extends "res://game/guns/BaseGun.gd"
 
-
-func _process(delta):
-	super._process(delta)
-	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
-		_shoot()
-	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-		_shoot()
-
 func _shoot():
 	gun_tip.rotation = direction.angle()
 	
@@ -17,7 +9,6 @@ func _shoot():
 	timer.start()
 
 func createBullet():
-	audio.play()
 	for index in 2:
 		for i in 2:
 			var b = bullet_scene.instantiate()

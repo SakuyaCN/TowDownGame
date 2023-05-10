@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2gfbnjg6tau6"]
+
+[ext_resource type="Texture2D" uid="uid://c1mqiyxfhjt4j" path="res://Sprites/shell_case.png" id="1_l1liw"]
+[ext_resource type="Script" path="res://ui/widgets/BulletCountItem.gd" id="2_qqwbi"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(6, 0)
+texture = ExtResource("1_l1liw")
+expand_mode = 1
+script = ExtResource("2_qqwbi")

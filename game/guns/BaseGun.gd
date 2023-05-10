@@ -3,20 +3,23 @@ class_name BaseGun
 
 const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 
-@export var weapon_id = 0
-@export var image:Texture
-@export var weapon_name:String = "Gun"
-@export var bullet_scene : PackedScene
-@export var damage = 1
-@export var bullet_speed = 200
-@export var fire_rate = 5.0
+## 武器ID
+@export var weapon_id = 0 #枪械ID
+@export var image:Texture #枪械图片
+@export var weapon_name:String = "Gun" #枪械名称
+@export var bullet_scene : PackedScene #子弹模板
+@export var damage = 1 #子弹伤害
+@export var bullet_speed = 200 #子弹速度
+@export var fire_rate = 5.0 #开火速率
+@export var bullets_max_count = 10 #子弹数量
+@export var change_speed = 1.0 #换弹时间
 @export var recoil_duration = 0.2
-@export var knockback_speed = 50
-@export var knockback_time = 0.1
-@export var time_scale = 0.1
-@export var freeze_frame = 3
-@export var recoil = 0
-@export var shake_vector = Vector2.ZERO
+@export var knockback_speed = 50 #击退速度
+@export var knockback_time = 0.1 #击退持续时间
+@export var time_scale = 0.1 #帧冻结时间倍数
+@export var freeze_frame = 3 #帧冻结帧数
+@export var recoil = 0 #后坐力大小
+@export var shake_vector = Vector2.ZERO #屏幕晃动大小
 
 
 @onready var gun_tip = $GunTip
@@ -25,15 +28,33 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @onready var gun_image = $Sprite2D
 
 var tween:Tween
-var direction:Vector2
-var player:Player
-var is_use = false
-var can_shoot = true
+var direction:Vector2 #朝向
+var player:Player #使用玩家
+var is_use = false #是否正在使用
+var can_shoot = true #是否可以射击
+var bullets_count = 0: #剩余子弹
+	set(value):
+		bullets_count = value
+		if is_use:
+			PlayerData.emit_signal("onWeaponBulletsChange",bullets_count,bullets_max_count) 
+
+var change_timer = Timer.new()
+
+func _init():
+	change_timer.one_shot = true
+	change_timer.timeout.connect(self.reload_over)
 
 func _ready() -> void:
+	bullets_count = bullets_max_count
+	print(bullets_max_count)
+	add_child(change_timer)
 	gun_image.texture = image
 	set_use(false)
 	timer.wait_time = 1.0 / fire_rate
+
+#子弹装填完毕
+func reload_over():
+	bullets_count = bullets_max_count
 
 func setOwner(player):
 	self.player = player
@@ -43,10 +64,12 @@ func _process(delta):
 		delta = 0.0
 	var mouse_pos = get_global_mouse_position()
 	direction = (mouse_pos - gun_tip.global_position).normalized()
-	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
-		_shoot()
-	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-		_shoot()
+	
+	if bullets_count > 0:
+		if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
+			_shoot()
+		elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
+			_shoot()
 
 func set_use(use:bool):
 	is_use = use
@@ -55,9 +78,18 @@ func set_use(use:bool):
 	visible = is_use
 	if player && is_use:
 		player.gun = self
+		PlayerData.emit_signal("onWeaponChangeAnim",weapon_id)
 	PlayerData.emit_signal("onWeaponChanged")
+	change_timer.stop()
 
-func fire(bullet:Bullet,is_bullet = true):
+func fire(bullet:Bullet,is_bullet = true,is_play = true):
+	if is_bullet:
+		bullets_count -= 1
+		if bullets_count < 0:
+			can_shoot = false
+			bullet.queue_free()
+			return
+	
 	bullet.speed = bullet_speed
 	bullet.hurt = damage
 	bullet.knockback_speed = knockback_speed
@@ -65,9 +97,10 @@ func fire(bullet:Bullet,is_bullet = true):
 	bullet.gun = self
 	if is_bullet:
 		bullet.fire()
-	
 	if recoil > 0 && is_bullet:
 		player.set_knockback(recoil)
+	if is_play:
+		audio.play()
 
 func _physics_process(delta):
 	if Utils.freeze_frame:

@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5766vf0e5ckg"]
+[gd_scene load_steps=15 format=3 uid="uid://b5766vf0e5ckg"]
 
 [ext_resource type="Script" path="res://game/guns/BoomBoi.gd" id="1_5fns6"]
 [ext_resource type="Texture2D" uid="uid://bsxk02hl7i4a6" path="res://Sprites/The Tiny Alchemist - Guns/gun5.png" id="2_7wcnc"]
 [ext_resource type="Texture2D" uid="uid://6cng77rsgedk" path="res://game/bullets/assets/lights2.png" id="3_5vsnc"]
 [ext_resource type="PackedScene" uid="uid://cu576cs21f7sb" path="res://game/bullets/Bullet.tscn" id="3_7tj4b"]
-[ext_resource type="AudioStream" uid="uid://bi4ghhps0bmv4" path="res://audio/ELECArc_Gauss Cannon Electric Arc_01.wav" id="3_t173q"]
 
 [sub_resource type="Gradient" id="Gradient_17ibg"]
 colors = PackedColorArray(0.202513, 0.970151, 1, 1, 0.502386, 0.816418, 1, 1)
@@ -135,7 +134,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("3_t173q")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(11, -1)

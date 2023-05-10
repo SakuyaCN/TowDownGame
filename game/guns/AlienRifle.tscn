@@ -39,6 +39,7 @@ image = ExtResource("2_knpti")
 bullet_scene = ExtResource("3_v01pf")
 damage = 2
 fire_rate = 7.0
+bullets_max_count = 35
 knockback_speed = 80
 freeze_frame = 4
 recoil = 15

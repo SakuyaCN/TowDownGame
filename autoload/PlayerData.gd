@@ -1,8 +1,9 @@
 extends Node
 
-signal playerWeaponListChange()
-signal onWeaponChanged()
-signal onWeaponChangeAnim()
+signal playerWeaponListChange() #武器列表改变
+signal onWeaponChanged() #切换武器
+signal onWeaponChangeAnim(id) #切换武器动作
+signal onWeaponBulletsChange(bullet,max_bullet) #武器子弹数量变化
 
 var player_weapon_list = {}
 
@@ -26,7 +27,6 @@ func changeWeapon(weapon_id:int):
 		return
 	if player_weapon_list.has(weapon_id):
 		is_change_weapon = true
-		emit_signal("onWeaponChangeAnim",weapon_id)
 		Utils.player.changeWeapon(weapon_id)
 		#Engine.time_scale = 0.1
 

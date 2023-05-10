@@ -16,7 +16,6 @@ func createBullet():
 		b.position = gun_tip.global_position
 		b.rotation = gun_tip.rotation
 		fire(b)
-		audio.play()
 		call_deferred("_shootAnim")
 		await get_tree().create_timer(0.15).timeout
 

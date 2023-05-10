@@ -39,6 +39,7 @@ image = ExtResource("2_tws2b")
 weapon_name = "ShotgunBlaster"
 bullet_scene = ExtResource("2_uf13k")
 fire_rate = 2.0
+bullets_max_count = 15
 knockback_speed = 80
 freeze_frame = 2
 recoil = 100

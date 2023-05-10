@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/guns/EmpireShotgun.gd" id="1_nbdk4"]
 [ext_resource type="Texture2D" uid="uid://dijcgwkaw1w7u" path="res://Sprites/The Tiny Alchemist - Guns/gun13.png" id="2_psynq"]
 [ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_fnttn"]
-[ext_resource type="AudioStream" uid="uid://qbdaailvdirq" path="res://audio/GUNCano_Quad Cannon Fire Double_01.wav" id="4_jsjqs"]
+[ext_resource type="AudioStream" uid="uid://djod47wdns4f" path="res://audio/GUNTech_Sci Fi Shotgun Fire Heavy_06.wav" id="4_556r1"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -40,6 +40,7 @@ weapon_name = "EmpireShotgun"
 bullet_scene = ExtResource("3_fnttn")
 damage = 2
 fire_rate = 1.5
+bullets_max_count = 12
 knockback_speed = 100
 freeze_frame = 5
 recoil = 50
@@ -60,7 +61,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_jsjqs")
+stream = ExtResource("4_556r1")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(8, -1)

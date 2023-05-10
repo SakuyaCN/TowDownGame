@@ -1,13 +1,6 @@
 extends "res://game/guns/BaseGun.gd"
 
 
-func _process(delta):
-	super._process(delta)
-	if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
-		_shoot()
-	elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-		_shoot()
-
 func _shoot():
 	gun_tip.rotation = direction.angle()
 	for i in 3:
@@ -17,7 +10,7 @@ func _shoot():
 		get_tree().root.add_child(b)
 		b.position = gun_tip.global_position
 		b.rotation = gun_tip.rotation + deg_to_rad(-15 + i * 15)
-		fire(b)
+		fire(b,true,false)
 	
 	call_deferred("_shootAnim")
 	can_shoot = false

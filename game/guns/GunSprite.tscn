@@ -38,6 +38,7 @@ image = ExtResource("3_tt37n")
 weapon_name = "BlasterRifle"
 bullet_scene = ExtResource("3_1a5xv")
 damage = 2
+bullets_max_count = 25
 knockback_speed = 10
 knockback_time = 0.05
 time_scale = 0.0

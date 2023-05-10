@@ -39,6 +39,7 @@ weapon_name = "AlienMachine"
 bullet_scene = ExtResource("3_rvr62")
 bullet_speed = 250
 fire_rate = 10.0
+bullets_max_count = 50
 shake_vector = Vector2(1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
