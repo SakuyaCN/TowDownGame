@@ -3,18 +3,29 @@ extends Control
 const weapon_item_pre = preload("res://ui/widgets/WeaponListItem.tscn")
 const weapon_bullet_pre = preload("res://ui/widgets/BulletCountItem.tscn")
 
+@onready var box_top = $hpUI
+@onready var bottom_bls = $Container
+
 @onready var weapon_lsit_node = $HBoxContainer
 @onready var weapon_change_image = $WeaponChangeUI/WeaponImage
 @onready var weapon_bullet_list = $Container/BulletHbox
 @onready var ammo_count_label = $Container/Label
 @onready var weapon_change_name = $WeaponChangeUI/WeaponImage/Label
+@onready var hp_bar = $hpUI/ProgressBar
+
 func _ready() -> void:
 	Utils.onGameStart.connect(self.onGameStart)
-	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
-	PlayerData.onWeaponChangeAnim.connect(self.onWeaponChangeAnim)
-	PlayerData.onWeaponBulletsChange.connect(self.onWeaponBulletsChange)
+	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange) #武器列表化监听
+	PlayerData.onWeaponChangeAnim.connect(self.onWeaponChangeAnim) #武器化监听
+	PlayerData.onWeaponBulletsChange.connect(self.onWeaponBulletsChange) #武器化监听
+	PlayerData.onHpChange.connect(func hpChange(hp,max_hp): #血量变化监听
+		hp_bar.max_value = max_hp;hp_bar.value = hp)
 
 func onGameStart():
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	tween.tween_property(box_top,"position:y",box_top.position.y,0.3).from(box_top.position.y-box_top.size.y)
+	tween.tween_property(bottom_bls,"position:y",bottom_bls.position.y,0.3).from(bottom_bls.position.y+bottom_bls.size.y)
+	tween.tween_property(weapon_lsit_node,"position:y",weapon_lsit_node.position.y,0.3).from(weapon_lsit_node.position.y+weapon_lsit_node.size.y)
 	show()
 
 func playerWeaponListChange():

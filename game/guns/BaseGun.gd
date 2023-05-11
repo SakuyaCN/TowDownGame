@@ -84,6 +84,7 @@ func _process(delta):
 
 func set_use(use:bool):
 	change_timer.stop()
+	is_reloading = false
 	is_use = use
 	set_physics_process(is_use)
 	set_process(is_use)
@@ -119,6 +120,7 @@ func fire(bullet:Bullet,is_bullet = true,is_play = true):
 func reload_ammo():
 	if !is_reloading && change_timer.is_stopped():
 		is_reloading = true
+		anim_player.speed_scale = 1 / change_speed
 		anim_player.play("reload")
 		change_timer.start(change_speed)
 		audio_reload_ammo.play()

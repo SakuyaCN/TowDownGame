@@ -28,13 +28,14 @@ func onGameStart():
 	set_process(true)
 	PlayerData.add_weapons(
 		[
+			Utils.weapon_list["8"].instantiate(),
 			Utils.weapon_list["7"].instantiate(),
 			Utils.weapon_list["6"].instantiate(),
 			Utils.weapon_list["5"].instantiate(),
 			Utils.weapon_list["4"].instantiate(),
 			Utils.weapon_list["3"].instantiate(),
 			Utils.weapon_list["2"].instantiate(),
-			Utils.weapon_list["1"].instantiate(),
+			#Utils.weapon_list["1"].instantiate(),
 			#Utils.weapon_list["4"].instantiate()
 		])
 

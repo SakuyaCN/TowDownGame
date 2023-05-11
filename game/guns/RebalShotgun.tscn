@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://de3jth52dynib"]
+
+[ext_resource type="Script" path="res://game/guns/RebalShotgun.gd" id="1_d7s20"]
+[ext_resource type="Texture2D" uid="uid://b0t4hl1td2sih" path="res://Sprites/The Tiny Alchemist - Guns/gun19.png" id="2_lerme"]
+[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_eaa8h"]
+[ext_resource type="AudioStream" uid="uid://dykjelucvrjre" path="res://audio/bullet/GUNMech_Reload_10.wav" id="4_dfqac"]
+[ext_resource type="AudioStream" uid="uid://o5y7ktpfio7w" path="res://audio/GUNTech_Tormentor Shotgun Fire_01.wav" id="4_nvr8g"]
+[ext_resource type="Animation" uid="uid://b42daukxb8wl4" path="res://game/guns/anim/reload.anim" id="4_v8j53"]
+
+[sub_resource type="Animation" id="Animation_4mjfa"]
+resource_name = "run"
+length = 0.2
+loop_mode = 2
+step = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_0xp66"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
+_data = {
+"reload": ExtResource("4_v8j53"),
+"run": SubResource("Animation_4mjfa"),
+"shoot": SubResource("Animation_0xp66")
+}
+
+[node name="GunSprite" type="Node2D"]
+position = Vector2(2, -7)
+script = ExtResource("1_d7s20")
+weapon_id = 8
+image = ExtResource("2_lerme")
+weapon_name = "RebalShotgun"
+bullet_scene = ExtResource("3_eaa8h")
+bullet_speed = 250
+fire_rate = 2.0
+bullets_max_count = 5
+change_speed = 0.7
+knockback_speed = 150
+recoil = 75
+shake_vector = Vector2(6, 6)
+reload_stream = ExtResource("4_dfqac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lerme")
+offset = Vector2(6, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lo2pw")
+}
+
+[node name="shoot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
+stream = ExtResource("4_nvr8g")
+
+[node name="GunTip" type="Node2D" parent="."]
+position = Vector2(8, -1)
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]

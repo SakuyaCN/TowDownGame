@@ -9,18 +9,18 @@ var center_vertical_pos:int
 
 
 func _process(_delta:float)->void :
-	if Engine.get_process_frames() % 3 == 0:
+	if Engine.get_process_frames() % 5 == 0:
 		var target_pos = Utils.player.global_position
 		var camera_pos = get_global_transform().origin
 		var distance = get_global_mouse_position().distance_to(camera_pos)
-		var max_distance = 15  # 最大距离
+		var max_distance = 10  # 最大距离
 		var max_offset = 5  # 最大偏移量
 		var t = distance / max_distance  # 计算插值系数
 		var new_offset = (get_global_mouse_position() - camera_pos).normalized() * max_offset * t  # 计算相机的偏移量
 		
-		#var x = int(lerp(position.x,new_offset.x,0.05))
-		#var y = int(lerp(position.y,new_offset.y,0.05))
-		position = new_offset
+		var x = int(lerp(position.x,new_offset.x,0.1))
+		var y = int(lerp(position.y,new_offset.y,0.1))
+		position = Vector2(x,y)
 		Utils.player.light2d.offset = new_offset
 	if center_horizontal:
 		global_position.x = center_horizontal_pos

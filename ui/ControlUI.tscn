@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=14 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
@@ -7,6 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_88kmq"]
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ohj"]
+bg_color = Color(0.176471, 0.211765, 0.196078, 0.784314)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6unc"]
+bg_color = Color(0.36, 1.2, 0.44, 0.6)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wm7f"]
 
@@ -123,6 +139,24 @@ theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="hpUI" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 102.0
+offset_bottom = 43.0
+
+[node name="ProgressBar" type="ProgressBar" parent="GameUI/hpUI"]
+layout_mode = 0
+offset_right = 94.0
+offset_bottom = 9.0
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_x8ohj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i6unc")
+value = 100.0
+
 [node name="MainUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -220,6 +254,7 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
 theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 text = "SETTING_SHAKE"
@@ -244,6 +279,7 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2"]
+layout_mode = 0
 theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 text = "SETTING_VOLUME"

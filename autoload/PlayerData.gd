@@ -5,7 +5,17 @@ signal onWeaponChanged() #切换武器
 signal onWeaponChangeAnim(id) #切换武器动作
 signal onWeaponBulletsChange(bullet,max_bullet) #武器子弹数量变化
 
+signal onHpChange(hp,max_hp)#血量变化
+
 var player_weapon_list = {}
+var player_hp_max = 10: #最大血量
+	set(value):
+		player_hp_max = value
+		emit_signal("onHpChange",player_hp,player_hp_max)
+var player_hp = 10: #当前血量
+	set(value):
+		player_hp = value
+		emit_signal("onHpChange",player_hp,player_hp_max)
 
 var is_change_weapon = false
 
