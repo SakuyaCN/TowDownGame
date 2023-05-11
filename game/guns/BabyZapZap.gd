@@ -1,12 +1,11 @@
 extends "res://game/guns/BaseGun.gd"
 
 func _shoot():
-	can_shoot = false
+	super._shoot()
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - gun_tip.global_position).normalized()
 	gun_tip.rotation = direction.angle()
-	call_deferred("createBullet")
-	timer.start()
+	createBullet()
 
 func createBullet():
 	for i in 3:

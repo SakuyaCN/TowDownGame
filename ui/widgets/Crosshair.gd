@@ -3,6 +3,11 @@ extends TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_process(false)
+	Utils.onGameStart.connect(self.onGameStart)
+
+func onGameStart():
+	set_process(true)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _process(delta: float) -> void:

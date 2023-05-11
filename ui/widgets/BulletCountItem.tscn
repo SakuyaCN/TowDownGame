@@ -5,6 +5,9 @@
 
 [node name="TextureRect" type="TextureRect"]
 custom_minimum_size = Vector2(6, 0)
+offset_right = 6.0
+offset_bottom = 6.0
+pivot_offset = Vector2(3, 4)
 texture = ExtResource("1_l1liw")
 expand_mode = 1
 script = ExtResource("2_qqwbi")

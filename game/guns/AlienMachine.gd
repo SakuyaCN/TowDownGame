@@ -1,6 +1,7 @@
 extends "res://game/guns/BaseGun.gd"
 
 func _shoot():
+	super._shoot()
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - gun_tip.global_position).normalized()
 	gun_tip.rotation = direction.angle()
@@ -10,10 +11,7 @@ func _shoot():
 	b.position = gun_tip.global_position
 	b.rotation = gun_tip.rotation
 	fire(b)
-	
-	call_deferred("_shootAnim")
-	can_shoot = false
-	timer.start()
+
 
 func _shootAnim():
 	super._shootAnim()

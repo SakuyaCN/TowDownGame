@@ -14,9 +14,18 @@ var is_knockback = false #后坐力
 var knockback_speed = 0 #后坐力速度
 var look_dir = null
 
+func _init() -> void:
+	Utils.onGameStart.connect(self.onGameStart)
+
 func _ready():
+	set_physics_process(false)
+	set_process(false)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
 	Utils.player = self
+
+func onGameStart():
+	set_physics_process(true)
+	set_process(true)
 	PlayerData.add_weapons(
 		[
 			Utils.weapon_list["7"].instantiate(),
@@ -25,6 +34,7 @@ func _ready():
 			Utils.weapon_list["4"].instantiate(),
 			Utils.weapon_list["3"].instantiate(),
 			Utils.weapon_list["2"].instantiate(),
+			Utils.weapon_list["1"].instantiate(),
 			#Utils.weapon_list["4"].instantiate()
 		])
 

@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://c711joqeud4pp"]
+[gd_scene load_steps=13 format=3 uid="uid://c711joqeud4pp"]
 
 [ext_resource type="Script" path="res://game/map/test.gd" id="1_pyo8t"]
 [ext_resource type="PackedScene" uid="uid://8lekrqo3cykw" path="res://game/hero/Hero.tscn" id="1_riyjw"]
 [ext_resource type="Texture2D" uid="uid://c3y5uu5smfsdr" path="res://game/map/top down tileset.png" id="2_74jn2"]
-[ext_resource type="PackedScene" uid="uid://c7j6t5pvwoh0b" path="res://game/monster/Monster 1/Monster1.tscn" id="3_0mfvw"]
-[ext_resource type="PackedScene" uid="uid://co11lqs3cpuyb" path="res://game/monster/Monster 2/Monster2.tscn" id="4_e8llc"]
 [ext_resource type="Script" path="res://game/hero/Camera2D.gd" id="4_fy4ut"]
 [ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="5_783f4"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_8kxis"]
@@ -825,13 +823,6 @@ shadow_enabled = true
 texture = ExtResource("6_8kxis")
 texture_scale = 0.5
 
-[node name="Monster1" parent="TileMap2" instance=ExtResource("3_0mfvw")]
-position = Vector2(140, 197)
-
-[node name="Monster2" parent="TileMap2" instance=ExtResource("4_e8llc")]
-position = Vector2(78, 61)
-SPEED = 50.0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_cl2yq")
 volume_db = -10.0
@@ -842,7 +833,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wve7b")

@@ -5,7 +5,10 @@ const pre = preload("res://game/monster/Monster 2/Monster2.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	Utils.onGameStart.connect(self.onGameStart)
+
+func onGameStart():
+	$Timer.start()
 
 func getPoint():
 	var rect = Rect2(navigation_polygon.get_vertices()[3],navigation_polygon.get_vertices()[1])

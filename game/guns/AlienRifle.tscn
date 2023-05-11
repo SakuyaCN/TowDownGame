@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cejb2ertrl0o6"]
+[gd_scene load_steps=9 format=3 uid="uid://cejb2ertrl0o6"]
 
 [ext_resource type="Script" path="res://game/guns/AlienRifle.gd" id="1_hv6am"]
 [ext_resource type="Texture2D" uid="uid://c0lagowo2jim3" path="res://Sprites/The Tiny Alchemist - Guns/gun7.png" id="2_knpti"]
 [ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_v01pf"]
+[ext_resource type="Animation" uid="uid://b42daukxb8wl4" path="res://game/guns/anim/reload.anim" id="4_ehwfm"]
 [ext_resource type="AudioStream" uid="uid://coik2iggjwfeg" path="res://audio/GUNAuto_Assault Rifle B Fire_01.wav" id="4_ysjra"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
@@ -27,6 +28,7 @@ resource_name = "shoot"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
 _data = {
+"reload": ExtResource("4_ehwfm"),
 "run": SubResource("Animation_4mjfa"),
 "shoot": SubResource("Animation_0xp66")
 }
@@ -36,6 +38,7 @@ position = Vector2(2, -7)
 script = ExtResource("1_hv6am")
 weapon_id = 4
 image = ExtResource("2_knpti")
+weapon_name = "AlienRifle"
 bullet_scene = ExtResource("3_v01pf")
 damage = 2
 fire_rate = 7.0

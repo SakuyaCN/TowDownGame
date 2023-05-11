@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://becchdbmsm346"]
+[gd_scene load_steps=5 format=3 uid="uid://becchdbmsm346"]
 
 [ext_resource type="Texture2D" uid="uid://ckbwm7ehx8r5s" path="res://Sprites/item_box_no_shader.png" id="1_omnfc"]
 [ext_resource type="Texture2D" uid="uid://cjn8x1hoi3imf" path="res://Sprites/The Tiny Alchemist - Guns/gun1.png" id="2_jx7sr"]
 [ext_resource type="Script" path="res://ui/widgets/WeaponListItem.gd" id="2_owcov"]
+[ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="4_10byn"]
 
 [node name="Control" type="TextureRect"]
 custom_minimum_size = Vector2(20, 20)
@@ -32,6 +33,7 @@ layout_mode = 0
 offset_top = 12.0
 offset_right = 20.0
 offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("4_10byn")
 theme_override_font_sizes/font_size = 8
 text = "1"
 horizontal_alignment = 1

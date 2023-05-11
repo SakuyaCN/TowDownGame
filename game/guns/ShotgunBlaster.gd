@@ -2,6 +2,7 @@ extends "res://game/guns/BaseGun.gd"
 
 
 func _shoot():
+	super._shoot()
 	gun_tip.rotation = direction.angle()
 	for i in 3:
 		var b = bullet_scene.instantiate()
@@ -11,10 +12,6 @@ func _shoot():
 		b.position = gun_tip.global_position
 		b.rotation = gun_tip.rotation + deg_to_rad(-15 + i * 15)
 		fire(b,true,false)
-	
-	call_deferred("_shootAnim")
-	can_shoot = false
-	timer.start()
 
 func _shootAnim():
 	super._shootAnim()

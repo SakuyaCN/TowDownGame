@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc68iu3txq1go"]
+[gd_scene load_steps=9 format=3 uid="uid://cc68iu3txq1go"]
 
 [ext_resource type="Script" path="res://game/guns/GunSprite.gd" id="2_r70tb"]
 [ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_1a5xv"]
 [ext_resource type="Texture2D" uid="uid://c3pvw3wpadkd2" path="res://Sprites/The Tiny Alchemist - Guns/gun2.png" id="3_tt37n"]
 [ext_resource type="AudioStream" uid="uid://cca6pboy8k8y8" path="res://audio/GUNAuto_Assault Rifle A Fire_01.wav" id="4_0red2"]
+[ext_resource type="Animation" uid="uid://b42daukxb8wl4" path="res://game/guns/anim/reload.anim" id="4_xjmvv"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
@@ -27,6 +28,7 @@ resource_name = "shoot"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
 _data = {
+"reload": ExtResource("4_xjmvv"),
 "run": SubResource("Animation_4mjfa"),
 "shoot": SubResource("Animation_0xp66")
 }

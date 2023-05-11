@@ -11,6 +11,8 @@ const bullet_shell = preload("res://game/bullets/BulletShell.tscn")
 @export var knockback_speed = 50
 @export var knockback_time = 0.1
 
+@onready var light2d:PointLight2D = $PointLight2D
+
 var player:Player
 var gun:BaseGun
 
@@ -40,6 +42,8 @@ func fire():
 	ins.global_position = global_position - Vector2(10,0) * velocity.normalized()
 	get_tree().root.add_child(ins)
 	ins.start(velocity)
+	
+	create_tween().tween_property(light2d,"energy",0.3,0.2)
 
 func _process(delta):
 	if Utils.freeze_frame:

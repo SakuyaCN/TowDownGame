@@ -1,28 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=12 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
+[ext_resource type="Script" path="res://ui/MainUI.gd" id="2_foget"]
+[ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="3_63q1f"]
 [ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_88kmq"]
+[ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
+[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wm7f"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_m86p8"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hin5w"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_dixfw"]
 
 [node name="ControlUI" type="CanvasLayer"]
 script = ExtResource("1_hodr7")
 
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "FPS:"
-
 [node name="GameUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +41,6 @@ offset_bottom = -4.0
 grow_vertical = 0
 
 [node name="Container" type="Control" parent="GameUI"]
-clip_contents = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -67,6 +64,21 @@ offset_right = 138.0
 offset_bottom = 4.0
 grow_vertical = 2
 theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="GameUI/Container"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = -12.0
+offset_bottom = 3.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_63q1f")
+theme_override_font_sizes/font_size = 8
+text = "0/100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WeaponChangeUI" type="Control" parent="GameUI"]
 layout_mode = 1
@@ -93,4 +105,175 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 6
 
+[node name="Label" type="Label" parent="GameUI/WeaponChangeUI/WeaponImage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.5
+offset_top = -7.0
+offset_right = 67.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_foget")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -103.0
+offset_right = 74.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="start" type="Button" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
+text = "MAIN_UI_START"
+
+[node name="setting" type="Button" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
+text = "MAIN_UI_SETTING"
+
+[node name="quit" type="Button" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
+text = "MAIN_UI_QUIT"
+
+[node name="SettingUI" type="ColorRect" parent="MainUI"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+script = ExtResource("4_0nthv")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MainUI/SettingUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.5
+offset_top = -93.0
+offset_right = 155.5
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/SettingUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+text = "SETTING_BASIC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="language" type="OptionButton" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+item_count = 2
+selected = 0
+popup/item_0/text = "LANGUAGE_EN"
+popup/item_0/id = 0
+popup/item_1/text = "LANGUAGE_ZH"
+popup/item_1/id = 1
+
+[node name="Control" type="Control" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control"]
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+text = "SETTING_SHAKE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shake" type="HSlider" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 12.0
+offset_right = 118.5
+offset_bottom = 28.0
+theme_override_icons/grabber = SubResource("ImageTexture_m86p8")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_hin5w")
+theme_override_icons/tick = SubResource("ImageTexture_dixfw")
+max_value = 3.0
+value = 1.0
+scrollable = false
+
+[node name="Control2" type="Control" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2"]
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 8
+text = "SETTING_VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volume" type="HSlider" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 12.0
+offset_right = 118.5
+offset_bottom = 28.0
+theme_override_icons/grabber = SubResource("ImageTexture_m86p8")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_hin5w")
+theme_override_icons/tick = SubResource("ImageTexture_dixfw")
+value = 50.0
+scrollable = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainUI/SettingUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="TextureRect" parent="." instance=ExtResource("3_88kmq")]
+offset_left = -32.0
+offset_top = -33.0
+offset_right = 4.0
+offset_bottom = 3.0
+
+[connection signal="pressed" from="MainUI/VBoxContainer/start" to="MainUI" method="_on_start_pressed"]
+[connection signal="pressed" from="MainUI/VBoxContainer/setting" to="MainUI" method="_on_setting_pressed"]
+[connection signal="item_selected" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/language" to="MainUI/SettingUI" method="_on_language_item_selected"]
+[connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control/shake" to="MainUI/SettingUI" method="_on_shake_value_changed"]
+[connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2/volume" to="MainUI/SettingUI" method="_on_volume_value_changed"]

@@ -1,12 +1,10 @@
 extends "res://game/guns/BaseGun.gd"
 
 func _shoot():
+	super._shoot()
 	gun_tip.rotation = direction.angle()
 	
 	call_deferred("createBullet")
-	call_deferred("_shootAnim")
-	can_shoot = false
-	timer.start()
 
 func createBullet():
 	for index in 2:

@@ -31,9 +31,12 @@ func _ready():
 	add_to_group("camera")
 
 func shootShake(_step):
+	if int(Utils.shake) == 0:
+		return
 	if is_shake:
 		return
 	is_shake = true
+	_step *= Utils.shake
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(self,"offset",_step,0.1)
 	tween.tween_property(self,"offset",Vector2.ZERO,0.1)

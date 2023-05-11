@@ -1,5 +1,10 @@
 extends Node
 
+enum GUN_CHANGE_TYPE { #切枪类型
+	CHANGE, #切换枪械
+	RELOAD #切换子弹
+}
+
 const weapon_list = {
 	"0" = preload("res://game/guns/GunSprite.tscn"),
 	"1" = preload("res://game/guns/ShotgunBlaster.tscn"),
@@ -15,7 +20,19 @@ const hitlabel = preload("res://ui/widgets/HitLabel.tscn")
 
 var player:Player
 var freeze_frame = false
+var shake = 1.0 #振动幅度
+var is_game_start = false #游戏是否开始
 
+signal onGameStart()
+
+func _ready() -> void:
+	TranslationServer.set_locale("zh_CN")
+
+func gameStart():
+	is_game_start = true
+	emit_signal("onGameStart")
+
+#伤害数字
 func showHitLabel(num,traget:Node2D):
 	var ins = hitlabel.instantiate()
 	ins.setNumber(num)

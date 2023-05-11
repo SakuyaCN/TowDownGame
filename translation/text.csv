@@ -1,0 +1,20 @@
+keys,en,zh-CN
+AlienMachine,AlienMachine,异形者机枪
+AlienRifle,AlienRifle,异形者枪步
+BabyZapZap,BabyZapZap,Baby冲锋枪
+BoomBoi,BoomBoi,BoomBoi
+EmpireShotgun,EmpireShotgun,帝国霰弹枪
+BlasterRifle,BlasterRifle,冲击波步枪
+ShotgunBlaster,ShotgunBlaster,冲击波霰弹枪
+Sniper,Sniper,狙击步枪
+,,
+MAIN_UI_START,Start Game,开始游戏
+MAIN_UI_SETTING,Setting,设置
+MAIN_UI_QUIT,Quit,退出
+,,
+SETTING_LANGUAGE,language,语言
+SETTING_BASIC,Basic,基础
+LANGUAGE_EN,English,English
+LANGUAGE_ZH,中文,中文
+SETTING_SHAKE,Screenshake Intensity:,屏幕振动幅度：
+SETTING_VOLUME,volume,音量

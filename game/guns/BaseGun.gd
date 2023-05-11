@@ -1,6 +1,7 @@
 extends Node2D
 class_name BaseGun
 
+
 const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 
 ## 武器ID
@@ -20,8 +21,9 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @export var freeze_frame = 3 #帧冻结帧数
 @export var recoil = 0 #后坐力大小
 @export var shake_vector = Vector2.ZERO #屏幕晃动大小
+@export var reload_stream :AudioStream = load("res://audio/bullet/GUNMech_Insert Clip_01.wav")
 
-
+@onready var anim_player:AnimationPlayer = $AnimationPlayer
 @onready var gun_tip = $GunTip
 @onready var audio = $AudioStreamPlayer2D
 @onready var timer = $shoot_timer
@@ -37,17 +39,19 @@ var bullets_count = 0: #剩余子弹
 		bullets_count = value
 		if is_use:
 			PlayerData.emit_signal("onWeaponBulletsChange",bullets_count,bullets_max_count) 
-
+var is_reloading = false #是否正在换子弹
 var change_timer = Timer.new()
+var audio_reload_ammo = AudioStreamPlayer.new()
 
 func _init():
 	change_timer.one_shot = true
 	change_timer.timeout.connect(self.reload_over)
-
+	
 func _ready() -> void:
 	bullets_count = bullets_max_count
-	print(bullets_max_count)
 	add_child(change_timer)
+	audio_reload_ammo.stream = reload_stream
+	add_child(audio_reload_ammo)
 	gun_image.texture = image
 	set_use(false)
 	timer.wait_time = 1.0 / fire_rate
@@ -55,7 +59,9 @@ func _ready() -> void:
 #子弹装填完毕
 func reload_over():
 	bullets_count = bullets_max_count
-
+	PlayerData.emit_signal("onWeaponChangeAnim",weapon_id,Utils.GUN_CHANGE_TYPE.RELOAD)
+	is_reloading = false
+	
 func setOwner(player):
 	self.player = player
 
@@ -65,13 +71,19 @@ func _process(delta):
 	var mouse_pos = get_global_mouse_position()
 	direction = (mouse_pos - gun_tip.global_position).normalized()
 	
-	if bullets_count > 0:
-		if OS.get_name() == "Windows" && Input.is_action_pressed("shoot") and can_shoot:
+	if Input.is_action_pressed("shoot") and can_shoot and !is_reloading:
+		can_shoot = false
+		timer.start()
+		if bullets_count > 0:
 			_shoot()
-		elif OS.get_name() != "Windows" && player.look_dir != null and can_shoot:
-			_shoot()
+		else:
+			reload_ammo()
+	
+	if is_use && Input.is_action_pressed("reload"):
+		reload_ammo()
 
 func set_use(use:bool):
+	change_timer.stop()
 	is_use = use
 	set_physics_process(is_use)
 	set_process(is_use)
@@ -79,8 +91,9 @@ func set_use(use:bool):
 	if player && is_use:
 		player.gun = self
 		PlayerData.emit_signal("onWeaponChangeAnim",weapon_id)
+		if bullets_count == 0:
+			reload_ammo()
 	PlayerData.emit_signal("onWeaponChanged")
-	change_timer.stop()
 
 func fire(bullet:Bullet,is_bullet = true,is_play = true):
 	if is_bullet:
@@ -102,18 +115,27 @@ func fire(bullet:Bullet,is_bullet = true,is_play = true):
 	if is_play:
 		audio.play()
 
+#切换子弹
+func reload_ammo():
+	if !is_reloading && change_timer.is_stopped():
+		is_reloading = true
+		anim_player.play("reload")
+		change_timer.start(change_speed)
+		audio_reload_ammo.play()
+
 func _physics_process(delta):
 	if Utils.freeze_frame:
 		delta = 0.0
-	if Utils.freeze_frame && Engine.get_physics_frames() % freeze_frame == 0:
-		# 暂停一帧
-		Utils.freeze_frame = false
-		# 将时间比例设置为1
-		Engine.time_scale = 1
-		return
+	if Utils.freeze_frame:
+		if Engine.get_physics_frames() % freeze_frame == 0:
+			# 暂停一帧
+			Utils.freeze_frame = false
+			# 将时间比例设置为1
+			Engine.time_scale = 1
+			return
 
 func _shoot() -> void:
-	pass
+	call_deferred("_shootAnim")
 
 func _shootAnim():
 	player.cameraSnake(shake_vector * direction)
