@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=15 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_88kmq"]
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
+[ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ohj"]
 bg_color = Color(0.176471, 0.211765, 0.196078, 0.784314)
@@ -103,7 +104,7 @@ anchor_right = 1.0
 offset_top = 16.0
 offset_bottom = 58.0
 grow_horizontal = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="WeaponImage" type="TextureRect" parent="GameUI/WeaponChangeUI"]
 layout_mode = 1
@@ -157,6 +158,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_x8ohj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_i6unc")
 value = 100.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameUI"]
+stream = ExtResource("5_m8t5a")
+
 [node name="MainUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -164,6 +168,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_foget")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainUI"]
@@ -207,7 +212,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.392157)
+color = Color(0, 0, 0, 0.588235)
 script = ExtResource("4_0nthv")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="MainUI/SettingUI"]
@@ -243,7 +248,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 item_count = 2
-selected = 0
 popup/item_0/text = "LANGUAGE_EN"
 popup/item_0/id = 0
 popup/item_1/text = "LANGUAGE_ZH"
@@ -307,6 +311,7 @@ offset_left = -32.0
 offset_top = -33.0
 offset_right = 4.0
 offset_bottom = 3.0
+mouse_filter = 2
 
 [connection signal="pressed" from="MainUI/VBoxContainer/start" to="MainUI" method="_on_start_pressed"]
 [connection signal="pressed" from="MainUI/VBoxContainer/setting" to="MainUI" method="_on_setting_pressed"]

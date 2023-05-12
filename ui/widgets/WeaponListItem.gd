@@ -23,3 +23,11 @@ func onWeaponChanged():
 		self_modulate = Color("#83e0ff")
 	else:
 		self_modulate = Color.WHITE
+
+func _on_button_pressed() -> void:
+	emit_signal("weapon_click",local_id)
+
+
+func _on_image_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		print(123123)

@@ -39,6 +39,7 @@ script = ExtResource("1_msend")
 weapon_id = 1
 image = ExtResource("2_tws2b")
 weapon_name = "ShotgunBlaster"
+weapon_type = "SHOTGUNS"
 bullet_scene = ExtResource("2_uf13k")
 fire_rate = 2.0
 bullets_max_count = 15

@@ -39,6 +39,7 @@ script = ExtResource("1_nbdk4")
 weapon_id = 5
 image = ExtResource("2_psynq")
 weapon_name = "EmpireShotgun"
+weapon_type = "SHOTGUNS"
 bullet_scene = ExtResource("3_fnttn")
 damage = 2
 fire_rate = 1.5

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ik5t77ml7ave"
+path="res://.godot/imported/CLOTHMvmt_Clothing Rustle Arm_01.wav-39f188b18fd95f20c7b61c572330faea.sample"
+
+[deps]
+
+source_file="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav"
+dest_files=["res://.godot/imported/CLOTHMvmt_Clothing Rustle Arm_01.wav-39f188b18fd95f20c7b61c572330faea.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

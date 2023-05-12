@@ -2,6 +2,9 @@ extends Control
 
 const weapon_item_pre = preload("res://ui/widgets/WeaponListItem.tscn")
 const weapon_bullet_pre = preload("res://ui/widgets/BulletCountItem.tscn")
+const weapon_inventory = preload("res://ui/Inventory.tscn")
+
+@onready var change_audio = $AudioStreamPlayer2D
 
 @onready var box_top = $hpUI
 @onready var bottom_bls = $Container
@@ -12,6 +15,8 @@ const weapon_bullet_pre = preload("res://ui/widgets/BulletCountItem.tscn")
 @onready var ammo_count_label = $Container/Label
 @onready var weapon_change_name = $WeaponChangeUI/WeaponImage/Label
 @onready var hp_bar = $hpUI/ProgressBar
+
+var inv_ui
 
 func _ready() -> void:
 	Utils.onGameStart.connect(self.onGameStart)
@@ -38,6 +43,7 @@ func playerWeaponListChange():
 
 func onWeaponChangeAnim(weapon_id,tag = Utils.GUN_CHANGE_TYPE.CHANGE):
 	if tag == Utils.GUN_CHANGE_TYPE.CHANGE:
+		change_audio.play()
 		var weapon:BaseGun = PlayerData.player_weapon_list[weapon_id]
 		weapon_change_name.text = weapon.weapon_name
 		ammo_count_label.text = "%s / %s" %[weapon.bullets_count,weapon.bullets_max_count]
@@ -65,3 +71,8 @@ func onWeaponBulletsChange(bullet,bullet_max):
 	var local_count =  bullet_max - bullet
 	if weapon_bullet_list.has_node(str(local_count)):
 		weapon_bullet_list.get_node(str(local_count)).destory()
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):
+		inv_ui = weapon_inventory.instantiate()
+		get_parent().add_child(inv_ui)

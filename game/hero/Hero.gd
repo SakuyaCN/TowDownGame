@@ -38,6 +38,8 @@ func onGameStart():
 			#Utils.weapon_list["1"].instantiate(),
 			#Utils.weapon_list["4"].instantiate()
 		])
+	
+	PlayerData.add_attachment(preload("res://game/attachments/QuickdrawMagazine.tscn").instantiate())
 
 func changeWeapon(weapon_id):
 	for item in gun_root.get_children():

@@ -9,12 +9,33 @@ ShotgunBlaster,ShotgunBlaster,冲击波霰弹枪
 Sniper,Sniper,狙击步枪
 ,,
 MAIN_UI_START,Start Game,开始游戏
-MAIN_UI_SETTING,Setting,设置
+MAIN_UI_SETTING,Settings,设置
 MAIN_UI_QUIT,Quit,退出
 ,,
 SETTING_LANGUAGE,language,语言
 SETTING_BASIC,Basic,基础
 LANGUAGE_EN,English,English
 LANGUAGE_ZH,中文,中文
-SETTING_SHAKE,Screenshake Intensity:,屏幕振动幅度：
-SETTING_VOLUME,volume,音量
+SETTING_SHAKE,Screenshake Intensity,屏幕振动幅度
+SETTING_VOLUME,Volume,音量
+,,
+INVENTORY_TITLE,Inventory,背包
+INVENTORY_AM_TITLE,Weapon attachments,武器配件
+,,
+WEAPON_OPTICS,Optics,瞄准镜
+WEAPON_MUZZLE,Muzzle,枪口
+WEAPON_BARREL,Barrel,枪管
+WEAPON_UNDERBARREL,Underbarrel,下挂装备
+WEAPON_AMMUNITION,Ammunition,弹药
+WEAPON_STOCK,Stock,枪托
+WEAPON_TACTICAL,Tactical,战术装备
+WEAPON_PERKS,Perks,特殊能力
+,,
+ASSAULT_RIFLES,Assault Rifle,突击步枪
+SUBMACHINE_GUNSRELOAD,Submachine Gun,冲锋枪
+MACHINE_GUNS,Machine Gun,机枪
+SNIPER_RIFLES,Sniper Rifle,狙击步枪
+SHOTGUNS,Shotgun,霰弹枪
+LASER_WEAPONS,Laser weapon,激光武器
+,,
+QUICKDRAW_MAGAZINE,Quickdraw Magazine,快速弹夹

@@ -1,8 +1,28 @@
 extends Node
 
+enum GUN_TYPE { #枪械类型
+	ASSAULT_RIFLES = 1 << 0, #突击步枪
+	SUBMACHINE_GUNSRELOAD = 1 << 1, #冲锋枪
+	MACHINE_GUNS = 1 << 2, #机枪
+	SNIPER_RIFLES = 1 << 3, #狙击步枪
+	SHOTGUNS = 1 << 4, #霰弹枪
+	LASER_WEAPONS = 1 << 5, #激光武器
+}
+
 enum GUN_CHANGE_TYPE { #切枪类型
 	CHANGE, #切换枪械
 	RELOAD #切换子弹
+}
+
+enum ATTACHMENTS_TYPE { #配件类型
+	WEAPON_OPTICS, #瞄准镜
+	WEAPON_MUZZLE, #枪口
+	WEAPON_BARREL, #枪口
+	WEAPON_UNDERBARREL, #枪口
+	WEAPON_AMMUNITION, #枪口
+	WEAPON_STOCK, #枪口
+	WEAPON_TACTICAL, #枪口
+	WEAPON_PERKS, #枪口
 }
 
 const weapon_list = {
@@ -24,6 +44,10 @@ var freeze_frame = false
 var shake = 1.0 #振动幅度
 var is_game_start = false #游戏是否开始
 
+var is_inv_show = false #是否展示背包
+
+var crosshair_position = Vector2.ZERO
+
 signal onGameStart()
 
 func _ready() -> void:
@@ -38,6 +62,28 @@ func showHitLabel(num,traget:Node2D):
 	var ins = hitlabel.instantiate()
 	ins.setNumber(num)
 	traget.add_child(ins)
+
+#获取配件类型名称
+func getAttachmentsName(type:ATTACHMENTS_TYPE):
+	match type:
+		ATTACHMENTS_TYPE.WEAPON_OPTICS :return "WEAPON_OPTICS"
+		ATTACHMENTS_TYPE.WEAPON_MUZZLE :return "WEAPON_MUZZLE"
+		ATTACHMENTS_TYPE.WEAPON_BARREL :return "WEAPON_BARREL"
+		ATTACHMENTS_TYPE.WEAPON_UNDERBARREL :return "WEAPON_UNDERBARREL"
+		ATTACHMENTS_TYPE.WEAPON_AMMUNITION :return "WEAPON_AMMUNITION"
+		ATTACHMENTS_TYPE.WEAPON_STOCK :return "WEAPON_STOCK"
+		ATTACHMENTS_TYPE.WEAPON_TACTICAL :return "WEAPON_TACTICAL"
+		ATTACHMENTS_TYPE.WEAPON_PERKS :return "WEAPON_PERKS"
+
+#获取武器类型名称
+func getWeaponName(type:GUN_TYPE):
+	match type:
+		GUN_TYPE.ASSAULT_RIFLES :return "ASSAULT_RIFLES"
+		GUN_TYPE.SUBMACHINE_GUNSRELOAD :return "SUBMACHINE_GUNSRELOAD"
+		GUN_TYPE.MACHINE_GUNS :return "MACHINE_GUNS"
+		GUN_TYPE.SNIPER_RIFLES :return "SNIPER_RIFLES"
+		GUN_TYPE.SHOTGUNS :return "SHOTGUNS"
+		GUN_TYPE.LASER_WEAPONS :return "LASER_WEAPONS"
 
 func freezeFrame(scale):
 	#OS.delay_msec(50)

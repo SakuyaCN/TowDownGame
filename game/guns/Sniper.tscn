@@ -39,6 +39,7 @@ script = ExtResource("1_6o8qy")
 weapon_id = 2
 image = ExtResource("2_g5sf4")
 weapon_name = "Sniper"
+weapon_type = "SNIPER_RIFLES"
 bullet_scene = ExtResource("2_vj41m")
 damage = 5
 bullet_speed = 500

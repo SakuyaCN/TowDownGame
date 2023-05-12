@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh802jp3l5dd"]
+
+[ext_resource type="Script" path="res://ui/widgets/AttachmentUIItem.gd" id="1_3lwn3"]
+[ext_resource type="Texture2D" uid="uid://csf68i2a12xlj" path="res://Sprites/icon/Icon1.png" id="1_m02ow"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dwoy"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3lwn3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m02ow")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0dwoy")
+flat = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

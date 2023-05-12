@@ -15,11 +15,6 @@ func getPoint():
 	var random_point = Vector2(randi_range(rect.position.x, rect.position.x + rect.size.x), randi_range(rect.position.y, rect.position.y + rect.size.y))
 	return random_point
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_timer_timeout() -> void:
 	var ins = pre.instantiate()
 	map.add_child(ins)

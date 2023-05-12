@@ -84,6 +84,7 @@ script = ExtResource("1_5fns6")
 weapon_id = 6
 image = ExtResource("2_7wcnc")
 weapon_name = "BoomBoi"
+weapon_type = "LASER_WEAPONS"
 bullet_scene = ExtResource("3_7tj4b")
 fire_rate = 1.0
 knockback_speed = 200

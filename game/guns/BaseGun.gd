@@ -8,6 +8,7 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @export var weapon_id = 0 #枪械ID
 @export var image:Texture #枪械图片
 @export var weapon_name:String = "Gun" #枪械名称
+@export_enum("ASSAULT_RIFLES","SUBMACHINE_GUNSRELOAD","MACHINE_GUNS","SNIPER_RIFLES","SHOTGUNS","LASER_WEAPONS") var weapon_type = "ASSAULT_RIFLES"
 @export var bullet_scene : PackedScene #子弹模板
 @export var damage = 1 #子弹伤害
 @export var bullet_speed = 200 #子弹速度
@@ -23,12 +24,25 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @export var shake_vector = Vector2.ZERO #屏幕晃动大小
 @export var reload_stream :AudioStream = load("res://audio/bullet/GUNMech_Insert Clip_01.wav")
 
+var attachments = {
+	"Optics" = null,
+	"Muzzle" = null,
+	"Barrel" = null,
+	"Underbarrel" = null,
+	"Ammunition" = null,
+	"Stock" = null,
+	"Tactical" = null,
+	"Perks" = null
+}
+
 @onready var anim_player:AnimationPlayer = $AnimationPlayer
 @onready var gun_tip = $GunTip
 @onready var audio = $AudioStreamPlayer2D
 @onready var timer = $shoot_timer
 @onready var gun_image = $Sprite2D
 
+var attachments_node = Node.new()
+var attachments_dict = {}
 var tween:Tween
 var direction:Vector2 #朝向
 var player:Player #使用玩家
@@ -48,6 +62,7 @@ func _init():
 	change_timer.timeout.connect(self.reload_over)
 	
 func _ready() -> void:
+	add_child(attachments_node)
 	bullets_count = bullets_max_count
 	add_child(change_timer)
 	audio_reload_ammo.stream = reload_stream
@@ -56,12 +71,28 @@ func _ready() -> void:
 	set_use(false)
 	timer.wait_time = 1.0 / fire_rate
 
+#更新枪械配置
+func updateGun():
+	timer.wait_time = 1.0 / fire_rate
+
+func addAttachMent(am:BaseAttachment):
+	if !attachments_node.has_node(str(am.id)):
+		attachments_dict[am.am_type] = am
+		am.reparent(attachments_node)
+		am.onWeaponUp(self)
+
+func removeAttachMent(am:BaseAttachment):
+	if attachments_node.has_node(str(am.id)):
+		attachments_dict.erase(am.am_type)
+		am.reparent(PlayerData)
+
 #子弹装填完毕
 func reload_over():
 	bullets_count = bullets_max_count
 	PlayerData.emit_signal("onWeaponChangeAnim",weapon_id,Utils.GUN_CHANGE_TYPE.RELOAD)
 	is_reloading = false
-	
+
+#设置枪械所属
 func setOwner(player):
 	self.player = player
 
@@ -82,6 +113,7 @@ func _process(delta):
 	if is_use && Input.is_action_pressed("reload"):
 		reload_ammo()
 
+#设置是否正在使用
 func set_use(use:bool):
 	change_timer.stop()
 	is_reloading = false
@@ -96,6 +128,7 @@ func set_use(use:bool):
 			reload_ammo()
 	PlayerData.emit_signal("onWeaponChanged")
 
+#开火
 func fire(bullet:Bullet,is_bullet = true,is_play = true):
 	if is_bullet:
 		bullets_count -= 1
@@ -121,9 +154,13 @@ func reload_ammo():
 	if !is_reloading && change_timer.is_stopped():
 		is_reloading = true
 		anim_player.speed_scale = 1 / change_speed
-		anim_player.play("reload")
 		change_timer.start(change_speed)
 		audio_reload_ammo.play()
+		playReload()
+
+#播放切换动画
+func playReload():
+	anim_player.play("reload")
 
 func _physics_process(delta):
 	if Utils.freeze_frame:
