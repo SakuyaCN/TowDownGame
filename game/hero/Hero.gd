@@ -9,12 +9,14 @@ var gun = null
 
 const SPEED = 100.0
 var is_run = false
+var is_dead = false #是否死亡
 var is_shoot = false #是否在射击
 var is_knockback = false #后坐力
 var knockback_speed = 0 #后坐力速度
 var look_dir = null
 
 func _init() -> void:
+	PlayerData.onHpChange.connect(self.onHpChange)
 	Utils.onGameStart.connect(self.onGameStart)
 
 func _ready():
@@ -22,7 +24,14 @@ func _ready():
 	set_process(false)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
 	Utils.player = self
-
+	PlayerData.add_attachment(preload("res://game/attachments/QuickdrawMagazine.tscn").instantiate())
+	PlayerData.add_attachment(preload("res://game/attachments/UniversalExtendedMagazines.tscn").instantiate())
+	PlayerData.add_attachment(preload("res://game/attachments/ExtendedRifleMagazine.tscn").instantiate())
+	PlayerData.add_attachment(preload("res://game/attachments/QuickExpansionMagazine.tscn").instantiate())
+	PlayerData.add_attachment(preload("res://game/attachments/ShotgunShellPouch.tscn").instantiate())
+	PlayerData.add_attachment(preload("res://game/attachments/SubmachineGunMagazine.tscn").instantiate())
+	PlayerData.add_attachment(preload("res://game/attachments/MachineGunMagazine.tscn").instantiate())
+	
 func onGameStart():
 	set_physics_process(true)
 	set_process(true)
@@ -39,7 +48,6 @@ func onGameStart():
 			#Utils.weapon_list["4"].instantiate()
 		])
 	
-	PlayerData.add_attachment(preload("res://game/attachments/QuickdrawMagazine.tscn").instantiate())
 
 func changeWeapon(weapon_id):
 	for item in gun_root.get_children():
@@ -58,6 +66,8 @@ func playerWeaponListChange():
 				gun.set_use(true)
 
 func _physics_process(delta):
+	if is_dead:
+		return
 	if Utils.freeze_frame:
 		delta = 0.0
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -118,7 +128,18 @@ func gunAnim():
 	elif !is_run:
 		#gun_player.stop()
 		$GPUParticles2D.emitting = false
-		
+
+func onHit(hurt):
+	PlayerData.player_hp -= hurt
+	Utils.showHitLabel(hurt,self)
+	get_tree().call_group("control","hit")
+	Utils.freeze_frame = true
+	Utils.freezeFrame(0.1)
+
+func onHpChange(hp,max_hp):
+	if hp <= 0:
+		is_dead = true
+		anim.play("die")
 
 func cameraSnake(step):
 	get_tree().call_group("camera","shootShake",step)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkwnhbv5hbr4m"]
+
+[ext_resource type="Script" path="res://game/attachments/UniversalExtendedMagazines.gd" id="1_g2ew7"]
+[ext_resource type="Texture2D" uid="uid://csf68i2a12xlj" path="res://Sprites/icon/Icon1.png" id="2_c3wfv"]
+
+[node name="UniversalExtendedMagazines" type="Node2D"]
+script = ExtResource("1_g2ew7")
+am_id = 1
+am_name = "EXTENDED RIFLE MAGAZINE"
+am_image = ExtResource("2_c3wfv")
+am_type = "WEAPON_AMMUNITION"
+am_info = "INFO_UNIVERSAL EXTENDED MAGAZINE"
+ASSAULT_RIFLES = true
+SUBMACHINE_GUNSRELOAD = true
+MACHINE_GUNS = true
+SNIPER_RIFLES = true
+SHOTGUNS = true
+LASER_WEAPONS = true

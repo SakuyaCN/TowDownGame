@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv4q17vuswrmv"]
+
+[ext_resource type="Script" path="res://game/attachments/MachineGunMagazine.gd" id="1_ccqfe"]
+[ext_resource type="Texture2D" uid="uid://c37uypngvijk3" path="res://Sprites/icon/Icon6.png" id="2_muycv"]
+
+[node name="UniversalExtendedMagazines" type="Node2D"]
+script = ExtResource("1_ccqfe")
+am_id = 6
+am_name = "MACHINE GUN MAGAZINE"
+am_image = ExtResource("2_muycv")
+am_type = "WEAPON_AMMUNITION"
+am_info = "INFO_MACHINE GUN MAGAZINE"
+MACHINE_GUNS = true

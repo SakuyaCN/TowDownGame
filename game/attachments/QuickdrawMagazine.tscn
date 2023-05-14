@@ -8,5 +8,5 @@ script = ExtResource("1_e418f")
 am_name = "QUICKDRAW_MAGAZINE"
 am_image = ExtResource("2_dbkto")
 am_type = "WEAPON_AMMUNITION"
-am_info = "提高换弹速度50%"
+am_info = "INFO_QUICKDRAW_MAGAZINE"
 ASSAULT_RIFLES = true

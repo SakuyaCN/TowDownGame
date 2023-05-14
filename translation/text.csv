@@ -6,7 +6,7 @@ BoomBoi,BoomBoi,BoomBoi
 EmpireShotgun,EmpireShotgun,帝国霰弹枪
 BlasterRifle,BlasterRifle,冲击波步枪
 ShotgunBlaster,ShotgunBlaster,冲击波霰弹枪
-Sniper,Sniper,狙击步枪
+Sniper,Sniper,轻型狙击枪
 ,,
 MAIN_UI_START,Start Game,开始游戏
 MAIN_UI_SETTING,Settings,设置
@@ -21,6 +21,9 @@ SETTING_VOLUME,Volume,音量
 ,,
 INVENTORY_TITLE,Inventory,背包
 INVENTORY_AM_TITLE,Weapon attachments,武器配件
+,,
+INVENTORY_AM_UP,Installed on the firearm!,已安装至枪械上！
+INVENTORY_AM_DOWN,Removed from the firearm!,已从枪械上移除！
 ,,
 WEAPON_OPTICS,Optics,瞄准镜
 WEAPON_MUZZLE,Muzzle,枪口
@@ -38,4 +41,28 @@ SNIPER_RIFLES,Sniper Rifle,狙击步枪
 SHOTGUNS,Shotgun,霰弹枪
 LASER_WEAPONS,Laser weapon,激光武器
 ,,
+TOOLTIP_TYPE,Type:,类型：
+TOOLTIP_INFO,Please drag the attachments from the right sidebar and drop them here.,请拖动右侧栏中的配件放入此处
+TOOLTIP_RANGE,Available Range:,可用范围：
+,,
+,,
+,,
 QUICKDRAW_MAGAZINE,Quickdraw Magazine,快速弹夹
+EXTENDED RIFLE MAGAZINE,Extended Rifle Magazine,扩容步枪弹夹
+UNIVERSAL EXTENDED MAGAZINE,Universal Extended Magazine,通用扩容弹夹
+QUICK EXPANSION MAGAZINE,Quick Expansion Magazine,快速扩容弹夹
+SHOTGUN SHELL POUCH,Shotgun shell pouch,霰弹枪子弹袋
+MACHINE GUN MAGAZINE,Machine Gun Magazine,机枪弹夹
+SUBMACHINE GUN MAGAZINE,Submachine Gun Magazine,冲锋枪弹夹
+,,
+INFO_EXTENDED RIFLE MAGAZINE,Magazine capacity +20.,弹夹容量+20
+INFO_QUICKDRAW_MAGAZINE,Reload speed +20%,换弹速度+20%
+INFO_MACHINE GUN MAGAZINE,Magazine Capacity +50.,弹夹容量+50
+INFO_QUICK EXPANSION MAGAZINE,"Reload speed +20%
+Magazine capacity +10","换弹速度+20%
+弹夹容量+10"
+INFO_SHOTGUN SHELL POUCH,"Reload speed +20%
+Magazine capacity +5","弹夹容量+5
+换弹速度+20%"
+INFO_SUBMACHINE GUN MAGAZINE,Magazine capacity +18.,弹夹容量+18
+INFO_UNIVERSAL EXTENDED MAGAZINE,Magazine capacity +10.,弹夹容量+10

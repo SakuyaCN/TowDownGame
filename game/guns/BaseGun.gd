@@ -75,16 +75,19 @@ func _ready() -> void:
 func updateGun():
 	timer.wait_time = 1.0 / fire_rate
 
+#添加配件
 func addAttachMent(am:BaseAttachment):
 	if !attachments_node.has_node(str(am.id)):
 		attachments_dict[am.am_type] = am
 		am.reparent(attachments_node)
 		am.onWeaponUp(self)
 
+#移除配件
 func removeAttachMent(am:BaseAttachment):
 	if attachments_node.has_node(str(am.id)):
 		attachments_dict.erase(am.am_type)
 		am.reparent(PlayerData)
+		am.onWeaponDown()
 
 #子弹装填完毕
 func reload_over():
@@ -151,7 +154,7 @@ func fire(bullet:Bullet,is_bullet = true,is_play = true):
 
 #切换子弹
 func reload_ammo():
-	if !is_reloading && change_timer.is_stopped():
+	if !is_reloading && change_timer.is_stopped() && bullets_count < bullets_max_count:
 		is_reloading = true
 		anim_player.speed_scale = 1 / change_speed
 		change_timer.start(change_speed)

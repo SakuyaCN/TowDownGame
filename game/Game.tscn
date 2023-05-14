@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt2iuuqln8s3e"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://c711joqeud4pp" path="res://game/map/test.tscn" id="1_14x22"]
+[ext_resource type="PackedScene" uid="uid://c711joqeud4pp" path="res://game/map/Main.tscn" id="1_14x22"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qr2c1"]
 viewport_path = NodePath("SubViewport")

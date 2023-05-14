@@ -5,16 +5,23 @@
 [ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="2_2066c"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="3_beqle"]
 [ext_resource type="PackedScene" uid="uid://sos40ogd1gwa" path="res://ui/widgets/InvAMItem.tscn" id="4_r7jeh"]
+[ext_resource type="Script" path="res://ui/widgets/Tooltip.gd" id="6_ohsge"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lrci"]
-bg_color = Color(0.341176, 0.341176, 0.341176, 0.392157)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_67r3q"]
-font_size = 6
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p23yh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.384314, 0.384314, 0.384314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [node name="Inventory" type="Control"]
 process_mode = 2
@@ -79,9 +86,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -35.5
-offset_top = -75.0
+offset_top = -77.0
 offset_right = 36.5
-offset_bottom = -60.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_beqle")
@@ -96,8 +103,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -56.5
+offset_top = -2.0
 offset_right = 57.5
-offset_bottom = 57.0
+offset_bottom = 55.0
 grow_horizontal = 2
 texture = ExtResource("2_1bhhv")
 expand_mode = 1
@@ -166,28 +174,6 @@ am_type = "WEAPON_TACTICAL"
 layout_mode = 2
 am_type = "WEAPON_PERKS"
 
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -191.0
-offset_top = -43.0
-offset_right = -6.0
-offset_bottom = -6.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_beqle")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_6lrci")
-text = "介绍"
-label_settings = SubResource("LabelSettings_67r3q")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 6
@@ -198,7 +184,7 @@ anchor_bottom = 0.5
 offset_left = -191.0
 offset_top = -54.5
 offset_right = -6.0
-offset_bottom = 41.5
+offset_bottom = 85.5
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -228,3 +214,48 @@ layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 expand_mode = 1
+
+[node name="Tooltip" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(110, 100)
+layout_mode = 0
+offset_left = 44.0
+offset_top = 45.0
+offset_right = 158.0
+offset_bottom = 154.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p23yh")
+script = ExtResource("6_ohsge")
+
+[node name="Label" type="Label" parent="Tooltip"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 111.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("3_beqle")
+theme_override_font_sizes/font_size = 6
+text = "asdasdasda"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Tooltip/Label"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 67.0
+offset_right = 107.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_beqle")
+theme_override_font_sizes/font_size = 6
+text = "可用范围："
+autowrap_mode = 1
+
+[node name="Label2" type="Label" parent="Tooltip"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 43.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("3_beqle")
+theme_override_font_sizes/font_size = 6
+text = "类型："

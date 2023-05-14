@@ -46,8 +46,6 @@ bullets_max_count = 50
 change_speed = 1.2
 recoil = 35
 shake_vector = Vector2(1, 1)
-number = null
-string = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_a7fs4")

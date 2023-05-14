@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ihlxpwot703"]
+
+[ext_resource type="Script" path="res://game/attachments/QuickExpansionMagazine.gd" id="1_rfxxc"]
+[ext_resource type="Texture2D" uid="uid://vm4nlyxmta54" path="res://Sprites/icon/Icon2.png" id="2_xex5p"]
+
+[node name="QuickdrawMagazine" type="Node2D"]
+script = ExtResource("1_rfxxc")
+am_id = 3
+am_name = "QUICK EXPANSION MAGAZINE"
+am_image = ExtResource("2_xex5p")
+am_type = "WEAPON_AMMUNITION"
+am_info = "INFO_QUICK EXPANSION MAGAZINE"
+ASSAULT_RIFLES = true

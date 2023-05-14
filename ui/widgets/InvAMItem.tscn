@@ -48,3 +48,19 @@ text = "WEAPON_OPTICS"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = -2.0
+offset_right = 35.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_kfuff")
+theme_override_font_sizes/font_size = 9
+text = "X"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

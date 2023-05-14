@@ -11,9 +11,11 @@ var audio_hit = AudioStreamPlayer2D.new()
 @onready var sprite_body = get_node("body")
 @onready var anim :AnimatedSprite2D = get_node("body/AnimatedSprite2D")
 
+
 var hit = false
 var is_die = false
 var is_flip
+var is_atk = false
 
 func _ready():
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
@@ -23,10 +25,17 @@ func _ready():
 	#navigationAgent2D.target_reached.connect(self._target_reached)
 	navigationAgent2D.velocity_computed.connect(self._on_velocity_computed)
 	navigationAgent2D.avoidance_enabled = true
+	navigationAgent2D.path_desired_distance = 20
+	navigationAgent2D.path_max_distance = 100
+	navigationAgent2D.target_desired_distance = 20
+	navigationAgent2D.debug_enabled = true
 
 func _physics_process(delta):
-	if Engine.get_physics_frames() % 60 :
-		navigationAgent2D.set_target_position(Utils.player.global_position)
+	#if Engine.get_physics_frames() % 60 :
+	if is_atk || is_die:
+		return
+	else:
+		navigationAgent2D.target_position = Utils.player.global_position
 	if hit:
 		move_and_slide()
 	elif navigationAgent2D.is_inside_tree() && !navigationAgent2D.is_navigation_finished():
@@ -37,6 +46,15 @@ func _physics_process(delta):
 			navigationAgent2D.set_velocity(new_velocity)
 		else:
 			_on_velocity_computed(new_velocity)
+
+	if velocity != Vector2.ZERO:
+		anim.play("run")
+		if velocity.x > 0:
+			flip_h(false)
+		elif velocity.x < 0 && scale.x == 1:
+			flip_h(true)
+	else:
+		anim.play("idle")
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
@@ -67,9 +85,10 @@ func hitFlash(collisionResult,bullet:Bullet):
 		sprite_body.get_node("AnimatedSprite2D").material = null; hit = false )
 
 func onHit(hit_num):
-	HP -= hit_num
-	if HP <= 0:
-		onDie()
+	if HP:
+		HP -= hit_num
+		if HP <= 0:
+			onDie()
 
 func onDie():
 	is_die = true

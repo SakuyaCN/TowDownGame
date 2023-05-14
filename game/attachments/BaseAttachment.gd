@@ -17,7 +17,7 @@ class_name BaseAttachment
 @export var LASER_WEAPONS = false
 
 var use_type = []#可用类型
-var id = Time.get_ticks_msec() #配件在背包中的ID
+var id = Time.get_ticks_usec() #配件在背包中的ID
 
 var gun:BaseGun
 
@@ -41,7 +41,20 @@ func _checkTypeList():
 #装备上武器
 func onWeaponUp(gun):
 	self.gun = gun
-	gun.bullets_max_count = 100
-	gun.fire_rate = 20
-	gun.recoil = 0
+	onStart()
+	gunUpdate()
+
+#取消武器
+func onWeaponDown():
+	onDestroy()
+	gunUpdate()
+	self.gun = null
+
+func onStart():
+	pass
+
+func onDestroy():
+	pass
+
+func gunUpdate():
 	gun.updateGun()

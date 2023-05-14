@@ -7,8 +7,8 @@ const attachmont_item_pre = preload("res://ui/widgets/AttachmentUIItem.tscn")
 @onready var am_list_node = $Panel/ScrollContainer/GridContainer
 @onready var choose_image = $Panel/WeaponMain/iamge
 @onready var choose_name = $Panel/WeaponMain/iamge/Label
-@onready var choose_info = $Panel/Label
 @onready var touch_texture = $TouchTexture
+@onready var tip = $Tooltip
 
 @onready var weapon_am_nodes = [$Panel/WeaponMain/GridContainer/Control,$Panel/WeaponMain/GridContainer/Control2, $Panel/WeaponMain/GridContainer/Control3, $Panel/WeaponMain/GridContainer/Control4, $Panel/WeaponMain/GridContainer/Control5, $Panel/WeaponMain/GridContainer/Control6, $Panel/WeaponMain/GridContainer/Control7, $Panel/WeaponMain/GridContainer/Control8]
 
@@ -26,6 +26,10 @@ func _exit_tree() -> void:
 	get_tree().paused = false
 
 func _ready() -> void:
+	for node in weapon_am_nodes:
+		node.mouseEvent.connect(self.mouseEvent)
+		node.checkTouchDown.connect(self.checkTouchDown)
+
 	for item in PlayerData.player_weapon_list:
 		if !weapon_lsit_node.has_node(str(item)):
 			var ins = weapon_item_pre.instantiate()
@@ -33,19 +37,34 @@ func _ready() -> void:
 			ins.name = str(item)
 			ins.local_id = item
 			weapon_lsit_node.add_child(ins)
-	
+	loadBag()
+	if choose_gun:
+		setWeaponChoose()
+		loadWeaponAm()
+
+func loadBag():
+	for item in am_list_node.get_children():
+		item.queue_free()
 	for item in PlayerData.player_am_list:
-		if !am_list_node.has_node(str(item)):
+		if !am_list_node.has_node(str(item)) && PlayerData.player_am_list[item].gun == null:
 			var ins = attachmont_item_pre.instantiate()
-			ins.onClick.connect(self.onClick)
+			ins.mouseEvent.connect(self.mouseEvent)
 			ins.onTouchDown.connect(self.onTouchDown)
 			ins.onTouchUp.connect(self.onTouchUp)
 			ins.name = str(item)
 			ins.local_id = item
 			am_list_node.add_child(ins)
-	
-	if choose_gun:
-		setWeaponChoose()
+
+func mouseEvent(show,am):
+	tip.visible = show
+	tip.setData(am)
+
+func loadWeaponAm():
+	for item in weapon_am_nodes:
+		if choose_gun.attachments_dict.has(item.am_type):
+			item.setData(choose_gun.attachments_dict[item.am_type])
+		else:
+			item.setData(null)
 
 func weapon_click(id) -> void:
 	choose_gun = PlayerData.player_weapon_list[id]
@@ -53,12 +72,8 @@ func weapon_click(id) -> void:
 	
 func setWeaponChoose():
 	choose_image.texture = choose_gun.image
-	choose_name.text = choose_gun.weapon_name
-
-#配件列表点击
-func onClick(id):
-	var am :BaseAttachment = PlayerData.player_am_list[id]
-	choose_info.text = "%s :%s" %[tr(am.am_name),tr(am.am_info)]
+	choose_name.text = tr(choose_gun.weapon_name) + " · "+ tr(choose_gun.weapon_type)
+	loadWeaponAm()
 
 func onTouchDown(id):
 	var am :BaseAttachment = PlayerData.player_am_list[id]
@@ -88,11 +103,19 @@ func checkTouchUp(id,node:WeaponAmItem):
 	var am :BaseAttachment = PlayerData.player_am_list[id]
 	if node.state:
 		choose_gun.addAttachMent(am)
-	else:
-		pass
+		loadWeaponAm()
+		loadBag()
+		Utils.showToast("INVENTORY_AM_UP")
+
+func checkTouchDown(am:BaseAttachment):
+	choose_gun.removeAttachMent(am)
+	loadWeaponAm()
+	loadBag()
+	Utils.showToast("INVENTORY_AM_DOWN")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
+		Utils.crosshairChange(true)
 		queue_free()
 
 func _process(delta: float) -> void:

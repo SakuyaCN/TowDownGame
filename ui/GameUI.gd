@@ -74,5 +74,6 @@ func onWeaponBulletsChange(bullet,bullet_max):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):
+		Utils.crosshairChange(false)
 		inv_ui = weapon_inventory.instantiate()
 		get_parent().add_child(inv_ui)

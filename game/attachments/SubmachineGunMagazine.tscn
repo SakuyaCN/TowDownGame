@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4b0p6hgqj8po"]
+
+[ext_resource type="Script" path="res://game/attachments/SubmachineGunMagazine.gd" id="1_j5yya"]
+[ext_resource type="Texture2D" uid="uid://bseo1nxjdo0xx" path="res://Sprites/icon/Icon7.png" id="2_dy84t"]
+
+[node name="UniversalExtendedMagazines" type="Node2D"]
+script = ExtResource("1_j5yya")
+am_id = 7
+am_name = "SUBMACHINE GUN MAGAZINE"
+am_image = ExtResource("2_dy84t")
+am_type = "WEAPON_AMMUNITION"
+am_info = "INFO_SUBMACHINE GUN MAGAZINE"
+SUBMACHINE_GUNSRELOAD = true

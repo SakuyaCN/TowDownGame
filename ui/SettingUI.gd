@@ -28,7 +28,6 @@ func _on_shake_value_changed(value: float) -> void:
 	Utils.shake = value
 	ConfigUtils.setConfig("setting","shake",value)
 
-
 func _on_volume_value_changed(value: float) -> void:
 	if value == 0:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),true)
@@ -42,11 +41,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Utils.is_game_start && !visible:
 			show()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			Utils.crosshairChange(false)
 			get_tree().paused = true
 		elif visible:
 			hide()
 			get_tree().paused = false
 			if Utils.is_game_start:
+				Utils.crosshairChange(true)
 				Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			
 	

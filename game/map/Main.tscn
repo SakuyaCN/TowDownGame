@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c711joqeud4pp"]
+
+[ext_resource type="Script" path="res://game/map/test.gd" id="1_ipcho"]
+[ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="2_bbqxi"]
+[ext_resource type="PackedScene" uid="uid://cy2dmwmamt8s7" path="res://game/map/mapTown/Town.tscn" id="4_utlai"]
+[ext_resource type="AudioStream" uid="uid://dd8rqtd44vwn1" path="res://audio/bgm/Cephalopod.mp3" id="7_ccb5j"]
+
+[sub_resource type="Environment" id="Environment_wve7b"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.6
+glow_blend_mode = 1
+glow_hdr_threshold = 0.2
+
+[node name="test" type="NavigationRegion2D"]
+script = ExtResource("1_ipcho")
+
+[node name="ControlUI" parent="." instance=ExtResource("2_bbqxi")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ccb5j")
+volume_db = -10.0
+autoplay = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wve7b")
+
+[node name="Town" parent="." instance=ExtResource("4_utlai")]

@@ -1,10 +1,30 @@
-[gd_scene load_steps=33 format=3 uid="uid://8lekrqo3cykw"]
+[gd_scene load_steps=38 format=3 uid="uid://8lekrqo3cykw"]
 
 [ext_resource type="Script" path="res://game/hero/Hero.gd" id="1_83vm3"]
 [ext_resource type="Material" uid="uid://b1rr1d7kl8ium" path="res://shader/SmoothPixel.tres" id="1_e1xul"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_b1ar1"]
 [ext_resource type="Texture2D" uid="uid://br4j3d8xbd47t" path="res://game/hero/Tiny Alchemist Sprite Sheet 48x32.png" id="4_o77ur"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_3w2gc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg6vb"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(0, 512, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaqas"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(48, 512, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdcuf"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(96, 512, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8pja"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(144, 512, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p75ec"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(192, 512, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8awp"]
 atlas = ExtResource("4_o77ur")
@@ -98,6 +118,26 @@ region = Rect2(336, 160, 48, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xg6vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaqas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdcuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8pja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p75ec")
+}],
+"loop": false,
+"name": &"die",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_s8awp")
 }, {
 "duration": 1.0,
@@ -179,7 +219,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5kl1j"]
-radius = 8.0
+radius = 7.0
 
 [sub_resource type="Curve" id="Curve_nb30i"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.436364), 0.0, 0.0, 0, 0]
@@ -219,12 +259,12 @@ texture = ExtResource("2_b1ar1")
 self_modulate = Color(1.3, 1.3, 1.3, 1)
 position = Vector2(-2, -16)
 sprite_frames = SubResource("SpriteFrames_a2m0y")
-animation = &"run_back"
+animation = &"die"
 
 [node name="GunRoot" type="Node2D" parent="body"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -8)
+position = Vector2(-1, -7)
 shape = SubResource("CircleShape2D_5kl1j")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

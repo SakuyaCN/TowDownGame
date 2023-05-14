@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0pyqarnrdu2x"]
+
+[ext_resource type="Script" path="res://game/attachments/ShotgunShellPouch.gd" id="1_5ymjp"]
+[ext_resource type="Texture2D" uid="uid://c3ucw6cvmxy2c" path="res://Sprites/icon/Icon5.png" id="2_kw8vx"]
+
+[node name="ShotgunShellPouch" type="Node2D"]
+script = ExtResource("1_5ymjp")
+am_id = 5
+am_name = "SHOTGUN SHELL POUCH"
+am_image = ExtResource("2_kw8vx")
+am_type = "WEAPON_AMMUNITION"
+am_info = "INFO_SHOTGUN SHELL POUCH"
+SHOTGUNS = true

@@ -39,6 +39,7 @@ const weapon_list = {
 
 const hitlabel = preload("res://ui/widgets/HitLabel.tscn")
 
+var canvasLayer:CanvasLayer
 var player:Player
 var freeze_frame = false
 var shake = 1.0 #振动幅度
@@ -93,6 +94,12 @@ func freezeFrame(scale):
 		freeze_frame = true
 		# 将时间比例设置为0.1
 		Engine.time_scale = scale
+
+func showToast(msg,time = 1):
+	canvasLayer.showToast(msg,time)
+
+func crosshairChange(is_change):
+	canvasLayer.crosshairChange(is_change)
 
 #func _physics_process(delta):
 #	if freeze_frame && Engine.get_physics_frames() % 2 == 0:

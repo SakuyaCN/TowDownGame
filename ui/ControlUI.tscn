@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=20 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
 [ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
+[ext_resource type="Texture2D" uid="uid://bcy4ifspdj47q" path="res://icon.svg" id="9_ud0yi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ohj"]
 bg_color = Color(0.176471, 0.211765, 0.196078, 0.784314)
@@ -33,7 +34,79 @@ anti_aliasing = false
 
 [sub_resource type="ImageTexture" id="ImageTexture_dixfw"]
 
-[node name="ControlUI" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qreuj"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.843137)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_ohaid"]
+font_size = 8
+outline_size = 2
+outline_color = Color(0.458824, 0.411765, 0.235294, 1)
+
+[sub_resource type="Shader" id="Shader_87hmn"]
+code = "/*
+	グリッチ トランジション シェーダー by あるる（きのもと 結衣） @arlez80
+	Glitch Transition Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+
+shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE:hint_screen_texture,filter_linear_mipmap;
+
+// 振動の強さ
+uniform float shake_power = 0.03;
+// 振動ブロックサイズ
+uniform float shake_block_size = 30.5;
+// 色の分離率
+uniform float fade : hint_range( 0.0, 1.0 ) = 0.01;
+// R方向
+uniform vec2 direction_r = vec2( 1.0, 0.0 );
+// G方向
+uniform vec2 direction_g = vec2( 0.4, 1.0 );
+// B方向
+uniform vec2 direction_b = vec2( -0.7, -0.3 );
+
+float random( float seed )
+{
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46, -54.3415 ) ) ) );
+}
+
+void fragment( )
+{
+	vec2 fixed_uv = SCREEN_UV;
+	fixed_uv.x += (
+		random(
+			( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+		+	TIME
+		) - 0.5
+	) * shake_power * ( fade * 12.0 );
+
+	COLOR = vec4(
+		textureLod( SCREEN_TEXTURE, fixed_uv + normalize( direction_r ) * fade, 0.0 ).r
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + normalize( direction_g ) * fade, 0.0 ).g
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + normalize( direction_b ) * fade, 0.0 ).b
+	,	0.0
+	) * ( 1.0 - fade );
+	COLOR.a = 1.0;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gousy"]
+shader = SubResource("Shader_87hmn")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_block_size = 30.5
+shader_parameter/fade = 0.0
+shader_parameter/direction_r = Vector2(1, 0)
+shader_parameter/direction_g = Vector2(0.4, 1)
+shader_parameter/direction_b = Vector2(-0.7, -0.3)
+
+[node name="ControlUI" type="CanvasLayer" groups=["control"]]
+process_mode = 3
 script = ExtResource("1_hodr7")
 
 [node name="GameUI" type="Control" parent="."]
@@ -313,8 +386,55 @@ offset_right = 4.0
 offset_bottom = 3.0
 mouse_filter = 2
 
+[node name="Control" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 1
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -47.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = -9.0
+offset_right = 142.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_b73q7")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_qreuj")
+text = "toast"
+label_settings = SubResource("LabelSettings_ohaid")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Control"]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gousy")
+position = Vector2(204.469, 115.156)
+scale = Vector2(3.1958, 1.79443)
+texture = ExtResource("9_ud0yi")
+
 [connection signal="pressed" from="MainUI/VBoxContainer/start" to="MainUI" method="_on_start_pressed"]
 [connection signal="pressed" from="MainUI/VBoxContainer/setting" to="MainUI" method="_on_setting_pressed"]
 [connection signal="item_selected" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/language" to="MainUI/SettingUI" method="_on_language_item_selected"]
 [connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control/shake" to="MainUI/SettingUI" method="_on_shake_value_changed"]
 [connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2/volume" to="MainUI/SettingUI" method="_on_volume_value_changed"]
+[connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]
