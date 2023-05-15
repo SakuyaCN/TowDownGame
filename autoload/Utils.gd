@@ -1,5 +1,7 @@
 extends Node
 
+const shop_pre = preload("res://ui/widgets/ShopPanel.tscn")
+
 enum GUN_TYPE { #枪械类型
 	ASSAULT_RIFLES = 1 << 0, #突击步枪
 	SUBMACHINE_GUNSRELOAD = 1 << 1, #冲锋枪
@@ -25,7 +27,7 @@ enum ATTACHMENTS_TYPE { #配件类型
 	WEAPON_PERKS, #枪口
 }
 
-const weapon_list = {
+var weapon_list = {
 	"0" = preload("res://game/guns/GunSprite.tscn"),
 	"1" = preload("res://game/guns/ShotgunBlaster.tscn"),
 	"2" = preload("res://game/guns/Sniper.tscn"),
@@ -35,6 +37,16 @@ const weapon_list = {
 	"6" = preload("res://game/guns/BoomBoi.tscn"),
 	"7" = preload("res://game/guns/AlienMachine.tscn"),
 	"8" = preload("res://game/guns/RebalShotgun.tscn")
+}
+
+var am_dict = {
+	"0" = preload("res://game/attachments/QuickdrawMagazine.tscn"),
+	"1" = preload("res://game/attachments/UniversalExtendedMagazines.tscn"),
+	"2" = preload("res://game/attachments/ExtendedRifleMagazine.tscn"),
+	"3" = preload("res://game/attachments/QuickExpansionMagazine.tscn"),
+	"5" = preload("res://game/attachments/ShotgunShellPouch.tscn"),
+	"6" = preload("res://game/attachments/MachineGunMagazine.tscn"),
+	"7" = preload("res://game/attachments/SubmachineGunMagazine.tscn")
 }
 
 const weapon_money_list = {
@@ -48,16 +60,6 @@ const weapon_money_list = {
 	"7" = 100,
 	"8" = 100
 }
-
-var am_list = [
-	preload("res://game/attachments/ExtendedRifleMagazine.tscn"),
-	preload("res://game/attachments/MachineGunMagazine.tscn"),
-	preload("res://game/attachments/QuickExpansionMagazine.tscn"),
-	preload("res://game/attachments/QuickdrawMagazine.tscn"),
-	preload("res://game/attachments/ShotgunShellPouch.tscn"),
-	preload("res://game/attachments/UniversalExtendedMagazines.tscn"),
-	preload("res://game/attachments/SubmachineGunMagazine.tscn")
-]
 
 const hitlabel = preload("res://ui/widgets/HitLabel.tscn")
 
@@ -80,9 +82,10 @@ func _ready() -> void:
 
 func getTempAmList():
 	if temp_am_list.is_empty():
-		am_list.shuffle()
+		var temp = am_dict.keys().duplicate()
+		temp.shuffle()
 		for i in 5:
-			temp_am_list.append(am_list[i])
+			temp_am_list.append(temp[i])
 	return temp_am_list
 
 func gameStart():

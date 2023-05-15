@@ -3,7 +3,7 @@ extends Node2D
 @export var next_area:Node2D
 @export var one_shot = false
 
-signal moveIn()
+signal moveIn(next_area)
 signal moveOut()
 
 var is_open = true
@@ -16,8 +16,7 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	if body is Player && next_area && next_area.is_open && is_open:
 		next_area.is_open = false
-		body.global_position = next_area.global_position
-		emit_signal("moveIn")
+		emit_signal("moveIn",next_area)
 
 func _on_area_2d_body_exited(body):
 	if body is Player:
@@ -25,6 +24,7 @@ func _on_area_2d_body_exited(body):
 			is_open = false
 			close()
 		else:
+			next_area.is_open = true
 			is_open = true
 		emit_signal("moveOut")
 

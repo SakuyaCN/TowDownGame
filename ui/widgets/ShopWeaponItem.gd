@@ -16,9 +16,9 @@ func setData(id):
 	$Label.text = str(Utils.weapon_money_list[id])
 	tooltip_text = gun.weapon_name
 
-func setAmData(am:BaseAttachment):
+func setAmData(id):
 	self.id = id
-	self.am = am
+	self.am = Utils.am_dict[id].instantiate()
 	texture = null
 	$TextureRect.texture = am.am_image
 	#$Label.text = str(Utils.weapon_money_list[id])
@@ -42,7 +42,7 @@ func _on_button_pressed() -> void:
 	if gun != null:
 		emit_signal("onWeaponClick",id,gun)
 	if am != null:
-		emit_signal("onAmClick",am)
+		emit_signal("onAmClick",id,am)
 
 
 func _on_button_mouse_entered() -> void:

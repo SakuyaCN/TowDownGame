@@ -11,7 +11,7 @@ var audio_hit = AudioStreamPlayer2D.new()
 @onready var sprite_body = get_node("body")
 @onready var anim :AnimatedSprite2D = get_node("body/AnimatedSprite2D")
 
-var target_player:Player = null
+var target_player:Player = Utils.player
 
 var hit = false
 var is_die = false
@@ -32,10 +32,10 @@ func _ready():
 	navigationAgent2D.target_desired_distance = 20
 	navigationAgent2D.debug_enabled = true
 
-func setData():
-	SPEED = 50
-	hurt = 1
-	HP = 5
+func setData(data):
+	SPEED = data['speed']
+	hurt = data['hurt']
+	HP = data['hp']
 	knockback_def = 5
 
 func _physics_process(delta):

@@ -28,6 +28,7 @@ func _ready() -> void:
 		hp_bar.max_value = max_hp;hp_bar.value = hp)
 
 func onGameStart():
+	onGoldChange(PlayerData.gold)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween.tween_property(box_top,"position:y",box_top.position.y,0.3).from(box_top.position.y-box_top.size.y)
 	tween.tween_property(bottom_bls,"position:y",bottom_bls.position.y,0.3).from(bottom_bls.position.y+bottom_bls.size.y)
@@ -74,7 +75,7 @@ func onWeaponBulletsChange(bullet,bullet_max):
 		weapon_bullet_list.get_node(str(local_count)).destory()
 
 func onGoldChange(gold):
-	gold_label.text = "金币:" + str(gold)
+	gold_label.text = tr("GOLD_HAS") + str(gold)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):

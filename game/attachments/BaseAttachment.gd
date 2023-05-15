@@ -7,6 +7,7 @@ class_name BaseAttachment
 @export_enum("WEAPON_OPTICS","WEAPON_MUZZLE","WEAPON_BARREL","WEAPON_UNDERBARREL","WEAPON_AMMUNITION","WEAPON_STOCK","WEAPON_TACTICAL","WEAPON_PERKS") var am_type = "WEAPON_OPTICS" #配件类型
 @export_multiline var am_info = "" #介绍
 #@export_flags("ASSAULT_RIFLES", "SUBMACHINE_GUNSRELOAD", "MACHINE_GUNS","SNIPER_RIFLES","SHOTGUNS","LASER_WEAPONS") var weapon_type = 0 #限制穿戴
+@export var money = 20 #价格
 
 @export_group("武器可用类型")
 @export var ASSAULT_RIFLES = false

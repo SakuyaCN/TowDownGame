@@ -9,56 +9,67 @@ extends Node2D
 const weapon_choose = preload("res://ui/widgets/WeaponChoose.tscn")
 const monster_pre = preload("res://game/monster/Monster 2/Monster2.tscn")
 
-
 var level = 1
+
+var monster_attr = {
+	"1" = {'speed' = 50,'hp' = 1,'hurt' = 1}
+}
 
 var time_out = 0
 
 func _ready():
-	pass
+	Utils.onGameStart.connect(self.onGameStart)
+
+func onGameStart():
+	$CanvasLayer/level.visible = true
+	$CanvasLayer/timeout.visible = true
 
 func _on_portal_2_move_out() -> void:
-	var ins = weapon_choose.instantiate()
-	ins.onWeaponChoosed.connect(self.onWeaponChoosed)
-	Utils.canvasLayer.add_child(ins)
-
-func onWeaponChoosed():
-	Utils.showToast("游戏即将开始！",2)
+	Utils.showToast("GAME_START_BEGIN",2)
 	$CanvasLayer/timeout.visible = true
 	$CanvasLayer/level.visible = true
 	await get_tree().create_timer(3).timeout
-	Utils.showToast("怪物将从随机方向进攻，请坚持到回合结束！",2)
+	Utils.showToast("START_TIP",2)
 	timer.start()
 	time_out = 30
 
 func _on_timer_timeout() -> void:
 	time_out -= 1
-	$CanvasLayer/timeout.text = "剩余时间：%s"%time_out
+	$CanvasLayer/timeout.text =tr("REMAINING TIME") + str(time_out)
 	if time_out == 0:
 		onLevelEnd()
 		return
 	var ins = monster_pre.instantiate()
 	ins.global_position = getPoint()
-	ins.setData()
+	ins.setData(monster_attr[str(level)])
 	monster_root.add_child(ins)
 
 func onLevelEnd():
 	timer.stop()
 	for item in monster_root.get_children():
 		item.queue_free()
-	Utils.showToast("回合胜利！",2)
+	Utils.showToast("VICTORY IN THE ROUND",2)
 	Utils.player.global_position = $PositionHome.global_position
 
 func getPoint():
 	var random_point = Vector2(randi_range(pos_start.global_position.x, pos_end.global_position.x), randi_range(pos_start.global_position.y, pos_end.global_position.y))
 	return random_point
 
-
 func _on_shop_body_entered(body: Node2D) -> void:
 	if body is Player:
 		shopBtn.visible = true
 
-
 func _on_shop_body_exited(body: Node2D) -> void:
 	if body is Player:
 		shopBtn.visible = false
+
+func _on_open_shop_pressed():
+	var ins = Utils.shop_pre.instantiate()
+	$CanvasLayer.add_child(ins)
+
+#进入地图
+func _on_portal_move_in(next_area):
+	if Utils.player.gun == null:
+		Utils.showToast("PLEASE PURCHASE A WEAPON FIRST")
+	else:
+		Utils.player.global_position = next_area.global_position

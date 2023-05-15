@@ -45,6 +45,25 @@ TOOLTIP_TYPE,Type:,类型：
 TOOLTIP_INFO,Please drag the attachments from the right sidebar and drop them here.,请拖动右侧栏中的配件放入此处
 TOOLTIP_RANGE,Available Range:,可用范围：
 ,,
+VICTORY IN THE ROUND,Victory in the round!,回合胜利！
+PLEASE PURCHASE A WEAPON FIRST,Please purchase a weapon first!,请先购买一把武器！
+REMAINING TIME,Remaining time:,剩余时间：
+START_TIP,The monsters will attack from random directions. Please hold on until the end of the round!,怪物将从随机方向进攻，请坚持到回合结束！
+GAME_START_BEGIN,The game is about to begin!,游戏即将开始！
+BUY_WEAPON_TIP,Would you like to purchase a weapon:,是否购买武器：
+BUY_AM_TIP,Would you like to purchase accessories:,是否购买配件：
+BUY_OK,Purchase successful!,购买成功！
+BUY_ERROR,Insufficient gold coins!,金币不足！
+SUPPLY STATION,Supply station,补给站
+DIFFICULTY LEVEL,Difficulty level,难度等级
+WEAPON SHOP,Weapon shop,武器商店
+ACCESSORY SHOP,Accessory shop,配件商店
+REFRESH,Refresh,刷新
+RESTORE HEALTH,Restore health,恢复体力
+GOLD COST,Gold cost: 10,消耗金币：10
+CLOSE,Close,关闭
+GOLD_HAS,Gold:,金币：
+OPEN,Open ,打开
 ,,
 ,,
 QUICKDRAW_MAGAZINE,Quickdraw Magazine,快速弹夹

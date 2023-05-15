@@ -1605,7 +1605,7 @@ tile_set = SubResource("TileSet_v1vm1")
 format = 2
 layer_0/y_sort_enabled = true
 layer_0/y_sort_origin = 7
-layer_0/tile_data = PackedInt32Array(786453, 131072, 15, 786454, 131072, 15, 720919, 0, 14, 786455, 0, 14, 655370, 65536, 16, 589843, 196608, 16, 458774, 393216, 14, 2031628, 458752, 13, 2555929, 589824, 13, 2621448, 0, 14, 2162706, 0, 15, 2228241, 65536, 15, 2228242, 131072, 15, 2228244, 196608, 15, 2097172, 262144, 15, 2162710, 393216, 15, 2228235, 393216, 16, 2424848, 262144, 16, 2424849, 196608, 16)
+layer_0/tile_data = PackedInt32Array(786453, 131072, 15, 786454, 131072, 15, 720919, 0, 14, 786455, 0, 14, 655370, 65536, 16, 589843, 196608, 16, 458774, 393216, 14, 2031628, 458752, 13, 2555929, 589824, 13, 2621448, 0, 14, 2162706, 0, 15, 2228241, 65536, 15, 2228242, 131072, 15, 2228244, 196608, 15, 2097172, 262144, 15, 2162710, 393216, 15, 2228235, 393216, 16, 2424848, 262144, 16, 2424849, 196608, 16, 1769498, 196608, 16, 1966108, 65536, 13, 1703952, 0, 14, 2293789, 131072, 15, 2555934, 262144, 15, 2162695, 262144, 15, 1900552, 65536, 16, 2359305, 196608, 16, 1769492, 65536, 16, 1966097, 65536, 16, 2555925, 65536, 16, 2621454, 262144, 16, 2293786, 262144, 16, 1638410, 262144, 16, 1769484, 262144, 16)
 
 [node name="Next" type="Sprite2D" parent="TileMap2"]
 modulate = Color(2, 2, 2, 1)
@@ -1620,7 +1620,7 @@ texture = ExtResource("7_oo810")
 y_sort_enabled = true
 
 [node name="Hero" parent="TileMap2/PlayerRoot" instance=ExtResource("2_fsyst")]
-position = Vector2(227, 140)
+position = Vector2(226, 149)
 
 [node name="Anchor" type="Node2D" parent="TileMap2/PlayerRoot"]
 script = SubResource("GDScript_a2gud")
@@ -1640,7 +1640,6 @@ texture_scale = 0.5
 [node name="Portal" parent="TileMap2" node_paths=PackedStringArray("next_area") instance=ExtResource("8_3r4e8")]
 position = Vector2(364, 192)
 next_area = NodePath("../Portal2")
-one_shot = true
 
 [node name="Portal2" parent="TileMap2" node_paths=PackedStringArray("next_area") instance=ExtResource("8_3r4e8")]
 position = Vector2(114, 420)
@@ -1664,14 +1663,14 @@ visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -39.0
+offset_left = -65.0
 offset_top = 2.0
-offset_right = 39.0
+offset_right = 65.0
 offset_bottom = 25.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("10_xuam1")
-theme_override_font_sizes/font_size = 10
-text = "剩余时间：??"
+theme_override_font_sizes/font_size = 7
+text = "REMAINING TIME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1680,13 +1679,13 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -89.0
+offset_left = -102.0
 offset_top = 2.0
 offset_bottom = 25.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("10_xuam1")
-theme_override_font_sizes/font_size = 10
-text = "难度等级：LV1"
+theme_override_font_sizes/font_size = 7
+text = "DIFFICULTY LEVEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1697,7 +1696,7 @@ offset_top = 93.0
 offset_right = 356.0
 offset_bottom = 113.0
 theme_override_font_sizes/font_size = 8
-text = "打开补给站"
+text = "OPEN"
 
 [node name="Tip" type="Sprite2D" parent="."]
 modulate = Color(2, 2, 2, 1)
@@ -1705,17 +1704,30 @@ position = Vector2(286, 92)
 texture = ExtResource("11_7j3nn")
 
 [node name="Label" type="Label" parent="Tip"]
-offset_left = -7.0
-offset_top = -4.0
-offset_right = 8.0
-offset_bottom = 7.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.5
+offset_top = -13.5
+offset_right = 0.5
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 5
-text = "补给站"
+text = "SUPPLY STATION
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="Tip"]
 texture = ExtResource("11_7j3nn")
 
 [connection signal="body_entered" from="Pre-builtHouse3/shop" to="." method="_on_shop_body_entered"]
 [connection signal="body_exited" from="Pre-builtHouse3/shop" to="." method="_on_shop_body_exited"]
+[connection signal="moveIn" from="TileMap2/Portal" to="." method="_on_portal_move_in"]
 [connection signal="moveOut" from="TileMap2/Portal2" to="." method="_on_portal_2_move_out"]
 [connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/openShop" to="." method="_on_open_shop_pressed"]

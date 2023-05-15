@@ -246,6 +246,7 @@ color = Color(0.780392, 0.780392, 0.780392, 1)
 
 [node name="Hero" type="CharacterBody2D"]
 material = ExtResource("1_e1xul")
+collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_83vm3")
 

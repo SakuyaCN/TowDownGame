@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=23 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
 [ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
-[ext_resource type="PackedScene" uid="uid://dixoc75yqle3x" path="res://ui/widgets/ShopPanel.tscn" id="6_la22x"]
 [ext_resource type="Texture2D" uid="uid://cck41ti3sn08g" path="res://Sprites/ui/title.png" id="8_ovypj"]
 [ext_resource type="Texture2D" uid="uid://bcy4ifspdj47q" path="res://icon.svg" id="9_ud0yi"]
 
@@ -120,15 +119,18 @@ shader_parameter/direction_b = Vector2(-0.7, -0.3)
 
 [node name="ControlUI" type="CanvasLayer" groups=["control"]]
 process_mode = 3
+layer = 2
 script = ExtResource("1_hodr7")
 
 [node name="GameUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_cj0m0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameUI"]
@@ -204,6 +206,7 @@ offset_right = 35.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 
@@ -250,7 +253,7 @@ offset_right = 42.0
 offset_bottom = 26.0
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
-text = "金币：10"
+text = "GOLD_HAS"
 label_settings = SubResource("LabelSettings_1rtrt")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -258,11 +261,7 @@ vertical_alignment = 1
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameUI"]
 stream = ExtResource("5_m8t5a")
 
-[node name="ShopPanel" parent="GameUI" instance=ExtResource("6_la22x")]
-layout_mode = 1
-
 [node name="MainUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,6 +281,7 @@ offset_left = -90.0
 offset_right = 91.0
 offset_bottom = 87.0
 grow_horizontal = 2
+mouse_filter = 2
 texture = ExtResource("8_ovypj")
 expand_mode = 1
 stretch_mode = 5
@@ -431,7 +431,7 @@ mouse_filter = 2
 [node name="Control" type="Control" parent="."]
 process_mode = 3
 visible = false
-z_index = 1
+z_index = 2
 layout_mode = 3
 anchors_preset = 14
 anchor_top = 0.5
