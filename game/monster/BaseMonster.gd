@@ -11,6 +11,7 @@ var audio_hit = AudioStreamPlayer2D.new()
 @onready var sprite_body = get_node("body")
 @onready var anim :AnimatedSprite2D = get_node("body/AnimatedSprite2D")
 
+var target_player:Player = null
 
 var hit = false
 var is_die = false
@@ -23,6 +24,7 @@ func _ready():
 	add_child(navigationAgent2D)
 	#navigationAgent2D.navigation_finished.connect(self._navigation_finished)
 	#navigationAgent2D.target_reached.connect(self._target_reached)
+	navigationAgent2D.max_speed = SPEED
 	navigationAgent2D.velocity_computed.connect(self._on_velocity_computed)
 	navigationAgent2D.avoidance_enabled = true
 	navigationAgent2D.path_desired_distance = 20
@@ -30,12 +32,18 @@ func _ready():
 	navigationAgent2D.target_desired_distance = 20
 	navigationAgent2D.debug_enabled = true
 
+func setData():
+	SPEED = 50
+	hurt = 1
+	HP = 5
+	knockback_def = 5
+
 func _physics_process(delta):
 	#if Engine.get_physics_frames() % 60 :
 	if is_atk || is_die:
 		return
-	else:
-		navigationAgent2D.target_position = Utils.player.global_position
+	elif target_player != null:
+		navigationAgent2D.target_position = target_player.global_position
 	if hit:
 		move_and_slide()
 	elif navigationAgent2D.is_inside_tree() && !navigationAgent2D.is_navigation_finished():

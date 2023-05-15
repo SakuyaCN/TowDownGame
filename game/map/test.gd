@@ -17,6 +17,3 @@ func getPoint():
 
 func _on_timer_timeout() -> void:
 	pass
-	#var ins = pre.instantiate()
-	#map.add_child(ins)
-	#ins.global_position = getPoint()

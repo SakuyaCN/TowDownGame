@@ -8,7 +8,7 @@ const weapon_inventory = preload("res://ui/Inventory.tscn")
 
 @onready var box_top = $hpUI
 @onready var bottom_bls = $Container
-
+@onready var gold_label = $hpUI/Label
 @onready var weapon_lsit_node = $HBoxContainer
 @onready var weapon_change_image = $WeaponChangeUI/WeaponImage
 @onready var weapon_bullet_list = $Container/BulletHbox
@@ -20,6 +20,7 @@ var inv_ui
 
 func _ready() -> void:
 	Utils.onGameStart.connect(self.onGameStart)
+	PlayerData.onGoldChange.connect(self.onGoldChange)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange) #武器列表化监听
 	PlayerData.onWeaponChangeAnim.connect(self.onWeaponChangeAnim) #武器化监听
 	PlayerData.onWeaponBulletsChange.connect(self.onWeaponBulletsChange) #武器化监听
@@ -71,6 +72,9 @@ func onWeaponBulletsChange(bullet,bullet_max):
 	var local_count =  bullet_max - bullet
 	if weapon_bullet_list.has_node(str(local_count)):
 		weapon_bullet_list.get_node(str(local_count)).destory()
+
+func onGoldChange(gold):
+	gold_label.text = "金币:" + str(gold)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):

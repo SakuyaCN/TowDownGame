@@ -24,7 +24,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
+color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wve7b")

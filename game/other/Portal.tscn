@@ -46,6 +46,3 @@ amount = 4
 process_material = SubResource("ParticleProcessMaterial_rslni")
 texture = ExtResource("1_e7jdp")
 lifetime = 0.5
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

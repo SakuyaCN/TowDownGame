@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://lnd438x2nlcf"]
+
+[ext_resource type="Texture2D" uid="uid://ckbwm7ehx8r5s" path="res://Sprites/item_box_no_shader.png" id="1_ssqco"]
+[ext_resource type="Script" path="res://ui/widgets/ShopWeaponItem.gd" id="2_t27ds"]
+[ext_resource type="Texture2D" uid="uid://cjn8x1hoi3imf" path="res://Sprites/The Tiny Alchemist - Guns/gun1.png" id="2_typum"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p866g"]
+
+[node name="Control" type="TextureRect"]
+custom_minimum_size = Vector2(24, 24)
+texture = ExtResource("1_ssqco")
+script = ExtResource("2_t27ds")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_typum")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 13.0
+offset_right = 26.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 7
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p866g")
+flat = true
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

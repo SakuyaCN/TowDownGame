@@ -24,7 +24,7 @@ func _ready():
 	set_process(false)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
 	Utils.player = self
-	PlayerData.add_attachment(preload("res://game/attachments/QuickdrawMagazine.tscn").instantiate())
+	
 	PlayerData.add_attachment(preload("res://game/attachments/UniversalExtendedMagazines.tscn").instantiate())
 	PlayerData.add_attachment(preload("res://game/attachments/ExtendedRifleMagazine.tscn").instantiate())
 	PlayerData.add_attachment(preload("res://game/attachments/QuickExpansionMagazine.tscn").instantiate())
@@ -35,18 +35,6 @@ func _ready():
 func onGameStart():
 	set_physics_process(true)
 	set_process(true)
-	PlayerData.add_weapons(
-		[
-			Utils.weapon_list["8"].instantiate(),
-			Utils.weapon_list["7"].instantiate(),
-			Utils.weapon_list["6"].instantiate(),
-			Utils.weapon_list["5"].instantiate(),
-			Utils.weapon_list["4"].instantiate(),
-			Utils.weapon_list["3"].instantiate(),
-			Utils.weapon_list["2"].instantiate(),
-			#Utils.weapon_list["1"].instantiate(),
-			#Utils.weapon_list["4"].instantiate()
-		])
 	
 
 func changeWeapon(weapon_id):
@@ -80,10 +68,8 @@ func _physics_process(delta):
 		velocity = direction * SPEED
 	move_and_slide()
 	changeAnim(direction)
-	
-	if gun && OS.get_name() != "Windows" && look_dir != null:
-		gun.look_at(look_dir)
-	else:
+	$PointLight2D2.look_at(get_global_mouse_position())
+	if gun :
 		gun.look_at(get_global_mouse_position())
 		setGunLookat(get_global_mouse_position())
 

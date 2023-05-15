@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://co11lqs3cpuyb"]
+[gd_scene load_steps=40 format=3 uid="uid://co11lqs3cpuyb"]
 
 [ext_resource type="Script" path="res://game/monster/Monster 2/Monster2.gd" id="1_4jthf"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_3c0cq"]
@@ -258,12 +258,18 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_kvuov"]
 radius = 17.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ox6mo"]
+radius = 126.321
+
 [node name="Monster2" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 2147483648
 motion_mode = 1
 script = ExtResource("1_4jthf")
 SPEED = 300.0
+hurt = null
+HP = null
+knockback_def = null
 
 [node name="UndeadShadow" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
@@ -293,10 +299,16 @@ monitorable = false
 position = Vector2(1, -8)
 shape = SubResource("CircleShape2D_kvuov")
 
+[node name="FindPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FindPlayer"]
+shape = SubResource("CircleShape2D_ox6mo")
+
 [node name="AtkTimer" type="Timer" parent="."]
 wait_time = 0.3
 
 [connection signal="frame_changed" from="body/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="FindPlayer" to="." method="_on_find_player_body_entered"]
 [connection signal="timeout" from="AtkTimer" to="." method="_on_atk_timer_timeout"]

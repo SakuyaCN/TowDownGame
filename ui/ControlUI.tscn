@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=24 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
 [ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
+[ext_resource type="PackedScene" uid="uid://dixoc75yqle3x" path="res://ui/widgets/ShopPanel.tscn" id="6_la22x"]
+[ext_resource type="Texture2D" uid="uid://cck41ti3sn08g" path="res://Sprites/ui/title.png" id="8_ovypj"]
 [ext_resource type="Texture2D" uid="uid://bcy4ifspdj47q" path="res://icon.svg" id="9_ud0yi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ohj"]
@@ -25,6 +27,17 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvfd7"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.843137)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rtrt"]
+font_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wm7f"]
 
@@ -110,7 +123,6 @@ process_mode = 3
 script = ExtResource("1_hodr7")
 
 [node name="GameUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,10 +243,26 @@ theme_override_styles/background = SubResource("StyleBoxFlat_x8ohj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_i6unc")
 value = 100.0
 
+[node name="Label" type="Label" parent="GameUI/hpUI"]
+layout_mode = 1
+offset_top = 14.0
+offset_right = 42.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
+text = "金币：10"
+label_settings = SubResource("LabelSettings_1rtrt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameUI"]
 stream = ExtResource("5_m8t5a")
 
+[node name="ShopPanel" parent="GameUI" instance=ExtResource("6_la22x")]
+layout_mode = 1
+
 [node name="MainUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,6 +271,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_foget")
+
+[node name="TextureRect" type="TextureRect" parent="MainUI"]
+modulate = Color(2, 2, 2, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_right = 91.0
+offset_bottom = 87.0
+grow_horizontal = 2
+texture = ExtResource("8_ovypj")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainUI"]
 layout_mode = 1
@@ -285,7 +327,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
+color = Color(0, 0, 0, 0.784314)
 script = ExtResource("4_0nthv")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="MainUI/SettingUI"]
@@ -415,7 +457,7 @@ offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_b73q7")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_qreuj")
 text = "toast"
 label_settings = SubResource("LabelSettings_ohaid")

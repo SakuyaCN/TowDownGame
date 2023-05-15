@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://diwv1l06leobw"]
+
+[ext_resource type="Script" path="res://ui/widgets/WeaponChooseItem.gd" id="1_gvdrh"]
+[ext_resource type="Texture2D" uid="uid://cjn8x1hoi3imf" path="res://Sprites/The Tiny Alchemist - Guns/gun1.png" id="1_pgfni"]
+[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="2_dncaq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27206"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_gvdrh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pgfni")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_dncaq")
+theme_override_font_sizes/font_size = 10
+text = "武器名称"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_27206")
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

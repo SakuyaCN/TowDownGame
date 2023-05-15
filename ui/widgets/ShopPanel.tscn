@@ -1,0 +1,273 @@
+[gd_scene load_steps=10 format=3 uid="uid://dixoc75yqle3x"]
+
+[ext_resource type="Texture2D" uid="uid://mqew24rgmer" path="res://Sprites/ui/Assets-1-恢复的_03.png" id="1_14ndp"]
+[ext_resource type="Script" path="res://ui/widgets/ShopPanel.gd" id="2_87ysa"]
+[ext_resource type="Script" path="res://ui/widgets/Tooltip.gd" id="5_3w6tg"]
+[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="6_crrpc"]
+[ext_resource type="Texture2D" uid="uid://dx20yyrmrwrb" path="res://Sprites/ui/Assets-1_26.png" id="8_dqtcd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvfd7"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.843137)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rtrt"]
+font_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_noye0"]
+font = ExtResource("6_crrpc")
+font_size = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dnna"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.384314, 0.384314, 0.384314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="ShopPanel" type="NinePatchRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = -76.5
+offset_right = 176.5
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_14ndp")
+patch_margin_left = 73
+patch_margin_top = 7
+patch_margin_right = 69
+patch_margin_bottom = 19
+script = ExtResource("2_87ysa")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 49.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
+text = "武器商店"
+label_settings = SubResource("LabelSettings_1rtrt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.5
+offset_top = 60.5
+offset_right = 49.5
+offset_bottom = 75.5
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
+text = "配件商店"
+label_settings = SubResource("LabelSettings_1rtrt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 29.0
+offset_right = 348.0
+offset_bottom = 56.0
+horizontal_scroll_mode = 3
+
+[node name="GridContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 9.5
+offset_top = 81.5
+offset_right = 348.5
+offset_bottom = 112.5
+
+[node name="GridContainer" type="HBoxContainer" parent="ScrollContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.5
+offset_top = 118.5
+offset_right = 47.5
+offset_bottom = 134.5
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 7
+text = "刷新"
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 43.0
+offset_right = 85.0
+offset_bottom = 13.0
+text = "消耗金币：10"
+label_settings = SubResource("LabelSettings_noye0")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 130.5
+offset_top = 118.5
+offset_right = 166.5
+offset_bottom = 134.5
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 7
+text = "恢复体力"
+
+[node name="Label" type="Label" parent="Button2"]
+layout_mode = 0
+offset_left = 43.0
+offset_right = 85.0
+offset_bottom = 13.0
+text = "消耗金币：10"
+label_settings = SubResource("LabelSettings_noye0")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 311.5
+offset_top = 118.5
+offset_right = 347.5
+offset_bottom = 134.5
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 7
+text = "关闭"
+
+[node name="Tooltip" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(110, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -54.5
+offset_right = 57.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dnna")
+script = ExtResource("5_3w6tg")
+
+[node name="Label" type="Label" parent="Tooltip"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 111.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 6
+text = "asdasdasda"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Tooltip/Label"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 67.0
+offset_right = 107.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 6
+text = "可用范围："
+autowrap_mode = 1
+
+[node name="Label2" type="Label" parent="Tooltip"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 43.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 6
+text = "类型："
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 37.0
+offset_right = 231.0
+offset_bottom = 91.0
+texture = ExtResource("8_dqtcd")
+
+[node name="Label" type="Label" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 5
+text = "asdasdasdasd"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 112.5
+offset_top = 91.5
+offset_right = 167.5
+offset_bottom = 113.5
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 10
+text = "确认"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 92.0
+offset_right = 232.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 10
+text = "取消"
+
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]

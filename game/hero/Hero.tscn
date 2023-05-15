@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://8lekrqo3cykw"]
+[gd_scene load_steps=39 format=3 uid="uid://8lekrqo3cykw"]
 
 [ext_resource type="Script" path="res://game/hero/Hero.gd" id="1_83vm3"]
 [ext_resource type="Material" uid="uid://b1rr1d7kl8ium" path="res://shader/SmoothPixel.tres" id="1_e1xul"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_b1ar1"]
 [ext_resource type="Texture2D" uid="uid://br4j3d8xbd47t" path="res://game/hero/Tiny Alchemist Sprite Sheet 48x32.png" id="4_o77ur"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_3w2gc"]
+[ext_resource type="Texture2D" uid="uid://6dfnhmchpyb2" path="res://game/hero/Light (1).png" id="6_ky4xl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xg6vb"]
 atlas = ExtResource("4_o77ur")
@@ -281,3 +282,12 @@ amount = 4
 process_material = SubResource("ParticleProcessMaterial_d7ox4")
 lifetime = 0.4
 explosiveness = 0.8
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("6_ky4xl")
+offset = Vector2(140, 0)
+texture_scale = 0.3

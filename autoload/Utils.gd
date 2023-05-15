@@ -37,6 +37,28 @@ const weapon_list = {
 	"8" = preload("res://game/guns/RebalShotgun.tscn")
 }
 
+const weapon_money_list = {
+	"0" = 10,
+	"1" = 10,
+	"2" = 10,
+	"3" = 10,
+	"4" = 50,
+	"5" = 50,
+	"6" = 100,
+	"7" = 100,
+	"8" = 100
+}
+
+var am_list = [
+	preload("res://game/attachments/ExtendedRifleMagazine.tscn"),
+	preload("res://game/attachments/MachineGunMagazine.tscn"),
+	preload("res://game/attachments/QuickExpansionMagazine.tscn"),
+	preload("res://game/attachments/QuickdrawMagazine.tscn"),
+	preload("res://game/attachments/ShotgunShellPouch.tscn"),
+	preload("res://game/attachments/UniversalExtendedMagazines.tscn"),
+	preload("res://game/attachments/SubmachineGunMagazine.tscn")
+]
+
 const hitlabel = preload("res://ui/widgets/HitLabel.tscn")
 
 var canvasLayer:CanvasLayer
@@ -49,10 +71,19 @@ var is_inv_show = false #是否展示背包
 
 var crosshair_position = Vector2.ZERO
 
+var temp_am_list = []
+
 signal onGameStart()
 
 func _ready() -> void:
 	TranslationServer.set_locale("zh_CN")
+
+func getTempAmList():
+	if temp_am_list.is_empty():
+		am_list.shuffle()
+		for i in 5:
+			temp_am_list.append(am_list[i])
+	return temp_am_list
 
 func gameStart():
 	is_game_start = true

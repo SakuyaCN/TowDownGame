@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="5_bq71x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m3nq5"]
-radius = 1.0
+radius = 2.0
 
 [node name="SmpBullet" type="CharacterBody2D"]
 collision_layer = 0
@@ -19,7 +19,7 @@ bullet_smoke = ExtResource("3_jq64f")
 speed = 350
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_3f6k5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

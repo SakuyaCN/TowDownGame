@@ -32,3 +32,7 @@ func _on_area_2d_body_exited(body):
 
 func _on_atk_timer_timeout():
 	onAtk()
+
+func _on_find_player_body_entered(body: Node2D) -> void:
+	if body is Player:
+		target_player = body

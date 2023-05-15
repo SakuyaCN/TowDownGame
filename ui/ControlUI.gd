@@ -17,7 +17,7 @@ func showToast(msg,time):
 	timer.stop()
 	timer.start(time)
 	toast_ui.visible = true
-	create_tween().tween_property(toast_ui,"modulate:a",1,0.2).from(0)
+	create_tween().tween_property(toast_ui,"modulate:a",1,0.1).from(0)
 	toast.text = tr(msg)
 
 func _on_timer_timeout():
