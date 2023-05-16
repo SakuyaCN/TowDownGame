@@ -30,9 +30,16 @@ func _on_area_2d_body_exited(body):
 
 func reset():
 	is_open = true
+	next_area.is_open = true
+	if $Area2D.body_entered.is_connected(self._on_area_2d_body_entered):
+		$Area2D.body_entered.disconnect(self._on_area_2d_body_entered)
+	if $Area2D.body_exited.is_connected(self._on_area_2d_body_exited):
+		$Area2D.body_exited.disconnect(self._on_area_2d_body_exited)
 	$Area2D.body_entered.connect(self._on_area_2d_body_entered)
 	$Area2D.body_exited.connect(self._on_area_2d_body_exited)
 
 func close():
-	$Area2D.body_entered.disconnect(self._on_area_2d_body_entered)
-	$Area2D.body_exited.disconnect(self._on_area_2d_body_exited)
+	if $Area2D.body_entered.is_connected(self._on_area_2d_body_entered):
+		$Area2D.body_entered.disconnect(self._on_area_2d_body_entered)
+	if $Area2D.body_exited.is_connected(self._on_area_2d_body_exited):
+		$Area2D.body_exited.disconnect(self._on_area_2d_body_exited)

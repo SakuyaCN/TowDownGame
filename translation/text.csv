@@ -64,7 +64,15 @@ GOLD COST,Gold cost: 10,消耗金币：10
 CLOSE,Close,关闭
 GOLD_HAS,Gold:,金币：
 OPEN,Open ,打开
-,,
+OK,OK,确认
+CANCEL,Cancel,取消
+SURVIVAL TIME,Survival time,生存时间
+DEFEAT ENEMIES,Defeat enemies,击败敌人
+OBTAIN GOLD,Obtain gold,获得金币
+SUPPLEMENT BULLETS,Supplement bullets,补充子弹
+BULLETS2GOLD,1 gold = 20 bullets,1 金币 = 20发
+AMMO_ALL,Remaining AMMO:,剩余子弹：
+,Insufficient spare bullets.,备用子弹不足！
 ,,
 QUICKDRAW_MAGAZINE,Quickdraw Magazine,快速弹夹
 EXTENDED RIFLE MAGAZINE,Extended Rifle Magazine,扩容步枪弹夹
@@ -83,5 +91,5 @@ Magazine capacity +10","换弹速度+20%
 INFO_SHOTGUN SHELL POUCH,"Reload speed +20%
 Magazine capacity +5","弹夹容量+5
 换弹速度+20%"
-INFO_SUBMACHINE GUN MAGAZINE,Magazine capacity +18.,弹夹容量+18
+INFO_SUBMACHINE GUN MAGAZINE,Magazine capacity +19.,弹夹容量+19
 INFO_UNIVERSAL EXTENDED MAGAZINE,Magazine capacity +10.,弹夹容量+10

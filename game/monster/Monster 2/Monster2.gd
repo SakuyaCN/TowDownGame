@@ -2,8 +2,6 @@ extends "res://game/monster/BaseMonster.gd"
 
 var area_player = null
 
-const gold = preload("res://game/items/Gold.tscn")
-
 func _ready():
 	super._ready()
 	anim.play("idle")
@@ -33,10 +31,3 @@ func _on_area_2d_body_exited(body):
 
 func _on_atk_timer_timeout():
 	onAtk()
-
-func onDie():
-	var ins = gold.instantiate()
-	ins.global_position = global_position
-	get_parent().add_child(ins)
-	super.onDie()
-	

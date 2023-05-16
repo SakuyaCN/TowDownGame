@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Cut and Run.mp3-5217dfafb729607de08972c361d16
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

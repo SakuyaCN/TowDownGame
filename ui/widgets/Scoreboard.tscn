@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5x7m65q55lj8"]
+[gd_scene load_steps=5 format=3 uid="uid://b5x7m65q55lj8"]
 
 [ext_resource type="Texture2D" uid="uid://bgommu3oa6qj2" path="res://Sprites/top.png" id="1_64agi"]
+[ext_resource type="Script" path="res://ui/widgets/Scoreboard.gd" id="1_brwg4"]
 [ext_resource type="Texture2D" uid="uid://dsj1b6dyhw1ju" path="res://Sprites/menu_left.png" id="2_oyjv0"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="3_bc8cd"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_brwg4")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -41,13 +43,14 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Panel"]
+self_modulate = Color(1, 1, 1, 0.698039)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -35.0
+offset_left = -42.0
 offset_top = 24.0
-offset_right = -16.0
+offset_right = -23.0
 offset_bottom = 36.0
 grow_horizontal = 2
 texture = ExtResource("2_oyjv0")
@@ -70,13 +73,14 @@ text = "SURVIVAL TIME"
 vertical_alignment = 1
 
 [node name="TextureRect3" type="TextureRect" parent="Panel"]
+self_modulate = Color(1, 1, 1, 0.698039)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -35.0
+offset_left = -42.0
 offset_top = 43.0
-offset_right = -16.0
+offset_right = -23.0
 offset_bottom = 55.0
 grow_horizontal = 2
 texture = ExtResource("2_oyjv0")
@@ -99,13 +103,14 @@ text = "DEFEAT ENEMIES"
 vertical_alignment = 1
 
 [node name="TextureRect4" type="TextureRect" parent="Panel"]
+self_modulate = Color(1, 1, 1, 0.698039)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -35.0
+offset_left = -42.0
 offset_top = 62.0
-offset_right = -16.0
+offset_right = -23.0
 offset_bottom = 74.0
 grow_horizontal = 2
 texture = ExtResource("2_oyjv0")
@@ -143,3 +148,5 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_bc8cd")
 theme_override_font_sizes/font_size = 8
 text = "OK"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

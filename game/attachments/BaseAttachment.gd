@@ -21,7 +21,7 @@ var use_type = []#可用类型
 var id = Time.get_ticks_usec() #配件在背包中的ID
 
 var gun:BaseGun
-
+	
 func _ready() -> void:
 	name = str(id)
 	_checkTypeList()
@@ -32,6 +32,7 @@ func canUseAm(type):
 
 #可用类型
 func _checkTypeList():
+	use_type.clear()
 	if ASSAULT_RIFLES:use_type.append("ASSAULT_RIFLES")
 	if SUBMACHINE_GUNSRELOAD:use_type.append("SUBMACHINE_GUNSRELOAD")
 	if MACHINE_GUNS:use_type.append("MACHINE_GUNS")

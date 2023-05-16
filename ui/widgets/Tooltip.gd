@@ -9,6 +9,7 @@ var am :BaseAttachment= null
 func setData(am:BaseAttachment):
 	self.am = am
 	if am != null:
+		am._checkTypeList()
 		type.text = tr("TOOLTIP_TYPE") + tr(am.am_type)
 		info.text = tr(am.am_info)
 		use.text = tr("TOOLTIP_RANGE")

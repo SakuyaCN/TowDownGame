@@ -18,6 +18,8 @@ var is_die = false
 var is_flip
 var is_atk = false
 
+var death_callback :Callable
+
 func _ready():
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
@@ -99,6 +101,8 @@ func onHit(hit_num):
 			onDie()
 
 func onDie():
+	if death_callback:
+		death_callback.call(self)
 	is_die = true
 	set_physics_process(false)
 	get_node("CollisionShape2D").call_deferred("set_disabled",true)
@@ -107,3 +111,5 @@ func onDie():
 	await anim.animation_finished
 	queue_free()
 	
+func setDeathCallBack(death_callback:Callable):
+	self.death_callback = death_callback

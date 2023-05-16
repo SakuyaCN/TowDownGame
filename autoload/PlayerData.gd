@@ -4,10 +4,17 @@ signal playerWeaponListChange() #武器列表改变
 signal onWeaponChanged() #切换武器
 signal onWeaponChangeAnim(id) #切换武器动作
 signal onWeaponBulletsChange(bullet,max_bullet) #武器子弹数量变化
+signal onAmmoChange(ammo) #备用子弹数量变化
+signal onPlayerDeath() #玩家死亡信号
+signal onPlayerResurrect() #玩家复活信号
 
 signal onHpChange(hp,max_hp)#血量变化
 signal onGoldChange(gold)#血量变化
 
+var player_ammo = 50:#子弹数量
+	set(value):
+		player_ammo = value
+		emit_signal("onAmmoChange",player_ammo)
 var player_am_list = {} #配件列表
 var player_weapon_list = {} #武器列表
 var player_hp_max = 10: #最大血量
@@ -18,10 +25,16 @@ var player_hp = 10: #当前血量
 	set(value):
 		player_hp = value
 		emit_signal("onHpChange",player_hp,player_hp_max)
-var gold = 10:
+		if player_hp <= 0:
+			emit_signal("onPlayerDeath")
+var gold = 999:
 	set(value):
 		gold = value
 		emit_signal("onGoldChange",gold)
+
+func resurrectPlayer(hp):
+	player_hp = hp
+	emit_signal("onPlayerResurrect")
 
 var is_change_weapon = false
 #添加一把武器

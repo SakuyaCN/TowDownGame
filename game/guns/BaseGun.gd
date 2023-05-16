@@ -74,6 +74,7 @@ func _ready() -> void:
 #更新枪械配置
 func updateGun():
 	timer.wait_time = 1.0 / fire_rate
+	PlayerData.emit_signal("onWeaponBulletsChange",bullets_count,bullets_max_count) 
 
 #添加配件
 func addAttachMent(am:BaseAttachment):
@@ -91,7 +92,13 @@ func removeAttachMent(am:BaseAttachment):
 
 #子弹装填完毕
 func reload_over():
-	bullets_count = bullets_max_count
+	var ammo = bullets_max_count - bullets_count
+	if PlayerData.player_ammo < ammo:
+		ammo = PlayerData.player_ammo
+		PlayerData.player_ammo = 0
+	else:
+		PlayerData.player_ammo -= ammo
+	bullets_count += ammo
 	PlayerData.emit_signal("onWeaponChangeAnim",weapon_id,Utils.GUN_CHANGE_TYPE.RELOAD)
 	is_reloading = false
 
@@ -154,6 +161,9 @@ func fire(bullet:Bullet,is_bullet = true,is_play = true):
 
 #切换子弹
 func reload_ammo():
+	if PlayerData.player_ammo == 0:
+		Utils.showToast("AMMO_OUT")
+		return 
 	if !is_reloading && change_timer.is_stopped() && bullets_count < bullets_max_count:
 		is_reloading = true
 		anim_player.speed_scale = 1 / change_speed

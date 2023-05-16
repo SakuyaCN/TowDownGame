@@ -80,6 +80,13 @@ signal onGameStart()
 func _ready() -> void:
 	TranslationServer.set_locale("zh_CN")
 
+func reloadTempAmList():
+	temp_am_list.clear()
+	var temp = am_dict.keys().duplicate()
+	temp.shuffle()
+	for i in 5:
+		temp_am_list.append(temp[i])
+	
 func getTempAmList():
 	if temp_am_list.is_empty():
 		var temp = am_dict.keys().duplicate()

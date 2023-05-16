@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://game/items/BaseItem.gd"
 #金币
 func _ready():
 	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
@@ -6,6 +6,8 @@ func _ready():
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
+		if giveCallBack:
+			giveCallBack.call()
 		PlayerData.gold += 1
 		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 		tween.tween_property(self,"position:y",position.y - 20,0.3)

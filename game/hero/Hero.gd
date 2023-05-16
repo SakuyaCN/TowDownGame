@@ -17,6 +17,7 @@ var look_dir = null
 
 func _init() -> void:
 	PlayerData.onHpChange.connect(self.onHpChange)
+	PlayerData.onPlayerResurrect.connect(self.onPlayerResurrect)
 	Utils.onGameStart.connect(self.onGameStart)
 
 func _ready():
@@ -35,7 +36,10 @@ func _ready():
 func onGameStart():
 	set_physics_process(true)
 	set_process(true)
-	
+
+func onPlayerResurrect():
+	is_dead = false
+	anim.play("idle")
 
 func changeWeapon(weapon_id):
 	for item in gun_root.get_children():

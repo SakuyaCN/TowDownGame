@@ -15,12 +15,14 @@ const weapon_inventory = preload("res://ui/Inventory.tscn")
 @onready var ammo_count_label = $Container/Label
 @onready var weapon_change_name = $WeaponChangeUI/WeaponImage/Label
 @onready var hp_bar = $hpUI/ProgressBar
+@onready var ammo_label = $Container/all_ammo
 
 var inv_ui
 
 func _ready() -> void:
 	Utils.onGameStart.connect(self.onGameStart)
 	PlayerData.onGoldChange.connect(self.onGoldChange)
+	PlayerData.onAmmoChange.connect(self.onAmmoChange)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange) #武器列表化监听
 	PlayerData.onWeaponChangeAnim.connect(self.onWeaponChangeAnim) #武器化监听
 	PlayerData.onWeaponBulletsChange.connect(self.onWeaponBulletsChange) #武器化监听
@@ -77,8 +79,14 @@ func onWeaponBulletsChange(bullet,bullet_max):
 func onGoldChange(gold):
 	gold_label.text = tr("GOLD_HAS") + str(gold)
 
+func onAmmoChange(ammo):
+	ammo_label.text = tr("AMMO_ALL") + str(ammo)
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):
-		Utils.crosshairChange(false)
-		inv_ui = weapon_inventory.instantiate()
-		get_parent().add_child(inv_ui)
+		if Utils.player.gun == null:
+			Utils.showToast("PLEASE PURCHASE A WEAPON FIRST")
+		else:
+			Utils.crosshairChange(false)
+			inv_ui = weapon_inventory.instantiate()
+			get_parent().add_child(inv_ui)

@@ -19,6 +19,7 @@ script = ExtResource("1_ipcho")
 [node name="ControlUI" parent="." instance=ExtResource("2_bbqxi")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_ccb5j")
 volume_db = -10.0
 autoplay = true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dixoc75yqle3x"]
+[gd_scene load_steps=11 format=3 uid="uid://dixoc75yqle3x"]
 
 [ext_resource type="Texture2D" uid="uid://mqew24rgmer" path="res://Sprites/ui/Assets-1-恢复的_03.png" id="1_14ndp"]
 [ext_resource type="Script" path="res://ui/widgets/ShopPanel.gd" id="2_87ysa"]
 [ext_resource type="Script" path="res://ui/widgets/Tooltip.gd" id="5_3w6tg"]
 [ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="6_crrpc"]
+[ext_resource type="AudioStream" uid="uid://bq6o4vxi0q2e4" path="res://audio/bullet/BLLTShel_Reload Ammo_01.wav" id="6_f2oex"]
 [ext_resource type="Texture2D" uid="uid://dx20yyrmrwrb" path="res://Sprites/ui/Assets-1_26.png" id="8_dqtcd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvfd7"]
@@ -43,10 +44,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -176.5
-offset_top = -76.5
-offset_right = 176.5
-offset_bottom = 76.5
+offset_left = -176.0
+offset_top = -83.0
+offset_right = 177.0
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -104,7 +105,7 @@ offset_bottom = 112.5
 [node name="GridContainer" type="HBoxContainer" parent="ScrollContainer2"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="reload" type="Button" parent="."]
 layout_mode = 0
 offset_left = 11.5
 offset_top = 118.5
@@ -114,7 +115,7 @@ theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "REFRESH"
 
-[node name="Label" type="Label" parent="Button"]
+[node name="Label" type="Label" parent="reload"]
 layout_mode = 0
 offset_left = 43.0
 offset_right = 85.0
@@ -124,7 +125,30 @@ label_settings = SubResource("LabelSettings_noye0")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Button2" type="Button" parent="."]
+[node name="add_ammo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 141.0
+offset_right = 83.0
+offset_bottom = 157.0
+theme_override_fonts/font = ExtResource("6_crrpc")
+theme_override_font_sizes/font_size = 7
+text = "SUPPLEMENT BULLETS"
+
+[node name="Label" type="Label" parent="add_ammo"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 43.0
+offset_bottom = 17.0
+grow_vertical = 0
+text = "BULLETS2GOLD"
+label_settings = SubResource("LabelSettings_noye0")
+vertical_alignment = 1
+
+[node name="health" type="Button" parent="."]
 layout_mode = 0
 offset_left = 130.5
 offset_top = 118.5
@@ -134,7 +158,7 @@ theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "RESTORE HEALTH"
 
-[node name="Label" type="Label" parent="Button2"]
+[node name="Label" type="Label" parent="health"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -154,10 +178,10 @@ vertical_alignment = 2
 
 [node name="Button3" type="Button" parent="."]
 layout_mode = 0
-offset_left = 311.5
-offset_top = 118.5
-offset_right = 347.5
-offset_bottom = 134.5
+offset_left = 313.5
+offset_top = 148.5
+offset_right = 349.5
+offset_bottom = 164.5
 theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "CLOSE
@@ -278,6 +302,12 @@ theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 10
 text = "CANCEL"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_f2oex")
+
+[connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="add_ammo" to="." method="_on_add_ammo_pressed"]
+[connection signal="pressed" from="health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]

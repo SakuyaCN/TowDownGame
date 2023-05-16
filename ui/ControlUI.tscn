@@ -179,9 +179,24 @@ offset_top = -12.0
 offset_bottom = 3.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_63q1f")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 text = "0/100"
-horizontal_alignment = 1
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="all_ammo" type="Label" parent="GameUI/Container"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = -24.0
+offset_bottom = -9.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_63q1f")
+theme_override_font_sizes/font_size = 7
+text = "Ammo:50"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="WeaponChangeUI" type="Control" parent="GameUI"]
