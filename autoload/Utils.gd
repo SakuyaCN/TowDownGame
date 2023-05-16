@@ -36,7 +36,8 @@ var weapon_list = {
 	"5" = preload("res://game/guns/EmpireShotgun.tscn"),
 	"6" = preload("res://game/guns/BoomBoi.tscn"),
 	"7" = preload("res://game/guns/AlienMachine.tscn"),
-	"8" = preload("res://game/guns/RebalShotgun.tscn")
+	"8" = preload("res://game/guns/RebalShotgun.tscn"),
+	"9" = preload("res://game/guns/Uzi.tscn")
 }
 
 var am_dict = {
@@ -58,7 +59,8 @@ const weapon_money_list = {
 	"5" = 50,
 	"6" = 100,
 	"7" = 100,
-	"8" = 100
+	"8" = 100,
+	"9" = 100
 }
 
 const hitlabel = preload("res://ui/widgets/HitLabel.tscn")

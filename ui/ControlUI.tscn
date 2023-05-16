@@ -1,12 +1,12 @@
 [gd_scene load_steps=23 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
+[ext_resource type="Theme" uid="uid://d264vgetmywyw" path="res://ui/theme.tres" id="2_52b7e"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
 [ext_resource type="Script" path="res://ui/MainUI.gd" id="2_foget"]
 [ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="3_63q1f"]
 [ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_88kmq"]
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
-[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="4_b73q7"]
 [ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
 [ext_resource type="Texture2D" uid="uid://cck41ti3sn08g" path="res://Sprites/ui/title.png" id="8_ovypj"]
 [ext_resource type="Texture2D" uid="uid://bcy4ifspdj47q" path="res://icon.svg" id="9_ud0yi"]
@@ -131,6 +131,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_52b7e")
 script = ExtResource("2_cj0m0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameUI"]
@@ -178,7 +179,6 @@ offset_left = -40.0
 offset_top = -12.0
 offset_bottom = 3.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("3_63q1f")
 theme_override_font_sizes/font_size = 7
 text = "0/100"
 horizontal_alignment = 2
@@ -238,7 +238,6 @@ offset_right = 67.5
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -255,7 +254,6 @@ offset_bottom = 43.0
 layout_mode = 0
 offset_right = 94.0
 offset_bottom = 9.0
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_x8ohj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_i6unc")
@@ -284,6 +282,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_52b7e")
 script = ExtResource("2_foget")
 
 [node name="TextureRect" type="TextureRect" parent="MainUI"]
@@ -314,21 +313,18 @@ grow_vertical = 0
 
 [node name="start" type="Button" parent="MainUI/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
 text = "MAIN_UI_START"
 
 [node name="setting" type="Button" parent="MainUI/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
 text = "MAIN_UI_SETTING"
 
 [node name="quit" type="Button" parent="MainUI/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
 text = "MAIN_UI_QUIT"
@@ -367,7 +363,6 @@ theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 text = "SETTING_BASIC"
 horizontal_alignment = 1
@@ -375,7 +370,6 @@ vertical_alignment = 1
 
 [node name="language" type="OptionButton" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 item_count = 2
 popup/item_0/text = "LANGUAGE_EN"
@@ -389,7 +383,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control"]
 layout_mode = 0
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 text = "SETTING_SHAKE"
 horizontal_alignment = 1
@@ -414,7 +407,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2"]
 layout_mode = 0
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 8
 text = "SETTING_VOLUME"
 horizontal_alignment = 1
@@ -471,7 +463,6 @@ offset_right = 142.5
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_b73q7")
 theme_override_font_sizes/font_size = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_qreuj")
 text = "toast"

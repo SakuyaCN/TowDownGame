@@ -15,9 +15,9 @@ func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func setData(data):
-	time.text += " %s" %data["time"]
-	kill.text += " %s" %data["kill"]
-	gold.text += " %s" %data["gold"]
+	time.text = "%s: %s" %[tr("SURVIVAL TIME"),data["time"]]
+	kill.text = "%s: %s" %[tr("DEFEAT ENEMIES"),data["kill"]]
+	gold.text = "%s: %s" %[tr("OBTAIN GOLD"),data["gold"]]
 
 func setCallBack(callback:Callable):
 	self.callback = callback

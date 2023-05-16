@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dixoc75yqle3x"]
 
+[ext_resource type="Theme" uid="uid://d264vgetmywyw" path="res://ui/theme.tres" id="1_7krkc"]
 [ext_resource type="Texture2D" uid="uid://mqew24rgmer" path="res://Sprites/ui/Assets-1-恢复的_03.png" id="1_14ndp"]
 [ext_resource type="Script" path="res://ui/widgets/ShopPanel.gd" id="2_87ysa"]
 [ext_resource type="Script" path="res://ui/widgets/Tooltip.gd" id="5_3w6tg"]
-[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="6_crrpc"]
-[ext_resource type="AudioStream" uid="uid://bq6o4vxi0q2e4" path="res://audio/bullet/BLLTShel_Reload Ammo_01.wav" id="6_f2oex"]
+[ext_resource type="AudioStream" uid="uid://bq6o4vxi0q2e4" path="res://audio/bullet/BLLTShel_Reload Ammo_01.wav" id="6_7g7yj"]
 [ext_resource type="Texture2D" uid="uid://dx20yyrmrwrb" path="res://Sprites/ui/Assets-1_26.png" id="8_dqtcd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvfd7"]
@@ -19,7 +19,6 @@ anti_aliasing = false
 font_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_noye0"]
-font = ExtResource("6_crrpc")
 font_size = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dnna"]
@@ -51,6 +50,7 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
+theme = ExtResource("1_7krkc")
 texture = ExtResource("1_14ndp")
 patch_margin_left = 73
 patch_margin_top = 7
@@ -111,14 +111,13 @@ offset_left = 11.5
 offset_top = 118.5
 offset_right = 47.5
 offset_bottom = 134.5
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "REFRESH"
 
 [node name="Label" type="Label" parent="reload"]
 layout_mode = 0
-offset_left = 43.0
-offset_right = 85.0
+offset_left = 50.0
+offset_right = 98.0
 offset_bottom = 13.0
 text = "GOLD COST"
 label_settings = SubResource("LabelSettings_noye0")
@@ -131,7 +130,6 @@ offset_left = 12.0
 offset_top = 141.0
 offset_right = 83.0
 offset_bottom = 157.0
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "SUPPLEMENT BULLETS"
 
@@ -141,8 +139,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
-offset_right = 43.0
-offset_bottom = 17.0
+offset_top = 1.0
+offset_right = 65.0
+offset_bottom = 18.0
 grow_vertical = 0
 text = "BULLETS2GOLD"
 label_settings = SubResource("LabelSettings_noye0")
@@ -154,7 +153,6 @@ offset_left = 130.5
 offset_top = 118.5
 offset_right = 166.5
 offset_bottom = 134.5
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "RESTORE HEALTH"
 
@@ -165,9 +163,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 7.0
+offset_left = 4.0
 offset_top = -8.0
-offset_right = 49.0
+offset_right = 52.0
 offset_bottom = 5.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -182,7 +180,6 @@ offset_left = 313.5
 offset_top = 148.5
 offset_right = 349.5
 offset_bottom = 164.5
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 7
 text = "CLOSE
 "
@@ -212,7 +209,6 @@ offset_left = 3.0
 offset_top = 12.0
 offset_right = 111.0
 offset_bottom = 72.0
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 6
 text = "asdasdasda"
 horizontal_alignment = 1
@@ -225,7 +221,6 @@ offset_left = -1.0
 offset_top = 67.0
 offset_right = 107.0
 offset_bottom = 96.0
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 6
 text = "可用范围："
 autowrap_mode = 1
@@ -236,7 +231,6 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 43.0
 offset_bottom = 12.0
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 6
 text = "类型："
 
@@ -275,7 +269,6 @@ offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 5
 text = "asdasdasdasd"
 horizontal_alignment = 1
@@ -288,7 +281,6 @@ offset_left = 112.5
 offset_top = 91.5
 offset_right = 167.5
 offset_bottom = 113.5
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 10
 text = "OK"
 
@@ -298,12 +290,11 @@ offset_left = 178.0
 offset_top = 92.0
 offset_right = 232.0
 offset_bottom = 114.0
-theme_override_fonts/font = ExtResource("6_crrpc")
 theme_override_font_sizes/font_size = 10
 text = "CANCEL"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_f2oex")
+stream = ExtResource("6_7g7yj")
 
 [connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
 [connection signal="pressed" from="add_ammo" to="." method="_on_add_ammo_pressed"]

@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b10pmop73jr0h"]
+[gd_scene load_steps=6 format=3 uid="uid://b10pmop73jr0h"]
 
 [ext_resource type="Script" path="res://ui/Inventory.gd" id="1_mwsm4"]
 [ext_resource type="Texture2D" uid="uid://c3pvw3wpadkd2" path="res://Sprites/The Tiny Alchemist - Guns/gun2.png" id="2_1bhhv"]
-[ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="2_2066c"]
-[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="3_beqle"]
 [ext_resource type="PackedScene" uid="uid://sos40ogd1gwa" path="res://ui/widgets/InvAMItem.tscn" id="4_r7jeh"]
 [ext_resource type="Script" path="res://ui/widgets/Tooltip.gd" id="6_ohsge"]
 
@@ -91,7 +89,6 @@ offset_right = 36.5
 offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_beqle")
 theme_override_font_sizes/font_size = 8
 text = "INVENTORY_AM_TITLE"
 horizontal_alignment = 1
@@ -124,7 +121,6 @@ offset_right = 32.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_beqle")
 theme_override_font_sizes/font_size = 8
 text = "INVENTORY_TITLE
 "
@@ -202,7 +198,6 @@ offset_top = 11.0
 offset_right = 32.0
 offset_bottom = 26.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_2066c")
 theme_override_font_sizes/font_size = 8
 text = "INVENTORY_TITLE"
 horizontal_alignment = 1
@@ -232,7 +227,6 @@ offset_left = 3.0
 offset_top = 12.0
 offset_right = 111.0
 offset_bottom = 72.0
-theme_override_fonts/font = ExtResource("3_beqle")
 theme_override_font_sizes/font_size = 6
 text = "asdasdasda"
 horizontal_alignment = 1
@@ -245,7 +239,6 @@ offset_left = -1.0
 offset_top = 67.0
 offset_right = 107.0
 offset_bottom = 96.0
-theme_override_fonts/font = ExtResource("3_beqle")
 theme_override_font_sizes/font_size = 6
 text = "可用范围："
 autowrap_mode = 1
@@ -256,6 +249,5 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 43.0
 offset_bottom = 12.0
-theme_override_fonts/font = ExtResource("3_beqle")
 theme_override_font_sizes/font_size = 6
 text = "类型："

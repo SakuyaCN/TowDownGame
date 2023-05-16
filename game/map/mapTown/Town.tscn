@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://e3f372ijyat5" path="res://game/map/Pre-built house 3.png" id="5_knbjr"]
 [ext_resource type="Texture2D" uid="uid://ydmkr66b8gfo" path="res://game/map/next.png" id="7_oo810"]
 [ext_resource type="PackedScene" uid="uid://bhr13r0j2ofnk" path="res://game/other/Portal.tscn" id="8_3r4e8"]
-[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="10_xuam1"]
+[ext_resource type="Theme" uid="uid://d264vgetmywyw" path="res://ui/theme.tres" id="10_2n71v"]
 [ext_resource type="Texture2D" uid="uid://mklq4ys3h5kt" path="res://game/map/tip.png" id="11_7j3nn"]
 [ext_resource type="AudioStream" uid="uid://diyl0ce7qq86b" path="res://audio/DSGNMisc_Kill Confirm Metallic_01.wav" id="12_43xda"]
 
@@ -1694,7 +1694,7 @@ offset_top = 2.0
 offset_right = 65.0
 offset_bottom = 25.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("10_xuam1")
+theme = ExtResource("10_2n71v")
 theme_override_font_sizes/font_size = 7
 text = "REMAINING TIME"
 horizontal_alignment = 1
@@ -1709,7 +1709,7 @@ offset_left = -102.0
 offset_top = 2.0
 offset_bottom = 25.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("10_xuam1")
+theme = ExtResource("10_2n71v")
 theme_override_font_sizes/font_size = 7
 text = "DIFFICULTY LEVEL"
 horizontal_alignment = 1
@@ -1721,6 +1721,7 @@ offset_left = 308.0
 offset_top = 93.0
 offset_right = 356.0
 offset_bottom = 113.0
+theme = ExtResource("10_2n71v")
 theme_override_font_sizes/font_size = 8
 text = "OPEN"
 
@@ -1741,6 +1742,7 @@ offset_right = 0.5
 offset_bottom = -2.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_2n71v")
 theme_override_font_sizes/font_size = 5
 text = "SUPPLY STATION"
 horizontal_alignment = 1

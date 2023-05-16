@@ -10,7 +10,7 @@ const particles_pre = preload("res://game/hero/gpu_particles_2d.tscn")
 @export var weapon_name:String = "Gun" #枪械名称
 @export_enum("ASSAULT_RIFLES","SUBMACHINE_GUNSRELOAD","MACHINE_GUNS","SNIPER_RIFLES","SHOTGUNS","LASER_WEAPONS") var weapon_type = "ASSAULT_RIFLES"
 @export var bullet_scene : PackedScene #子弹模板
-@export var damage = 1 #子弹伤害
+@export var damage = 0.0 #子弹伤害
 @export var bullet_speed = 200 #子弹速度
 @export var fire_rate = 5.0 #开火速率
 @export var bullets_max_count = 10 #子弹数量

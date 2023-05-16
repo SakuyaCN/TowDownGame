@@ -42,6 +42,7 @@ image = ExtResource("2_lerme")
 weapon_name = "RebalShotgun"
 weapon_type = "SHOTGUNS"
 bullet_scene = ExtResource("3_eaa8h")
+damage = 2.5
 bullet_speed = 250
 fire_rate = 1.0
 bullets_max_count = 5

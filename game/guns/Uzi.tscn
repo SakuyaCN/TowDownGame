@@ -1,16 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc68iu3txq1go"]
+[gd_scene load_steps=9 format=3 uid="uid://bfxtseirhqr7t"]
 
-[ext_resource type="Script" path="res://game/guns/GunSprite.gd" id="2_r70tb"]
-[ext_resource type="PackedScene" uid="uid://dcdejklfqy5wk" path="res://game/bullets/SmpBullet.tscn" id="3_1a5xv"]
-[ext_resource type="Texture2D" uid="uid://c3pvw3wpadkd2" path="res://Sprites/The Tiny Alchemist - Guns/gun2.png" id="3_tt37n"]
-[ext_resource type="AudioStream" uid="uid://cca6pboy8k8y8" path="res://audio/GUNAuto_Assault Rifle A Fire_01.wav" id="4_0red2"]
-[ext_resource type="Animation" uid="uid://b42daukxb8wl4" path="res://game/guns/anim/reload.anim" id="4_xjmvv"]
+[ext_resource type="Script" path="res://game/guns/Uzi.gd" id="1_20150"]
+[ext_resource type="Texture2D" uid="uid://c22k5j21ewnwd" path="res://Sprites/The Tiny Alchemist - Guns/gun14.png" id="2_2kjwi"]
+[ext_resource type="PackedScene" uid="uid://ccdubmgcb7k5i" path="res://game/bullets/BabyBullet.tscn" id="3_tnqfi"]
+[ext_resource type="Animation" uid="uid://b42daukxb8wl4" path="res://game/guns/anim/reload.anim" id="4_wupmv"]
+[ext_resource type="AudioStream" uid="uid://cqms5mljtom1v" path="res://audio/GUNSupr_Silenced Pistol Fire Reflections_01.wav" id="5_tb7yb"]
 
 [sub_resource type="Animation" id="Animation_4mjfa"]
 resource_name = "run"
-length = 0.15
+length = 0.1
 loop_mode = 2
-step = 0.15
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,8 +18,8 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.15)
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
 }
 
 [sub_resource type="Animation" id="Animation_0xp66"]
@@ -28,28 +27,26 @@ resource_name = "shoot"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lo2pw"]
 _data = {
-"reload": ExtResource("4_xjmvv"),
+"reload": ExtResource("4_wupmv"),
 "run": SubResource("Animation_4mjfa"),
 "shoot": SubResource("Animation_0xp66")
 }
 
 [node name="GunSprite" type="Node2D"]
 position = Vector2(2, -7)
-script = ExtResource("2_r70tb")
-image = ExtResource("3_tt37n")
-weapon_name = "BlasterRifle"
-bullet_scene = ExtResource("3_1a5xv")
-damage = 1.5
-bullets_max_count = 25
-knockback_speed = 10
-knockback_time = 0.05
-time_scale = 0.0
-freeze_frame = 1
-recoil = 5
-shake_vector = Vector2(1, 1)
+script = ExtResource("1_20150")
+weapon_id = 9
+image = ExtResource("2_2kjwi")
+weapon_name = "Uzi"
+bullet_scene = ExtResource("3_tnqfi")
+damage = 0.5
+bullet_speed = 300
+fire_rate = 10.0
+bullets_max_count = 24
+knockback_speed = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_tt37n")
+texture = ExtResource("2_2kjwi")
 offset = Vector2(6, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -62,7 +59,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("4_0red2")
+stream = ExtResource("5_tb7yb")
 
 [node name="GunTip" type="Node2D" parent="."]
 position = Vector2(11, -1)

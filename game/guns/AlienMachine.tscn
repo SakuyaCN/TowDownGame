@@ -40,6 +40,7 @@ image = ExtResource("2_a7fs4")
 weapon_name = "AlienMachine"
 weapon_type = "MACHINE_GUNS"
 bullet_scene = ExtResource("3_rvr62")
+damage = 1.0
 bullet_speed = 250
 fire_rate = 10.0
 bullets_max_count = 50

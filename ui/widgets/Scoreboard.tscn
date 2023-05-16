@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5x7m65q55lj8"]
+[gd_scene load_steps=4 format=3 uid="uid://b5x7m65q55lj8"]
 
 [ext_resource type="Texture2D" uid="uid://bgommu3oa6qj2" path="res://Sprites/top.png" id="1_64agi"]
 [ext_resource type="Script" path="res://ui/widgets/Scoreboard.gd" id="1_brwg4"]
 [ext_resource type="Texture2D" uid="uid://dsj1b6dyhw1ju" path="res://Sprites/menu_left.png" id="2_oyjv0"]
-[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="3_bc8cd"]
 
 [node name="Scoreboard" type="Control"]
 layout_mode = 3
@@ -21,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = -65.0
-offset_right = 42.0
-offset_bottom = 49.0
+offset_left = -50.5
+offset_top = -57.0
+offset_right = 50.5
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,9 +47,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -42.0
+offset_left = -47.0
 offset_top = 24.0
-offset_right = -23.0
+offset_right = -28.0
 offset_bottom = 36.0
 grow_horizontal = 2
 texture = ExtResource("2_oyjv0")
@@ -67,7 +66,6 @@ offset_top = -8.0
 offset_right = 77.0
 offset_bottom = 8.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_bc8cd")
 theme_override_font_sizes/font_size = 7
 text = "SURVIVAL TIME"
 vertical_alignment = 1
@@ -78,9 +76,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -42.0
+offset_left = -47.0
 offset_top = 43.0
-offset_right = -23.0
+offset_right = -28.0
 offset_bottom = 55.0
 grow_horizontal = 2
 texture = ExtResource("2_oyjv0")
@@ -97,7 +95,6 @@ offset_top = -8.0
 offset_right = 77.0
 offset_bottom = 8.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_bc8cd")
 theme_override_font_sizes/font_size = 7
 text = "DEFEAT ENEMIES"
 vertical_alignment = 1
@@ -108,9 +105,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -42.0
+offset_left = -47.0
 offset_top = 62.0
-offset_right = -23.0
+offset_right = -28.0
 offset_bottom = 74.0
 grow_horizontal = 2
 texture = ExtResource("2_oyjv0")
@@ -127,7 +124,6 @@ offset_top = -8.0
 offset_right = 77.0
 offset_bottom = 8.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_bc8cd")
 theme_override_font_sizes/font_size = 7
 text = "OBTAIN GOLD"
 vertical_alignment = 1
@@ -145,7 +141,6 @@ offset_right = 29.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_bc8cd")
 theme_override_font_sizes/font_size = 8
 text = "OK"
 

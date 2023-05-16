@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy1kmltr1fieq"]
+[gd_scene load_steps=3 format=3 uid="uid://cy1kmltr1fieq"]
 
 [ext_resource type="Script" path="res://ui/widgets/Tooltip.gd" id="1_cdrxo"]
-[ext_resource type="FontFile" uid="uid://dhh0t8er20kt8" path="res://fonts/fusion-pixel.otf" id="2_eslhf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p23yh"]
 bg_color = Color(0, 0, 0, 0.741176)
@@ -33,7 +32,6 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 111.0
 offset_bottom = 61.0
-theme_override_fonts/font = ExtResource("2_eslhf")
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_p23yh")
 text = "TOOLTIP_INFO"
@@ -46,7 +44,6 @@ layout_mode = 0
 offset_top = 62.0
 offset_right = 108.0
 offset_bottom = 82.0
-theme_override_fonts/font = ExtResource("2_eslhf")
 theme_override_font_sizes/font_size = 6
 text = "TOOLTIP_RANGE"
 autowrap_mode = 1
@@ -57,6 +54,5 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 43.0
 offset_bottom = 12.0
-theme_override_fonts/font = ExtResource("2_eslhf")
 theme_override_font_sizes/font_size = 6
 text = "TOOLTIP_TYPE"

@@ -41,6 +41,7 @@ image = ExtResource("2_5ow14")
 weapon_name = "BabyZapZap"
 weapon_type = "SUBMACHINE_GUNSRELOAD"
 bullet_scene = ExtResource("3_r3k3a")
+damage = 0.7
 bullet_speed = 300
 fire_rate = 1.5
 bullets_max_count = 27

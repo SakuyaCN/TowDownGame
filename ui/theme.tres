@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d264vgetmywyw"]
+
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="1_jqdoy"]
+
+[resource]
+default_font = ExtResource("1_jqdoy")
