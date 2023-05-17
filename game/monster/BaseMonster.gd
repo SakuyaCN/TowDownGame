@@ -24,15 +24,12 @@ func _ready():
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
 	add_child(navigationAgent2D)
-	#navigationAgent2D.navigation_finished.connect(self._navigation_finished)
-	#navigationAgent2D.target_reached.connect(self._target_reached)
 	navigationAgent2D.max_speed = SPEED
 	navigationAgent2D.velocity_computed.connect(self._on_velocity_computed)
 	navigationAgent2D.avoidance_enabled = true
 	navigationAgent2D.path_desired_distance = 20
 	navigationAgent2D.path_max_distance = 100
 	navigationAgent2D.target_desired_distance = 20
-	navigationAgent2D.debug_enabled = true
 
 func setData(data):
 	SPEED = data['speed']
@@ -44,7 +41,7 @@ func _physics_process(delta):
 	#if Engine.get_physics_frames() % 60 :
 	if is_atk || is_die:
 		return
-	elif target_player != null:
+	elif target_player != null && Engine.get_physics_frames() % 144 == 0:
 		navigationAgent2D.target_position = target_player.global_position
 	if hit:
 		move_and_slide()

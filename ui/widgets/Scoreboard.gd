@@ -6,24 +6,30 @@ extends Control
 
 var callback:Callable
 
+var data
+
 func _enter_tree() -> void:
 	Utils.crosshairChange(false)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
+
 func _exit_tree() -> void:
 	Utils.crosshairChange(true)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
-func setData(data):
-	time.text = "%s: %s" %[tr("SURVIVAL TIME"),data["time"]]
+func _ready() -> void:
+	time.text = "%s: %s" %[tr("SURVIVAL TIME"),int(data["time"])]
 	kill.text = "%s: %s" %[tr("DEFEAT ENEMIES"),data["kill"]]
 	gold.text = "%s: %s" %[tr("OBTAIN GOLD"),data["gold"]]
+
+func setData(data):
+	self.data = data
 
 func setCallBack(callback:Callable):
 	self.callback = callback
 
 func _on_button_pressed() -> void:
-	callback.call()
+	if callback:
+		callback.call()
 	queue_free()
 
 
