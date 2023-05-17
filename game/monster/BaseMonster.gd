@@ -80,7 +80,6 @@ func hitFlash(collisionResult,bullet:Bullet):
 	Utils.freezeFrame(bullet.gun.time_scale)
 	onHit(bullet.hurt)
 	audio_hit.play(0.17)
-	Utils.showHitLabel(bullet.hurt,self)
 	var speed = bullet.knockback_speed - knockback_def
 	if speed > 0:
 		velocity = -(global_position.direction_to(Utils.player.global_position)) * speed
@@ -92,14 +91,30 @@ func hitFlash(collisionResult,bullet:Bullet):
 		sprite_body.get_node("AnimatedSprite2D").material = null; hit = false )
 
 func onHit(hit_num):
+	var nodes = get_tree().get_nodes_in_group("reward")
+	var temp_hurt = 0
+	for node in nodes:
+		if node.connect_beforeAtk:
+			var num = node.call("beforeAtk",self,hit_num)
+			temp_hurt += num
+	hit_num += temp_hurt
 	if HP:
 		HP -= hit_num
 		if HP <= 0:
 			onDie()
+	for node in nodes:
+		if node.connect_afterAtk:
+			node.call("afterAtk",self,hit_num)
+	Utils.showHitLabel(hit_num,self)
 
 func onDie():
 	if death_callback:
 		death_callback.call(self)
+	var nodes = get_tree().get_nodes_in_group("reward")
+	var temp_hurt = 0
+	for node in nodes:
+		if node.connect_kill:
+			node.call("onKill",self)
 	is_die = true
 	set_physics_process(false)
 	get_node("CollisionShape2D").call_deferred("set_disabled",true)

@@ -4,6 +4,7 @@ class_name Player
 @onready var body = $body
 @onready var gun_root = $body/GunRoot
 @onready var light2d = $PointLight2D
+@onready var reward_root = $RewardRoot
 
 var gun = null
 
@@ -39,7 +40,8 @@ func onGameStart():
 
 func onPlayerResurrect():
 	is_dead = false
-	anim.play("idle")
+	if anim:
+		anim.play("idle")
 
 func changeWeapon(weapon_id):
 	for item in gun_root.get_children():
@@ -120,11 +122,21 @@ func gunAnim():
 		$GPUParticles2D.emitting = false
 
 func onHit(hurt):
+	var nodes = get_tree().get_nodes_in_group("reward")
+	var temp_hurt = 0
+	for node in nodes:
+		if node.connect_beforePlayerHit:
+			var num = node.call("beforePlayerHit",hurt)
+			temp_hurt += num
+	hurt += temp_hurt
 	PlayerData.player_hp -= hurt
 	Utils.showHitLabel(hurt,self)
 	get_tree().call_group("control","hit")
 	Utils.freeze_frame = true
 	Utils.freezeFrame(0.1)
+	for node in nodes:
+		if node.connect_afterPlayerHit:
+			node.call("afterPlayerHit",hurt)
 
 func onHpChange(hp,max_hp):
 	if hp <= 0:

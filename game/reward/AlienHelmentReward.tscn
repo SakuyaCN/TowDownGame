@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq5ed6o32cdik"]
+
+[ext_resource type="Script" path="res://game/reward/AlienHelmentReward.gd" id="1_ms1gy"]
+[ext_resource type="Texture2D" uid="uid://dih58xrre3vla" path="res://Sprites/All_Icons/Alien Blue Helmet.png" id="2_hcbjf"]
+
+[node name="GoldReward" type="Node2D"]
+script = ExtResource("1_ms1gy")
+id = 2
+reward_name = "REWARD_ALIEN_HELMENT"
+reward_image = ExtResource("2_hcbjf")
+reward_info = "REWARD_ALIEN_HELMENT_INFO"

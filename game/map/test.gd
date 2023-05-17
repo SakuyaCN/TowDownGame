@@ -4,10 +4,6 @@ const pre = preload("res://game/monster/Monster 2/Monster2.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Utils.onGameStart.connect(self.onGameStart)
-
-func onGameStart():
-	#$Timder.start()
 	pass
 
 func getPoint():

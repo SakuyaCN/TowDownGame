@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0g64opfu04tw"]
+
+[ext_resource type="Script" path="res://game/reward/GoldReward.gd" id="1_1snu5"]
+[ext_resource type="Texture2D" uid="uid://b61jdmfhju8ch" path="res://Sprites/All_Icons/Orange Chip.png" id="2_4k4dg"]
+
+[node name="GoldReward" type="Node2D"]
+script = ExtResource("1_1snu5")
+reward_name = "REWARD_GOLD"
+reward_image = ExtResource("2_4k4dg")
+reward_info = "REWARD_GOLD_INFO"
+only_start = true

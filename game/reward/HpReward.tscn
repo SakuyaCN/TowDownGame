@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx7hf08cs3x5t"]
+
+[ext_resource type="Script" path="res://game/reward/HpReward.gd" id="1_gf2fe"]
+[ext_resource type="Texture2D" uid="uid://ddaqqmhnpddyn" path="res://Sprites/All_Icons/Medkit.png" id="2_rxjqd"]
+
+[node name="HpReward" type="Node2D"]
+script = ExtResource("1_gf2fe")
+id = 1
+reward_name = "REWARD_HP"
+reward_image = ExtResource("2_rxjqd")
+reward_info = "REWARD_HP_INFO"
+only_start = true
+connect_beforeAtk = true
+connect_beforePlayerHit = true

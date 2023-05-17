@@ -1,4 +1,5 @@
 extends Node
+##======关卡等级全局管理=========
 
 const score_board = preload("res://ui/widgets/Scoreboard.tscn")
 #节点

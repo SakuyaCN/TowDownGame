@@ -21,6 +21,7 @@ Utils="*res://autoload/Utils.gd"
 PlayerData="*res://autoload/PlayerData.gd"
 ConfigUtils="*res://autoload/ConfigUtils.gd"
 LevelServer="*res://autoload/server/LevelServer.gd"
+RewardServer="*res://autoload/server/RewardServer.gd"
 
 [display]
 

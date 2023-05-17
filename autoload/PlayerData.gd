@@ -17,6 +17,7 @@ var player_ammo = 50:#子弹数量
 		emit_signal("onAmmoChange",player_ammo)
 var player_am_list = {} #配件列表
 var player_weapon_list = {} #武器列表
+var player_reward = {} #奖励列表
 var player_hp_max = 10: #最大血量
 	set(value):
 		player_hp_max = value
@@ -32,8 +33,12 @@ var gold = 999:
 		gold = value
 		emit_signal("onGoldChange",gold)
 
+#回复血量
 func resurrectPlayer(hp):
-	player_hp = hp
+	if hp >= player_hp_max:
+		player_hp = player_hp_max
+	else:
+		player_hp = hp
 	emit_signal("onPlayerResurrect")
 
 var is_change_weapon = false
