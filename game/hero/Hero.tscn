@@ -1,12 +1,33 @@
-[gd_scene load_steps=40 format=3 uid="uid://8lekrqo3cykw"]
+[gd_scene load_steps=54 format=3 uid="uid://8lekrqo3cykw"]
 
 [ext_resource type="Script" path="res://game/hero/Hero.gd" id="1_83vm3"]
 [ext_resource type="Material" uid="uid://b1rr1d7kl8ium" path="res://shader/SmoothPixel.tres" id="1_e1xul"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_b1ar1"]
-[ext_resource type="PackedScene" uid="uid://dx7hf08cs3x5t" path="res://game/reward/HpReward.tscn" id="3_1t7wr"]
+[ext_resource type="PackedScene" uid="uid://p0gs1b6mkv5k" path="res://game/reward/HeathPack.tscn" id="3_ub56o"]
 [ext_resource type="Texture2D" uid="uid://br4j3d8xbd47t" path="res://game/hero/Tiny Alchemist Sprite Sheet 48x32.png" id="4_o77ur"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_3w2gc"]
+[ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="6_gdjfy"]
 [ext_resource type="Texture2D" uid="uid://6dfnhmchpyb2" path="res://game/hero/Light (1).png" id="6_ky4xl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_812dt"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liewo"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(48, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0th3"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(96, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wvoo"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(144, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2h5i"]
+atlas = ExtResource("4_o77ur")
+region = Rect2(192, 192, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xg6vb"]
 atlas = ExtResource("4_o77ur")
@@ -120,6 +141,26 @@ region = Rect2(336, 160, 48, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_812dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liewo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0th3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wvoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2h5i")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xg6vb")
 }, {
 "duration": 1.0,
@@ -220,6 +261,49 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Curve" id="Curve_rny4l"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pje6m"]
+curve = SubResource("Curve_rny4l")
+
+[sub_resource type="Gradient" id="Gradient_uuovj"]
+colors = PackedColorArray(0.578442, 0.870588, 0.749955, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ub1nm"]
+gradient = SubResource("Gradient_uuovj")
+
+[sub_resource type="CurveTexture" id="CurveTexture_2ultx"]
+
+[sub_resource type="Curve" id="Curve_lbkqq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0090909), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bdoqj"]
+curve = SubResource("Curve_lbkqq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hmw5a"]
+emission_shape = 1
+emission_sphere_radius = 28.13
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.05
+orbit_velocity_max = 0.1
+linear_accel_max = 19.7
+linear_accel_curve = SubResource("CurveTexture_2ultx")
+angle_min = 15.0
+angle_max = 100.0
+angle_curve = SubResource("CurveTexture_pje6m")
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_bdoqj")
+color_ramp = SubResource("GradientTexture1D_ub1nm")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5kl1j"]
 radius = 7.0
 
@@ -253,7 +337,7 @@ script = ExtResource("1_83vm3")
 
 [node name="RewardRoot" type="Node2D" parent="."]
 
-[node name="HpReward" parent="RewardRoot" instance=ExtResource("3_1t7wr")]
+[node name="HpReward" parent="RewardRoot" instance=ExtResource("3_ub56o")]
 
 [node name="UndeadShadow" type="Sprite2D" parent="."]
 position = Vector2(1, 0.5)
@@ -266,9 +350,17 @@ texture = ExtResource("2_b1ar1")
 self_modulate = Color(1.3, 1.3, 1.3, 1)
 position = Vector2(-2, -16)
 sprite_frames = SubResource("SpriteFrames_a2m0y")
-animation = &"idle"
+animation = &"dash"
 
 [node name="GunRoot" type="Node2D" parent="body"]
+
+[node name="DashParticles2D" type="GPUParticles2D" parent="body"]
+position = Vector2(0, -8)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_hmw5a")
+texture = ExtResource("6_gdjfy")
+lifetime = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -7)

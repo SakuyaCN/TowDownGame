@@ -1,0 +1,237 @@
+[gd_scene load_steps=32 format=3 uid="uid://cip2t423ga5bl"]
+
+[ext_resource type="Texture2D" uid="uid://cmd0buhhxgnnv" path="res://Sprites/2 - Power & Electricity.png" id="1_554kn"]
+[ext_resource type="Script" path="res://game/npc/RewardNpc.gd" id="1_xge8v"]
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="2_wlbek"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p213f"]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paruh"]
+atlas = ExtResource("1_554kn")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soeh7"]
+atlas = ExtResource("1_554kn")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5dmf"]
+atlas = ExtResource("1_554kn")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1cp4"]
+atlas = ExtResource("1_554kn")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da7jr"]
+atlas = ExtResource("1_554kn")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d135"]
+atlas = ExtResource("1_554kn")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wnkn"]
+atlas = ExtResource("1_554kn")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyg2e"]
+atlas = ExtResource("1_554kn")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pppx1"]
+atlas = ExtResource("1_554kn")
+region = Rect2(1536, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmqqs"]
+atlas = ExtResource("1_554kn")
+region = Rect2(1728, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swe45"]
+atlas = ExtResource("1_554kn")
+region = Rect2(1920, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b7c0"]
+atlas = ExtResource("1_554kn")
+region = Rect2(2112, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngedg"]
+atlas = ExtResource("1_554kn")
+region = Rect2(2304, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hol32"]
+atlas = ExtResource("1_554kn")
+region = Rect2(2496, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yphvf"]
+atlas = ExtResource("1_554kn")
+region = Rect2(2688, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1krp7"]
+atlas = ExtResource("1_554kn")
+region = Rect2(2880, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_062xd"]
+atlas = ExtResource("1_554kn")
+region = Rect2(3072, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reffm"]
+atlas = ExtResource("1_554kn")
+region = Rect2(3264, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl8gi"]
+atlas = ExtResource("1_554kn")
+region = Rect2(3456, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjyrg"]
+atlas = ExtResource("1_554kn")
+region = Rect2(3648, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hy41"]
+atlas = ExtResource("1_554kn")
+region = Rect2(3840, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6rs6"]
+atlas = ExtResource("1_554kn")
+region = Rect2(4032, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aktld"]
+atlas = ExtResource("1_554kn")
+region = Rect2(4224, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4g2q"]
+atlas = ExtResource("1_554kn")
+region = Rect2(4416, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oeehf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paruh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soeh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5dmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1cp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da7jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d135")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wnkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyg2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pppx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmqqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swe45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b7c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngedg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hol32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yphvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1krp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_062xd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reffm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl8gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjyrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hy41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6rs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aktld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4g2q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecu6x"]
+radius = 21.095
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbpcw"]
+font = ExtResource("2_wlbek")
+font_size = 6
+
+[node name="RewardNpc" type="Node2D"]
+script = ExtResource("1_xge8v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_p213f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(0, -19)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_oeehf")
+autoplay = "default"
+frame_progress = 0.607298
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_ecu6x")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -54.0
+offset_top = -57.0
+offset_right = 55.0
+offset_bottom = -35.0
+text = "奖励NPC"
+label_settings = SubResource("LabelSettings_wbpcw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = -27.0
+offset_top = 12.0
+offset_right = 27.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 8
+text = "OPEN"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

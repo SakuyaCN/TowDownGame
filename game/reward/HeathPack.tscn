@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://p0gs1b6mkv5k"]
+
+[ext_resource type="Script" path="res://game/reward/HeathPack.gd" id="1_4ojsw"]
+[ext_resource type="Texture2D" uid="uid://clmshqyiy5nmg" path="res://Sprites/All_Icons/Health Pack.png" id="2_blxfm"]
+
+[node name="HpReward" type="Node2D"]
+script = ExtResource("1_4ojsw")
+id = 7
+reward_name = "REWARD HEALTH PACK"
+reward_image = ExtResource("2_blxfm")
+reward_info = "REWARD HEALTH PACK INFO"
+connect_kill = true

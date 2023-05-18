@@ -30,6 +30,7 @@ func _ready():
 	navigationAgent2D.path_desired_distance = 20
 	navigationAgent2D.path_max_distance = 100
 	navigationAgent2D.target_desired_distance = 20
+	navigationAgent2D.target_position = target_player.global_position
 
 func setData(data):
 	SPEED = data['speed']
@@ -41,7 +42,7 @@ func _physics_process(delta):
 	#if Engine.get_physics_frames() % 60 :
 	if is_atk || is_die:
 		return
-	elif target_player != null && Engine.get_physics_frames() % 144 == 0:
+	elif target_player != null && Engine.get_physics_frames() % 60 == 0:
 		navigationAgent2D.target_position = target_player.global_position
 	if hit:
 		move_and_slide()
@@ -90,7 +91,7 @@ func hitFlash(collisionResult,bullet:Bullet):
 	await get_tree().create_timer(bullet.knockback_time).timeout.connect(func timeout():
 		sprite_body.get_node("AnimatedSprite2D").material = null; hit = false )
 
-func onHit(hit_num):
+func onHit(hit_num,is_show_label = true):
 	var nodes = get_tree().get_nodes_in_group("reward")
 	var temp_hurt = 0
 	for node in nodes:
@@ -105,7 +106,8 @@ func onHit(hit_num):
 	for node in nodes:
 		if node.connect_afterAtk:
 			node.call("afterAtk",self,hit_num)
-	Utils.showHitLabel(hit_num,self)
+	if is_show_label:
+		Utils.showHitLabel(hit_num,self)
 
 func onDie():
 	if death_callback:

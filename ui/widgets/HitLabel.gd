@@ -9,3 +9,6 @@ func _ready() -> void:
 
 func setNumber(number):
 	text = str(number)
+
+func setColor(color):
+	set("theme_override_colors/font_color",color)

@@ -1,10 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=22 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Theme" uid="uid://d264vgetmywyw" path="res://ui/theme.tres" id="2_52b7e"]
 [ext_resource type="Script" path="res://ui/GameUI.gd" id="2_cj0m0"]
 [ext_resource type="Script" path="res://ui/MainUI.gd" id="2_foget"]
-[ext_resource type="FontFile" uid="uid://bpct0uwjo4p80" path="res://fonts/CCOverbyteOn.ttf" id="3_63q1f"]
 [ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_88kmq"]
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
@@ -123,7 +122,6 @@ layer = 2
 script = ExtResource("1_hodr7")
 
 [node name="GameUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,7 +178,7 @@ offset_top = -12.0
 offset_bottom = 3.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 7
-text = "0/100"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -193,7 +191,6 @@ offset_left = -40.0
 offset_top = -24.0
 offset_bottom = -9.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("3_63q1f")
 theme_override_font_sizes/font_size = 7
 text = "Ammo:50"
 horizontal_alignment = 2
@@ -267,6 +264,18 @@ offset_bottom = 26.0
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
 text = "GOLD_HAS"
+label_settings = SubResource("LabelSettings_1rtrt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="GameUI/hpUI"]
+layout_mode = 1
+offset_top = 30.0
+offset_right = 42.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
+text = "REWARD_POINT"
 label_settings = SubResource("LabelSettings_1rtrt")
 horizontal_alignment = 1
 vertical_alignment = 1

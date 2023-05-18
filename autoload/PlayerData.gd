@@ -8,6 +8,7 @@ signal onAmmoChange(ammo) #备用子弹数量变化
 signal onPlayerDeath() #玩家死亡信号
 signal onPlayerResurrect() #玩家复活信号
 
+signal onRewardChange(reward)#血量变化
 signal onHpChange(hp,max_hp)#血量变化
 signal onGoldChange(gold)#血量变化
 
@@ -33,13 +34,26 @@ var gold = 999:
 		gold = value
 		emit_signal("onGoldChange",gold)
 
-#回复血量
+var reward_point = 999:
+	set(value):
+		reward_point = value
+		emit_signal("onRewardChange",reward_point)
+
+#设置血量
 func resurrectPlayer(hp):
 	if hp >= player_hp_max:
 		player_hp = player_hp_max
 	else:
 		player_hp = hp
 	emit_signal("onPlayerResurrect")
+
+#回复血量
+func addPlayerHp(hp):
+	if hp + player_hp >= player_hp_max:
+		player_hp = player_hp_max
+	else:
+		player_hp += hp
+	#emit_signal("onPlayerResurrect")
 
 var is_change_weapon = false
 #添加一把武器

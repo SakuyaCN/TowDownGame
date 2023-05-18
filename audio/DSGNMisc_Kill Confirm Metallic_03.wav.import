@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcpw8ur0g7axx"
+path="res://.godot/imported/DSGNMisc_Kill Confirm Metallic_03.wav-feb36f5711034c9c1132920fc91fdc5f.sample"
+
+[deps]
+
+source_file="res://audio/DSGNMisc_Kill Confirm Metallic_03.wav"
+dest_files=["res://.godot/imported/DSGNMisc_Kill Confirm Metallic_03.wav-feb36f5711034c9c1132920fc91fdc5f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

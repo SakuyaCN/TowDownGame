@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://s2rr3a4f2xx"]
+
+[ext_resource type="Script" path="res://game/reward/BlueBoots.gd" id="1_diapk"]
+[ext_resource type="Texture2D" uid="uid://ccgb7l67vc7cp" path="res://Sprites/All_Icons/Blue Boots.png" id="2_ywe5t"]
+
+[node name="GoldReward" type="Node2D"]
+script = ExtResource("1_diapk")
+id = 5
+reward_name = "REWARD BLUE BOOTS"
+reward_image = ExtResource("2_ywe5t")
+reward_info = "REWARD BLUE BOOTS INFO"
+only_start = null
+connect_beforeAtk = null
+connect_afterAtk = null
+connect_beforePlayerHit = null
+connect_afterPlayerHit = null
+connect_kill = null

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://tbt5h8725ua1"]
+
+[ext_resource type="Script" path="res://game/reward/BlueAxe.gd" id="1_6c3ta"]
+[ext_resource type="Texture2D" uid="uid://jasptuaa0gci" path="res://Sprites/All_Icons/Blue Axe.png" id="2_5506t"]
+
+[node name="HpReward" type="Node2D"]
+script = ExtResource("1_6c3ta")
+id = 4
+reward_name = "REWARD BLUE AXE"
+reward_image = ExtResource("2_5506t")
+reward_info = "REWARD BLUE AXE INFO"
+max_count = 10
+connect_beforeAtk = true

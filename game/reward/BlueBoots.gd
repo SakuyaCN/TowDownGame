@@ -1,7 +1,7 @@
 extends BaseReward
 
 func onRewardStart():
-	PlayerData.player_hp_max += 3
+	Utils.player.SPEED += 5
 
 func onCountChange():
-	PlayerData.player_hp_max += 3
+	Utils.player.SPEED += 5

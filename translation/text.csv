@@ -76,6 +76,11 @@ AMMO_OUT,Insufficient spare bullets.,备用子弹不足！
 DEATH_TITLE,You have been defeated!,您已战败！
 RESURRECT,Resurrect,复活
 RESURRECT_TIP,Reviving requires 50 Gold,复活需要金币*50
+REMAINING REWARD POINTS,Remaining reward points: ,剩余奖励点：
+PLEASE CHOOSE A REWARD,Please choose a reward: ,请选择一项奖励：
+,,
+,,
+,,
 ,,
 QUICKDRAW_MAGAZINE,Quickdraw Magazine,快速弹夹
 EXTENDED RIFLE MAGAZINE,Extended Rifle Magazine,扩容步枪弹夹
@@ -96,3 +101,10 @@ Magazine capacity +5","弹夹容量+5
 换弹速度+20%"
 INFO_SUBMACHINE GUN MAGAZINE,Magazine capacity +19.,弹夹容量+19
 INFO_UNIVERSAL EXTENDED MAGAZINE,Magazine capacity +10.,弹夹容量+10
+,,
+REWARD_GOLD,small money bag,小型钱袋
+REWARD_GOLD_INFO,Obtain 10 Gold,获得10枚金币
+REWARD_HP,medical kit,医疗箱
+REWARD_HP_INFO,restore your health to full,回复满你的血量
+REWARD_ALIEN_HELMENT,Alien Helment,异形头盔
+REWARD_ALIEN_HELMENT_INFO,Increase maximum health by 3 point,提供3点生命值上限

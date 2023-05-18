@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://4ytddy57ntbj"]
+
+[ext_resource type="Script" path="res://game/reward/AmberStar.gd" id="1_2dqo4"]
+[ext_resource type="Texture2D" uid="uid://ckc0ifu03wnnj" path="res://Sprites/All_Icons/Amber Star Crystal.png" id="2_3xgmm"]
+
+[node name="HpReward" type="Node2D"]
+script = ExtResource("1_2dqo4")
+id = 6
+reward_name = "REWARD AMBER STAR"
+reward_image = ExtResource("2_3xgmm")
+reward_info = "REWARD AMBER STAR INFO"
+only_start = null
+connect_beforeAtk = null
+connect_afterAtk = true
+connect_beforePlayerHit = null
+connect_afterPlayerHit = null
+connect_kill = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cy2dmwmamt8s7"]
+[gd_scene load_steps=33 format=3 uid="uid://cy2dmwmamt8s7"]
 
 [ext_resource type="Texture2D" uid="uid://c3y5uu5smfsdr" path="res://game/map/top down tileset.png" id="1_o50u5"]
 [ext_resource type="Script" path="res://game/map/mapTown/Town.gd" id="1_wn3qf"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bhr13r0j2ofnk" path="res://game/other/Portal.tscn" id="8_3r4e8"]
 [ext_resource type="Texture2D" uid="uid://mklq4ys3h5kt" path="res://game/map/tip.png" id="11_7j3nn"]
 [ext_resource type="AudioStream" uid="uid://diyl0ce7qq86b" path="res://audio/DSGNMisc_Kill Confirm Metallic_01.wav" id="12_43xda"]
+[ext_resource type="PackedScene" uid="uid://cip2t423ga5bl" path="res://game/npc/RewardNpc.tscn" id="12_m4ycv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sd3pb"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1747,6 +1748,9 @@ texture = ExtResource("11_7j3nn")
 
 [node name="Kill" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_43xda")
+
+[node name="RewardNpc" parent="." instance=ExtResource("12_m4ycv")]
+position = Vector2(359, 143)
 
 [connection signal="body_entered" from="Pre-builtHouse3/shop" to="." method="_on_shop_body_entered"]
 [connection signal="body_exited" from="Pre-builtHouse3/shop" to="." method="_on_shop_body_exited"]

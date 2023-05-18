@@ -88,7 +88,7 @@ func _on_reload_pressed() -> void:
 func _on_add_ammo_pressed() -> void:
 	if PlayerData.gold > 0:
 		PlayerData.gold -= 1
-		PlayerData.player_ammo += 20
+		PlayerData.player_ammo += 30
 		player.play()
 
 func _on_health_pressed() -> void:

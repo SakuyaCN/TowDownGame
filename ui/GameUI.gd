@@ -9,6 +9,7 @@ const weapon_inventory = preload("res://ui/Inventory.tscn")
 @onready var box_top = $hpUI
 @onready var bottom_bls = $Container
 @onready var gold_label = $hpUI/Label
+@onready var reward_label = $hpUI/Label2
 @onready var weapon_lsit_node = $HBoxContainer
 @onready var weapon_change_image = $WeaponChangeUI/WeaponImage
 @onready var weapon_bullet_list = $Container/BulletHbox
@@ -21,6 +22,7 @@ var inv_ui
 
 func _ready() -> void:
 	Utils.onGameStart.connect(self.onGameStart)
+	PlayerData.onRewardChange.connect(self.onRewardChange)
 	PlayerData.onGoldChange.connect(self.onGoldChange)
 	PlayerData.onAmmoChange.connect(self.onAmmoChange)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange) #武器列表化监听
@@ -31,6 +33,8 @@ func _ready() -> void:
 
 func onGameStart():
 	onGoldChange(PlayerData.gold)
+	onRewardChange(PlayerData.reward_point)
+	onAmmoChange(PlayerData.player_ammo)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween.tween_property(box_top,"position:y",box_top.position.y,0.3).from(box_top.position.y-box_top.size.y)
 	tween.tween_property(bottom_bls,"position:y",bottom_bls.position.y,0.3).from(bottom_bls.position.y+bottom_bls.size.y)
@@ -50,7 +54,7 @@ func onWeaponChangeAnim(weapon_id,tag = Utils.GUN_CHANGE_TYPE.CHANGE):
 		change_audio.play()
 		var weapon:BaseGun = PlayerData.player_weapon_list[weapon_id]
 		weapon_change_name.text = weapon.weapon_name
-		ammo_count_label.text = "%s / %s" %[weapon.bullets_count,weapon.bullets_max_count]
+		ammo_count_label.text = "%s" %[weapon.bullets_count]
 		weapon_change_image.texture = weapon.image
 		var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(weapon_change_image,"modulate:a",1.0,0.3).from(0.0)
@@ -71,7 +75,7 @@ func loadWeaponBullets(weapon_id):
 		index += 1
 
 func onWeaponBulletsChange(bullet,bullet_max):
-	ammo_count_label.text = "%s / %s" %[bullet,bullet_max]
+	ammo_count_label.text = "%s" %[bullet]
 	var local_count =  bullet_max - bullet
 	if weapon_bullet_list.has_node(str(local_count)):
 		weapon_bullet_list.get_node(str(local_count)).destory()
@@ -81,6 +85,9 @@ func onGoldChange(gold):
 
 func onAmmoChange(ammo):
 	ammo_label.text = tr("AMMO_ALL") + str(ammo)
+
+func onRewardChange(reward):
+	reward_label.text = tr("REWARD_POINT") + str(reward)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):

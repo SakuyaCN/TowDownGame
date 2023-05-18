@@ -5,15 +5,18 @@ class_name Player
 @onready var gun_root = $body/GunRoot
 @onready var light2d = $PointLight2D
 @onready var reward_root = $RewardRoot
+@onready var dash_part = $body/DashParticles2D
+const dash_obj = preload("res://game/hero/DashObj.tscn")
 
 var gun = null
 
-const SPEED = 100.0
+var SPEED = 100.0
 var is_run = false
 var is_dead = false #是否死亡
 var is_shoot = false #是否在射击
 var is_knockback = false #后坐力
 var knockback_speed = 0 #后坐力速度
+var is_dash = false
 var look_dir = null
 
 func _init() -> void:
@@ -46,7 +49,6 @@ func onPlayerResurrect():
 func changeWeapon(weapon_id):
 	for item in gun_root.get_children():
 		item.set_use(item.name == str(weapon_id))
-		
 
 func playerWeaponListChange():
 	for weapon_id in PlayerData.player_weapon_list:
@@ -59,6 +61,15 @@ func playerWeaponListChange():
 				gun = local_gun
 				gun.set_use(true)
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("dash") && !is_dash:
+		is_dash = true
+		dash_part.emitting = true
+		anim.play("dash")
+		await get_tree().create_timer(0.06).timeout
+		is_dash = false
+		dash_part.emitting = false
+		
 func _physics_process(delta):
 	if is_dead:
 		return
@@ -72,10 +83,12 @@ func _physics_process(delta):
 			velocity = -knockback_speed * global_position.direction_to(get_global_mouse_position())
 	else:
 		velocity = direction * SPEED
+	if is_dash:
+		velocity = direction * 600
 	move_and_slide()
 	changeAnim(direction)
 	$PointLight2D2.look_at(get_global_mouse_position())
-	if gun :
+	if gun:
 		gun.look_at(get_global_mouse_position())
 		setGunLookat(get_global_mouse_position())
 
@@ -96,6 +109,9 @@ func setGunLookat(dir):
 		look_dir = null
 
 func changeAnim(direction):
+	if is_dash:
+		showDash()
+		return
 	if direction != Vector2.ZERO:
 		is_run = true
 		if (direction.x > 0 && body.scale.x != 1) || (direction.x < 0 && body.scale.x != -1):
@@ -145,3 +161,10 @@ func onHpChange(hp,max_hp):
 
 func cameraSnake(step):
 	get_tree().call_group("camera","shootShake",step)
+
+func showDash():
+	var dash = dash_obj.instantiate()
+	dash.texture = anim.sprite_frames.get_frame_texture(anim.animation,anim.frame)
+	dash.global_position = global_position
+	dash.flip_h = body.scale.x != 1
+	get_tree().root.call_deferred("add_child",dash)

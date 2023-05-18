@@ -111,6 +111,7 @@ func onMonsterCreate():
 func victory():
 	emit_signal("roundVictory")
 	level += 1
+	PlayerData.reward_point += 1
 	_onNextLevel()
 	#emit_signal("roundVictory")
 

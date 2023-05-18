@@ -107,6 +107,14 @@ func showHitLabel(num,traget:Node2D):
 	ins.setNumber(num)
 	traget.add_child(ins)
 
+#伤害数字 加强版
+func showHitLabelMore(num,traget:Node2D,position = Vector2.ZERO,color = Color.WHITE):
+	var ins = hitlabel.instantiate()
+	ins.setNumber(num)
+	ins.position = position
+	ins.setColor(color)
+	traget.add_child(ins)
+
 #获取配件类型名称
 func getAttachmentsName(type:ATTACHMENTS_TYPE):
 	match type:

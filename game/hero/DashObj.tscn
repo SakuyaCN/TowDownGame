@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0tot7aqm4ph"]
+
+[sub_resource type="GDScript" id="GDScript_dgvwr"]
+script/source = "extends Sprite2D
+
+
+func _ready() -> void:
+	var tween = create_tween().set_ease(Tween.EASE_IN)
+	tween.tween_property(self,\"modulate:a\",0.0,0.3)
+	tween.tween_callback(self.queue_free)
+"
+
+[node name="DashObj" type="Sprite2D"]
+offset = Vector2(0, -16)
+script = SubResource("GDScript_dgvwr")

@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7j4387tov3ex"]
+
+[ext_resource type="Script" path="res://ui/widgets/RewardShopItem.gd" id="1_db522"]
+[ext_resource type="Texture2D" uid="uid://dih58xrre3vla" path="res://Sprites/All_Icons/Alien Blue Helmet.png" id="1_pt66t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_emcml"]
+font_size = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7pex"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_db522")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pt66t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "急救箱"
+label_settings = SubResource("LabelSettings_emcml")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q7pex")
+flat = true
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
