@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxkn1yu62lrkk"]
+
+[ext_resource type="Texture2D" uid="uid://cp77rf7vu1hry" path="res://Sprites/All_Icons/Amber Sickle.png" id="1_lhtu4"]
+
+[sub_resource type="GDScript" id="GDScript_ni5ow"]
+script/source = "extends BaseReward
+
+var fire = preload(\"res://game/other/FireEffect.tscn\").instantiate()
+var kill_count = 0
+
+func onKill(monster:BaseMonster):
+	kill_count += 1
+	if kill_count == 3:
+		doBuff()
+
+func _on_timer_timeout():
+	kill_count = 0
+
+func doBuff():
+	if $Buff.is_stopped():
+		Utils.player.add_child(fire)
+		PlayerData.player_fire_rate += 0.2
+		$Buff.start(count + 1)
+
+func _on_buff_timeout():
+	PlayerData.player_fire_rate -= 0.2
+	Utils.player.remove_child(fire)
+"
+
+[node name="HpReward" type="Node2D"]
+script = SubResource("GDScript_ni5ow")
+id = 8
+reward_name = "REWARD AMBER SICKLE"
+reward_image = ExtResource("1_lhtu4")
+reward_info = "REWARD AMBER SICKLE INFO"
+max_count = 5
+connect_kill = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Buff" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Buff" to="." method="_on_buff_timeout"]

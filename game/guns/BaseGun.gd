@@ -62,6 +62,7 @@ func _init():
 	change_timer.timeout.connect(self.reload_over)
 	
 func _ready() -> void:
+	PlayerData.onPlayerFireRateChange.connect(self.onPlayerFireRateChange)
 	add_child(attachments_node)
 	bullets_count = bullets_max_count
 	add_child(change_timer)
@@ -70,6 +71,9 @@ func _ready() -> void:
 	gun_image.texture = image
 	set_use(false)
 	timer.wait_time = 1.0 / fire_rate
+
+func onPlayerFireRateChange(rate):
+	timer.wait_time = 1.0 / (fire_rate * rate)
 
 #更新枪械配置
 func updateGun():

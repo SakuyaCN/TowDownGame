@@ -11,7 +11,8 @@ var reward_list = {
 	"4" = preload("res://game/reward/BlueAxe.tscn"),
 	"5" = preload("res://game/reward/BlueBoots.tscn"),
 	"6" = preload("res://game/reward/AmberStar.tscn"),
-	"7" = preload("res://game/reward/HeathPack.tscn")
+	"7" = preload("res://game/reward/HeathPack.tscn"),
+	"8" = preload("res://game/reward/AmberSickle.tscn")
 }
 
 var reward_shop_list = []

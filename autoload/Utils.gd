@@ -152,6 +152,10 @@ func showToast(msg,time = 1):
 func crosshairChange(is_change):
 	canvasLayer.crosshairChange(is_change)
 
+func getShader(quality):
+	match quality:
+		0:""
+
 #func _physics_process(delta):
 #	if freeze_frame && Engine.get_physics_frames() % 2 == 0:
 		# 暂停一帧

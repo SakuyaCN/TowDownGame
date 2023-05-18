@@ -1,9 +1,9 @@
-[gd_scene load_steps=54 format=3 uid="uid://8lekrqo3cykw"]
+[gd_scene load_steps=55 format=3 uid="uid://8lekrqo3cykw"]
 
 [ext_resource type="Script" path="res://game/hero/Hero.gd" id="1_83vm3"]
 [ext_resource type="Material" uid="uid://b1rr1d7kl8ium" path="res://shader/SmoothPixel.tres" id="1_e1xul"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_b1ar1"]
-[ext_resource type="PackedScene" uid="uid://p0gs1b6mkv5k" path="res://game/reward/HeathPack.tscn" id="3_ub56o"]
+[ext_resource type="PackedScene" uid="uid://bxkn1yu62lrkk" path="res://game/reward/AmberSickle.tscn" id="3_5285m"]
 [ext_resource type="Texture2D" uid="uid://br4j3d8xbd47t" path="res://game/hero/Tiny Alchemist Sprite Sheet 48x32.png" id="4_o77ur"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_3w2gc"]
 [ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="6_gdjfy"]
@@ -276,7 +276,14 @@ colors = PackedColorArray(0.578442, 0.870588, 0.749955, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ub1nm"]
 gradient = SubResource("Gradient_uuovj")
 
+[sub_resource type="Curve" id="Curve_u77m8"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_2ultx"]
+curve = SubResource("Curve_u77m8")
 
 [sub_resource type="Curve" id="Curve_lbkqq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0090909), 0.0, 0.0, 0, 0]
@@ -337,7 +344,7 @@ script = ExtResource("1_83vm3")
 
 [node name="RewardRoot" type="Node2D" parent="."]
 
-[node name="HpReward" parent="RewardRoot" instance=ExtResource("3_ub56o")]
+[node name="HpReward" parent="RewardRoot" instance=ExtResource("3_5285m")]
 
 [node name="UndeadShadow" type="Sprite2D" parent="."]
 position = Vector2(1, 0.5)

@@ -3,6 +3,7 @@ extends Node
 signal playerWeaponListChange() #武器列表改变
 signal onWeaponChanged() #切换武器
 signal onWeaponChangeAnim(id) #切换武器动作
+signal onPlayerFireRateChange(player_fire_rate) #玩家复活信号
 signal onWeaponBulletsChange(bullet,max_bullet) #武器子弹数量变化
 signal onAmmoChange(ammo) #备用子弹数量变化
 signal onPlayerDeath() #玩家死亡信号
@@ -11,7 +12,10 @@ signal onPlayerResurrect() #玩家复活信号
 signal onRewardChange(reward)#血量变化
 signal onHpChange(hp,max_hp)#血量变化
 signal onGoldChange(gold)#血量变化
-
+var player_fire_rate = 1: #全局武器间隔
+	set(value):
+		player_fire_rate = value
+		emit_signal("onPlayerFireRateChange",player_fire_rate)
 var player_ammo = 50:#子弹数量
 	set(value):
 		player_ammo = value

@@ -2,6 +2,7 @@ extends Node
 class_name BaseReward
 
 @export var id = 0 #唯一ID
+@export_range(0,3,1) var reward_quality = 0 #品质
 @export var reward_name = "" #奖励名称
 @export var reward_image :Texture #奖励图片
 @export_multiline var reward_info = "" #奖励详情
