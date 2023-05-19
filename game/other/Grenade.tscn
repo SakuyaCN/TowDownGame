@@ -1,0 +1,160 @@
+[gd_scene load_steps=25 format=3 uid="uid://wcccplk8vr2f"]
+
+[ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="1_7pkct"]
+[ext_resource type="Script" path="res://game/other/Grenade.gd" id="1_x6hoq"]
+[ext_resource type="Texture2D" uid="uid://dpvosctidguwu" path="res://game/bullets/assets/debris.png" id="3_47bm1"]
+[ext_resource type="Texture2D" uid="uid://bvnqtecri6ui1" path="res://Sprites/effect/vfx_free_pack_1-Sheet.png" id="4_flgms"]
+[ext_resource type="AudioStream" uid="uid://hh15oxvjm0pl" path="res://audio/bullet/EXPLDsgn_Explosion Impact_10.wav" id="5_v2u8r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oluko"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_25yr0"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_afuw7"]
+colors = PackedColorArray(0.501961, 0.501961, 0.501961, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l4wjo"]
+gradient = SubResource("Gradient_afuw7")
+
+[sub_resource type="Curve" id="Curve_xsu0x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.354545), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_im0an"]
+curve = SubResource("Curve_xsu0x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_epsd5"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 45, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angular_velocity_min = 5.0
+angular_velocity_max = 103.18
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_im0an")
+color_ramp = SubResource("GradientTexture1D_l4wjo")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6ynv"]
+atlas = ExtResource("4_flgms")
+region = Rect2(0, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cp0m"]
+atlas = ExtResource("4_flgms")
+region = Rect2(96, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efoij"]
+atlas = ExtResource("4_flgms")
+region = Rect2(192, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxc46"]
+atlas = ExtResource("4_flgms")
+region = Rect2(288, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cs16"]
+atlas = ExtResource("4_flgms")
+region = Rect2(384, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot8ds"]
+atlas = ExtResource("4_flgms")
+region = Rect2(480, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76t3n"]
+atlas = ExtResource("4_flgms")
+region = Rect2(576, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlun6"]
+atlas = ExtResource("4_flgms")
+region = Rect2(672, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iq2e"]
+atlas = ExtResource("4_flgms")
+region = Rect2(768, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gin0u"]
+atlas = ExtResource("4_flgms")
+region = Rect2(864, 96, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vb4jr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6ynv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cp0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efoij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxc46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cs16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot8ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76t3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlun6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iq2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gin0u")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6o8c"]
+radius = 49.3356
+
+[node name="Grenade" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_x6hoq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7pkct")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oluko")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_25yr0")
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_epsd5")
+texture = ExtResource("3_47bm1")
+preprocess = 0.1
+trail_sections = 10
+trail_section_subdivisions = 7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vb4jr")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f6o8c")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_v2u8r")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

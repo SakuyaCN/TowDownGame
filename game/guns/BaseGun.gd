@@ -182,13 +182,13 @@ func playReload():
 func _physics_process(delta):
 	if Utils.freeze_frame:
 		delta = 0.0
-	if Utils.freeze_frame:
-		if Engine.get_physics_frames() % freeze_frame == 0:
+	#if Utils.freeze_frame:
+		#if Engine.get_physics_frames() % freeze_frame == 0:
 			# 暂停一帧
-			Utils.freeze_frame = false
+		#	Utils.freeze_frame = false
 			# 将时间比例设置为1
-			Engine.time_scale = 1
-			return
+		#	Engine.time_scale = 1
+		#	return
 
 func _shoot() -> void:
 	call_deferred("_shootAnim")

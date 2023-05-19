@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=3 uid="uid://bwg2340ecyw2k"]
+
+[ext_resource type="Texture2D" uid="uid://bvnqtecri6ui1" path="res://Sprites/effect/vfx_free_pack_1-Sheet.png" id="1_uuk5k"]
+
+[sub_resource type="GDScript" id="GDScript_f4t37"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	await $AnimatedSprite2D.animation_finished
+	queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvnns"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(0, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkale"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(96, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iacpu"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(192, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e06w"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(288, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufykr"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(384, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viek5"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(480, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xapxl"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(576, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4rv3"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(672, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju0qq"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(768, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o314y"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(864, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0r5q"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(960, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h38e1"]
+atlas = ExtResource("1_uuk5k")
+region = Rect2(1056, 288, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxfi3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvnns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkale")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iacpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e06w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufykr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viek5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xapxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4rv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju0qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o314y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0r5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h38e1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="vfxThunder" type="Node2D"]
+script = SubResource("GDScript_f4t37")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_oxfi3")
+autoplay = "default"
+frame = 11
+frame_progress = 1.0

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcu53i4v3dvv"]
+
+[ext_resource type="Script" path="res://game/attachments/GrenadeLauncher.gd" id="1_4cecu"]
+[ext_resource type="Texture2D" uid="uid://drjhbnit71al8" path="res://Sprites/icon/Icon8.png" id="2_uuw0x"]
+[ext_resource type="AudioStream" uid="uid://rqiyf83563xn" path="res://audio/bullet/GUNArtl_Grenade Launcher Fire_01.wav" id="3_jdw6w"]
+
+[node name="UniversalExtendedMagazines" type="Node2D"]
+script = ExtResource("1_4cecu")
+am_id = 9
+am_name = "GRENADE LAUNCHER"
+am_image = ExtResource("2_uuw0x")
+am_type = "WEAPON_UNDERBARREL"
+am_info = "INFO_GRENADE LAUNCHER"
+ASSAULT_RIFLES = true
+SUBMACHINE_GUNSRELOAD = true
+MACHINE_GUNS = true
+SNIPER_RIFLES = true
+SHOTGUNS = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jdw6w")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

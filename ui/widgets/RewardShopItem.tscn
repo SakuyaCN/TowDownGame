@@ -12,6 +12,7 @@ font_size = 6
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 3
 anchors_preset = 0
+pivot_offset = Vector2(12, 12)
 script = ExtResource("1_db522")
 
 [node name="TextureRect" type="TextureRect" parent="."]

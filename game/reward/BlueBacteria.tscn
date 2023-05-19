@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ho5mcdcwcjw"]
+
+[ext_resource type="Texture2D" uid="uid://57k385ih8o3j" path="res://Sprites/All_Icons/Blue Bacteria.png" id="1_3kp07"]
+
+[sub_resource type="GDScript" id="GDScript_6l8ng"]
+script/source = "extends BaseReward
+
+var kill_count = 0
+
+func onKill(monster:BaseMonster):
+	if kill_count < 1000:
+		kill_count += 1
+		PlayerData.player_hp_max += 0.1
+"
+
+[node name="HpReward" type="Node2D"]
+script = SubResource("GDScript_6l8ng")
+id = 10
+reward_name = "REWARD BLUE BACTERIA"
+reward_image = ExtResource("1_3kp07")
+reward_info = "REWARD BLUE BACTERIA INFO"
+max_count = 1
+connect_kill = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

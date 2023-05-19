@@ -12,7 +12,10 @@ var reward_list = {
 	"5" = preload("res://game/reward/BlueBoots.tscn"),
 	"6" = preload("res://game/reward/AmberStar.tscn"),
 	"7" = preload("res://game/reward/HeathPack.tscn"),
-	"8" = preload("res://game/reward/AmberSickle.tscn")
+	"8" = preload("res://game/reward/AmberSickle.tscn"),
+	"9" = preload("res://game/reward/Battery.tscn"),
+	"10" = preload("res://game/reward/BlueBacteria.tscn"),
+	"11" = preload("res://game/reward/BlueCircuit.tscn")
 }
 
 var reward_shop_list = []
@@ -33,10 +36,11 @@ func addReward(rw:BaseReward):
 			var node = Utils.player.reward_root.get_node(str(rw.id))
 			if node.count < node.max_count:
 				node.count += 1
+			emit_signal("onRewardAdd",node)
 		else:
 			rw.name = str(rw.id)
 			Utils.player.reward_root.add_child(rw)
-		emit_signal("onRewardAdd",rw)
+			emit_signal("onRewardAdd",rw)
 
 func removeReward(rw:BaseReward):
 	if Utils.player:

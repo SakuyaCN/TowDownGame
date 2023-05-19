@@ -5,6 +5,9 @@ extends Node2D
 @onready var pos_end = $TileMap2/Level_1/pos_end
 @onready var pos_level_5 = $TileMap2/Level_5/pos_start
 @onready var pos_level_11 = $TileMap2/Level_11
+@onready var pos_level_16 = $TileMap2/Level_16
+@onready var pos_level_21 = $TileMap2/Level_21
+@onready var pos_level_26 = $TileMap2/Level_26
 @onready var monster_root = $TileMap2/MonsterRoot
 @onready var shopBtn = $CanvasLayer/openShop
 @onready var kill_playr = $Kill
@@ -12,6 +15,9 @@ extends Node2D
 @onready var portal_lv1 = $TileMap2/PortalRoot/Portal2 
 @onready var portal_lv5 = $TileMap2/PortalRoot/Portal3 
 @onready var portal_lv11 = $TileMap2/PortalRoot/Portal4 
+@onready var portal_lv16 = $TileMap2/PortalRoot/Portal5
+@onready var portal_lv21 = $TileMap2/PortalRoot/Portal6
+@onready var portal_lv26 = $TileMap2/PortalRoot/Portal7
 
 const gold = preload("res://game/items/Gold.tscn")
 const weapon_choose = preload("res://ui/widgets/WeaponChoose.tscn")
@@ -87,6 +93,15 @@ func getPoint():
 	elif [11,12,13,14,15].has(LevelServer.level):
 		var node = pos_level_11.get_child(randi()%pos_level_11.get_child_count())
 		random_point = node.global_position
+	elif [16,17,18,19,20].has(LevelServer.level):
+		var node = pos_level_16.get_child(randi()%pos_level_16.get_child_count())
+		random_point = node.global_position
+	elif [21,22,23,24,25].has(LevelServer.level):
+		var node = pos_level_21.get_child(randi()%pos_level_21.get_child_count())
+		random_point = node.global_position
+	elif [26,27,28,29,30].has(LevelServer.level):
+		var node = pos_level_26.get_child(randi()%pos_level_26.get_child_count())
+		random_point = node.global_position
 	return random_point
 
 func _on_shop_body_entered(body: Node2D) -> void:
@@ -112,6 +127,12 @@ func onNextLevel(level):
 		portal_start.next_area = portal_lv5
 	elif [11,12,13,14,15].has(LevelServer.level):
 		portal_start.next_area = portal_lv11
+	elif [16,17,18,19,20].has(LevelServer.level):
+		portal_start.next_area = portal_lv16
+	elif [21,22,23,24,25].has(LevelServer.level):
+		portal_start.next_area = portal_lv21
+	elif [26,27,28,29,30].has(LevelServer.level):
+		portal_start.next_area = portal_lv26
 
 #怪物生成
 func monsterCreate():
@@ -124,9 +145,10 @@ func monsterCreate():
 #怪物死亡
 func onMonsterDeath(monster_ins):
 	LevelServer.level_info.kill += 1
-	var ins = gold.instantiate()
-	ins.global_position = monster_ins.global_position
-	ins.setGiveCallBack(func onGive():
-		LevelServer.level_info.gold += 1)
-	monster_root.add_child(ins)
+	if randi() % 3 <= 1:
+		var ins = gold.instantiate()
+		ins.global_position = monster_ins.global_position
+		ins.setGiveCallBack(func onGive():
+			LevelServer.level_info.gold += 1)
+		monster_root.add_child(ins)
 	kill_playr.play()

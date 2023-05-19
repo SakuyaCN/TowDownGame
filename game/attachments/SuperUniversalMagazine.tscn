@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://swf7h6cwbh2i"]
+
+[ext_resource type="Texture2D" uid="uid://dbhidewk5d075" path="res://Sprites/icon/Icon9.png" id="1_51hob"]
+
+[sub_resource type="GDScript" id="GDScript_e2e4j"]
+script/source = "extends \"res://game/attachments/BaseAttachment.gd\"
+## 通用扩容弹夹
+func onStart():
+	gun.bullets_max_count += 70
+
+func onDestroy():
+	gun.bullets_max_count -= 70
+"
+
+[node name="UniversalExtendedMagazines" type="Node2D"]
+script = SubResource("GDScript_e2e4j")
+am_id = 8
+am_name = "SUPER UNIVERSAL MAGAZINE"
+am_image = ExtResource("1_51hob")
+am_type = "WEAPON_AMMUNITION"
+am_info = "INFO_SUPER UNIVERSAL MAGAZINE"
+money = 100
+ASSAULT_RIFLES = true
+SUBMACHINE_GUNSRELOAD = true
+MACHINE_GUNS = true
+SNIPER_RIFLES = true
+SHOTGUNS = true
+LASER_WEAPONS = true

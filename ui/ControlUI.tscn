@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=24 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Theme" uid="uid://d264vgetmywyw" path="res://ui/theme.tres" id="2_52b7e"]
@@ -20,6 +20,22 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6unc"]
 bg_color = Color(0.36, 1.2, 0.44, 0.6)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7p2a"]
+bg_color = Color(0.176471, 0.211765, 0.196078, 0.784314)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfm2"]
+bg_color = Color(0.397355, 0.896716, 1.2, 0.6)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -122,6 +138,7 @@ layer = 2
 script = ExtResource("1_hodr7")
 
 [node name="GameUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,10 +217,11 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 16.0
+offset_top = 20.0
 offset_bottom = 58.0
 grow_horizontal = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="WeaponImage" type="TextureRect" parent="GameUI/WeaponChangeUI"]
 layout_mode = 1
@@ -256,11 +274,21 @@ theme_override_styles/background = SubResource("StyleBoxFlat_x8ohj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_i6unc")
 value = 100.0
 
+[node name="ProgressBar2" type="ProgressBar" parent="GameUI/hpUI"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 16.0
+offset_right = 94.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_k7p2a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2kfm2")
+
 [node name="Label" type="Label" parent="GameUI/hpUI"]
 layout_mode = 1
-offset_top = 14.0
+offset_top = 30.0
 offset_right = 42.0
-offset_bottom = 26.0
+offset_bottom = 42.0
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
 text = "GOLD_HAS"
@@ -268,11 +296,23 @@ label_settings = SubResource("LabelSettings_1rtrt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label3" type="Label" parent="GameUI/hpUI"]
+layout_mode = 1
+offset_top = 16.0
+offset_right = 36.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
+text = "LEVEL"
+label_settings = SubResource("LabelSettings_1rtrt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Label2" type="Label" parent="GameUI/hpUI"]
 layout_mode = 1
-offset_top = 30.0
-offset_right = 42.0
-offset_bottom = 42.0
+offset_top = 46.0
+offset_right = 48.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_wvfd7")
 text = "REWARD_POINT"
@@ -282,6 +322,89 @@ vertical_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameUI"]
 stream = ExtResource("5_m8t5a")
+
+[node name="RwGridContainer" type="GridContainer" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 2
+columns = 13
+
+[node name="LevelUpPanel" type="Panel" parent="GameUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -20.0
+offset_bottom = 42.0
+grow_vertical = 2
+
+[node name="all_ammo" type="Label" parent="GameUI/LevelUpPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 15.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = "Level Up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="all_ammo2" type="Label" parent="GameUI/LevelUpPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.5
+offset_top = 15.0
+offset_right = 29.5
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = "LEVLE_DM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="all_ammo3" type="Label" parent="GameUI/LevelUpPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.5
+offset_top = 31.0
+offset_right = 29.5
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = "LEVLE_HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="all_ammo4" type="Label" parent="GameUI/LevelUpPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.5
+offset_top = 47.0
+offset_right = 29.5
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = "LEVEL_POINT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainUI" type="Control" parent="."]
 layout_mode = 3
@@ -325,6 +448,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
 text = "MAIN_UI_START"
+
+[node name="mod" type="Button" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8wm7f")
+text = "MAIN_UI_MOD"
 
 [node name="setting" type="Button" parent="MainUI/VBoxContainer"]
 layout_mode = 2
@@ -490,6 +619,7 @@ scale = Vector2(3.1958, 1.79443)
 texture = ExtResource("9_ud0yi")
 
 [connection signal="pressed" from="MainUI/VBoxContainer/start" to="MainUI" method="_on_start_pressed"]
+[connection signal="pressed" from="MainUI/VBoxContainer/mod" to="MainUI" method="_on_mod_pressed"]
 [connection signal="pressed" from="MainUI/VBoxContainer/setting" to="MainUI" method="_on_setting_pressed"]
 [connection signal="item_selected" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/language" to="MainUI/SettingUI" method="_on_language_item_selected"]
 [connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control/shake" to="MainUI/SettingUI" method="_on_shake_value_changed"]

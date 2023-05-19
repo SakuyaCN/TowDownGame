@@ -47,7 +47,9 @@ var am_dict = {
 	"3" = preload("res://game/attachments/QuickExpansionMagazine.tscn"),
 	"5" = preload("res://game/attachments/ShotgunShellPouch.tscn"),
 	"6" = preload("res://game/attachments/MachineGunMagazine.tscn"),
-	"7" = preload("res://game/attachments/SubmachineGunMagazine.tscn")
+	"7" = preload("res://game/attachments/SubmachineGunMagazine.tscn"),
+	"8" = preload("res://game/attachments/SuperUniversalMagazine.tscn"),
+	"9" = preload("res://game/attachments/GrenadeLauncher.tscn")
 }
 
 const weapon_money_list = {
@@ -142,9 +144,10 @@ func freezeFrame(scale):
 	#return
 	if !freeze_frame && scale > 0:
 		# 冻结帧
-		freeze_frame = true
+		pass
+		#freeze_frame = true
 		# 将时间比例设置为0.1
-		Engine.time_scale = scale
+		#Engine.time_scale = scale
 
 func showToast(msg,time = 1):
 	canvasLayer.showToast(msg,time)

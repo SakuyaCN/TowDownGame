@@ -35,6 +35,7 @@ func start(local:Vector2,pos:Vector2):
 	velocity = local.direction_to(pos)
 
 func fire():
+	hurt += PlayerData.player_damage
 	velocity = Vector2(speed, 0).rotated(rotation)
 	set_process(true)
 	
@@ -46,8 +47,8 @@ func fire():
 	create_tween().tween_property(light2d,"energy",0.3,0.2)
 
 func _process(delta):
-	if Utils.freeze_frame:
-		delta = 0.0
+	#if Utils.freeze_frame:
+	#	delta = 0.0
 	var collisionResult = move_and_collide(velocity * delta)
 	if collisionResult:
 		var coller = collisionResult.get_collider()

@@ -3,6 +3,7 @@ extends Control
 const weapon_item_pre = preload("res://ui/widgets/WeaponListItem.tscn")
 const weapon_bullet_pre = preload("res://ui/widgets/BulletCountItem.tscn")
 const weapon_inventory = preload("res://ui/Inventory.tscn")
+const rw_top = preload("res://ui/widgets/RewardTopItem.tscn")
 
 @onready var change_audio = $AudioStreamPlayer2D
 
@@ -17,14 +18,21 @@ const weapon_inventory = preload("res://ui/Inventory.tscn")
 @onready var weapon_change_name = $WeaponChangeUI/WeaponImage/Label
 @onready var hp_bar = $hpUI/ProgressBar
 @onready var ammo_label = $Container/all_ammo
+@onready var rw_grid = $RwGridContainer
+@onready var level_label = $hpUI/Label3
+@onready var level_bar = $hpUI/ProgressBar2
+@onready var level_panel = $LevelUpPanel
 
 var inv_ui
 
 func _ready() -> void:
 	Utils.onGameStart.connect(self.onGameStart)
+	RewardServer.onRewardAdd.connect(self.onRewardAdd)
 	PlayerData.onRewardChange.connect(self.onRewardChange)
 	PlayerData.onGoldChange.connect(self.onGoldChange)
 	PlayerData.onAmmoChange.connect(self.onAmmoChange)
+	PlayerData.onPlayerLevelChange.connect(self.onPlayerLevelChange)
+	PlayerData.onPlayerExpChange.connect(self.onPlayerExpChange)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange) #武器列表化监听
 	PlayerData.onWeaponChangeAnim.connect(self.onWeaponChangeAnim) #武器化监听
 	PlayerData.onWeaponBulletsChange.connect(self.onWeaponBulletsChange) #武器化监听
@@ -88,6 +96,32 @@ func onAmmoChange(ammo):
 
 func onRewardChange(reward):
 	reward_label.text = tr("REWARD_POINT") + str(reward)
+
+func onRewardAdd(rw:BaseReward):
+	if rw.only_start:
+		return
+	if rw_grid.has_node(str(rw.id)):
+		rw_grid.get_node(str(rw.id)).setData(rw)
+		print(rw.count)
+	else:
+		var ins = rw_top.instantiate()
+		ins.name = str(rw.id)
+		rw_grid.add_child(ins)
+		ins.setData(rw)
+
+func onPlayerLevelChange(level):
+	level_label.text = tr("LEVEL") + str(level)
+	if !level_panel.visible :
+		level_panel.visible = true
+		var tween = create_tween()
+		tween.tween_property(level_panel,"position:x",8,0.5)
+		tween.tween_property(level_panel,"position:x",-level_panel.size.x - 5,0.5).set_delay(1)
+		tween.tween_callback(func callback():
+			level_panel.visible = false)
+
+func onPlayerExpChange(exp,max_exp):
+	level_bar.max_value = max_exp
+	level_bar.value = exp
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inv") && Utils.is_game_start && !is_instance_valid(inv_ui):

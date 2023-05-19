@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/hero/Hero.gd" id="1_83vm3"]
 [ext_resource type="Material" uid="uid://b1rr1d7kl8ium" path="res://shader/SmoothPixel.tres" id="1_e1xul"]
 [ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="2_b1ar1"]
-[ext_resource type="PackedScene" uid="uid://bxkn1yu62lrkk" path="res://game/reward/AmberSickle.tscn" id="3_5285m"]
+[ext_resource type="PackedScene" uid="uid://cq66xqgdq75fl" path="res://game/reward/BlueCircuit.tscn" id="3_2y75o"]
 [ext_resource type="Texture2D" uid="uid://br4j3d8xbd47t" path="res://game/hero/Tiny Alchemist Sprite Sheet 48x32.png" id="4_o77ur"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_3w2gc"]
 [ext_resource type="Texture2D" uid="uid://soggsxqxkpyq" path="res://game/bullets/assets/lights1.png" id="6_gdjfy"]
@@ -344,7 +344,7 @@ script = ExtResource("1_83vm3")
 
 [node name="RewardRoot" type="Node2D" parent="."]
 
-[node name="HpReward" parent="RewardRoot" instance=ExtResource("3_5285m")]
+[node name="HpReward" parent="RewardRoot" instance=ExtResource("3_2y75o")]
 
 [node name="UndeadShadow" type="Sprite2D" parent="."]
 position = Vector2(1, 0.5)

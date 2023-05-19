@@ -21,6 +21,7 @@ var is_atk = false
 var death_callback :Callable
 
 func _ready():
+	name = str(Time.get_ticks_usec())
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
 	add_child(navigationAgent2D)
@@ -110,6 +111,7 @@ func onHit(hit_num,is_show_label = true):
 		Utils.showHitLabel(hit_num,self)
 
 func onDie():
+	PlayerData.player_exp += 1
 	if death_callback:
 		death_callback.call(self)
 	var nodes = get_tree().get_nodes_in_group("reward")

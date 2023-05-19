@@ -11,6 +11,11 @@ Sniper,Sniper,轻型狙击枪
 MAIN_UI_START,Start Game,开始游戏
 MAIN_UI_SETTING,Settings,设置
 MAIN_UI_QUIT,Quit,退出
+MAIN_UI_MOD,Mod,模组
+,,
+WAIT_MORE,Coming soon,敬请期待
+,,
+,,
 ,,
 SETTING_LANGUAGE,language,语言
 SETTING_BASIC,Basic,基础
@@ -70,7 +75,7 @@ SURVIVAL TIME,Survival time,生存时间
 DEFEAT ENEMIES,Defeat enemies,击败敌人
 OBTAIN GOLD,Obtain gold,获得金币
 SUPPLEMENT BULLETS,Supplement bullets,补充子弹
-BULLETS2GOLD,1 gold = 20 bullets,1 金币 = 20发
+BULLETS2GOLD,1 gold = 30 bullets,1 金币 = 30发
 AMMO_ALL,Remaining AMMO:,剩余子弹：
 AMMO_OUT,Insufficient spare bullets.,备用子弹不足！
 DEATH_TITLE,You have been defeated!,您已战败！
@@ -78,9 +83,13 @@ RESURRECT,Resurrect,复活
 RESURRECT_TIP,Reviving requires 50 Gold,复活需要金币*50
 REMAINING REWARD POINTS,Remaining reward points: ,剩余奖励点：
 PLEASE CHOOSE A REWARD,Please choose a reward: ,请选择一项奖励：
-,,
-,,
-,,
+NO POINTS,Not enough reward points,奖励点不足！
+REWARD_POINT,reward points: ,奖励点：
+LEVEL,Level:,等级：
+GAME_SUCCESS,Current difficulty has been cleared!,当前难度已经通关！
+LEVLE_DM,damage + 0.3,伤害+0.3
+LEVLE_HP,HP + 0.5,血量+0.5
+LEVEL_POINT,Point +1,点数+1
 ,,
 QUICKDRAW_MAGAZINE,Quickdraw Magazine,快速弹夹
 EXTENDED RIFLE MAGAZINE,Extended Rifle Magazine,扩容步枪弹夹
@@ -89,7 +98,11 @@ QUICK EXPANSION MAGAZINE,Quick Expansion Magazine,快速扩容弹夹
 SHOTGUN SHELL POUCH,Shotgun shell pouch,霰弹枪子弹袋
 MACHINE GUN MAGAZINE,Machine Gun Magazine,机枪弹夹
 SUBMACHINE GUN MAGAZINE,Submachine Gun Magazine,冲锋枪弹夹
+SUPER UNIVERSAL MAGAZINE,Super Universal Magazine,超级通用弹夹
+GRENADE LAUNCHER,Grenade Launcher,榴弹发射器
 ,,
+INFO_GRENADE LAUNCHER,"Right-click to launch a grenade, causing area-of-effect (AOE) damage. Cooldown: 3 seconds.",按下右键会向鼠标瞄准处发射一枚榴弹，造成AOE伤害，冷却3秒
+INFO_SUPER UNIVERSAL MAGAZINE,Magazine capacity +70.,弹夹容量+70
 INFO_EXTENDED RIFLE MAGAZINE,Magazine capacity +20.,弹夹容量+20
 INFO_QUICKDRAW_MAGAZINE,Reload speed +20%,换弹速度+20%
 INFO_MACHINE GUN MAGAZINE,Magazine Capacity +50.,弹夹容量+50
@@ -108,3 +121,21 @@ REWARD_HP,medical kit,医疗箱
 REWARD_HP_INFO,restore your health to full,回复满你的血量
 REWARD_ALIEN_HELMENT,Alien Helment,异形头盔
 REWARD_ALIEN_HELMENT_INFO,Increase maximum health by 3 point,提供3点生命值上限
+REWARD_WARING_SHIELD,Waring shield,警示盾牌
+REWARD_WARING_SHIELD_INFO,There is a 15% chance to reduce incoming damage.,有15%的概率减少受到伤害
+REWARD BLUE AXE,Blue Axe,蓝色巨斧
+REWARD BLUE AXE INFO,There is a 10% chance to deal double damage.,有10%的概率造成双倍伤害
+REWARD BLUE BOOTS,Blue Boots,蓝色跑靴
+REWARD BLUE BOOTS INFO,Increase player's movement speed by 5 points.,提高玩家移动速度5点
+REWARD AMBER STAR,Amber Star,琥珀之星
+REWARD AMBER STAR INFO,"Hitting an enemy adds a mark. When the number of marks reaches 3, it will explode and deal 5 points of damage.",击中敌人会添加一次标记，当标记数量达到3个时会爆炸造成5点伤害
+REWARD HEALTH PACK,Health pack,医疗包
+REWARD HEALTH PACK INFO,"There is a chance to drop a health pack after killing a monster, restoring 1 point of health.",击杀怪物后有概率掉落医疗包，回复1点生命值
+REWARD AMBER SICKLE,Amber Sickle,琥珀镰刀
+REWARD AMBER SICKLE INFO,"Killing 3 enemies within 1 second will trigger a frenzy state, reducing weapon attack cooldown by 10% for 2 seconds",1秒内击杀3名敌人会进入狂热状态，武器攻击间隔减少10%，持续2秒
+REWARD BATTERY,Battery,电池
+REWARD BATTERY INFO,"Every 3 seconds, the next attack will deal 150% damage.",每隔3秒，下一次攻击会造成150%的伤害
+REWARD BLUE BACTERIA,Blue Bacteria,蓝色细菌
+REWARD BLUE BACTERIA INFO,"Each time you kill an enemy, it will provide an increase of 0.1 maximum health points (up to a maximum of 100) that can be held as an item.",每次击杀一个敌人会提供0.1点生命值上限（上限为100，最多持有一个物品）
+REWARD BLUE CIRCUIT,Blue Circuit,蓝色电路
+REWARD BLUE CIRCUIT INFO,"There is a chance to deliver an electric shock when hitting an enemy, dealing an additional 25% damage.",命中敌人有概率造成一次电击，额外获得造成25%的伤害

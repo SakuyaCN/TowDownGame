@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq66xqgdq75fl"]
+
+[ext_resource type="Texture2D" uid="uid://clffkyywl07hu" path="res://Sprites/All_Icons/Blue Circuit.png" id="1_nvfc7"]
+
+[sub_resource type="GDScript" id="GDScript_k4dxi"]
+script/source = "extends BaseReward
+
+var vfx = preload(\"res://game/items/vfxThunder.tscn\")
+
+func afterAtk(monster:BaseMonster,hit_num):#怪物收到伤害后触发
+	if randi()% 100 < 20:
+		var ins = vfx.instantiate()
+		monster.add_child(ins)
+		var num = snappedf(hit_num * (count * 0.25),0.01)
+		monster.onHit(num,false)
+		Utils.showHitLabelMore(num,monster,Vector2(2,2),Color.YELLOW)
+"
+
+[node name="HpReward" type="Node2D"]
+script = SubResource("GDScript_k4dxi")
+id = 11
+reward_name = "REWARD BLUE CIRCUIT"
+reward_image = ExtResource("1_nvfc7")
+reward_info = "REWARD BLUE CIRCUIT INFO"
+connect_afterAtk = true

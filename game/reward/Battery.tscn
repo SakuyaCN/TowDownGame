@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://nc8kl5gv613t"]
+
+[ext_resource type="Texture2D" uid="uid://dedkc4p6ejwhm" path="res://Sprites/All_Icons/Battery.png" id="1_dmkwg"]
+
+[sub_resource type="GDScript" id="GDScript_vv158"]
+script/source = "extends BaseReward
+
+var is_time_out = false
+
+func beforeAtk(monster:BaseMonster,hit_num):#怪物收到伤害前触发
+	if is_time_out:
+		is_time_out = false
+		return (count * 0.5) * hit_num
+	return 0
+
+func _on_timer_timeout() -> void:
+	is_time_out = true
+"
+
+[node name="HpReward" type="Node2D"]
+script = SubResource("GDScript_vv158")
+id = 9
+reward_name = "REWARD BATTERY"
+reward_image = ExtResource("1_dmkwg")
+reward_info = "REWARD BATTERY INFO"
+connect_beforeAtk = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

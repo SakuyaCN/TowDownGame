@@ -148,7 +148,7 @@ func onHit(hurt):
 	PlayerData.player_hp -= hurt
 	Utils.showHitLabel(hurt,self)
 	get_tree().call_group("control","hit")
-	Utils.freeze_frame = true
+	#Utils.freeze_frame = true
 	Utils.freezeFrame(0.1)
 	for node in nodes:
 		if node.connect_afterPlayerHit:

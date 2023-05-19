@@ -12,6 +12,9 @@ signal onPlayerResurrect() #玩家复活信号
 signal onRewardChange(reward)#血量变化
 signal onHpChange(hp,max_hp)#血量变化
 signal onGoldChange(gold)#血量变化
+signal onPlayerLevelChange(level) #玩家等级信号
+signal onPlayerExpChange(exp,max_exp) #玩家经验信号
+
 var player_fire_rate = 1: #全局武器间隔
 	set(value):
 		player_fire_rate = value
@@ -33,15 +36,35 @@ var player_hp = 10: #当前血量
 		emit_signal("onHpChange",player_hp,player_hp_max)
 		if player_hp <= 0:
 			emit_signal("onPlayerDeath")
-var gold = 999:
+var gold = 1225:
 	set(value):
 		gold = value
 		emit_signal("onGoldChange",gold)
 
-var reward_point = 999:
+var player_damage = 0 #玩家基础伤害
+
+var reward_point = 0:
 	set(value):
 		reward_point = value
 		emit_signal("onRewardChange",reward_point)
+
+var player_level = 1:
+	set(value):
+		player_level = value
+		player_damage += 0.3
+		player_hp_max += 0.5
+		reward_point += 1
+		emit_signal("onPlayerLevelChange",player_level)
+
+var player_exp = 0:
+	set(value):
+		var max = getMaxExp()
+		if player_exp >= max:
+			player_exp = 0
+			player_level += 1
+		else:
+			player_exp = value
+		emit_signal("onPlayerExpChange",player_exp,max)
 
 #设置血量
 func resurrectPlayer(hp):
@@ -92,3 +115,6 @@ func _physics_process(delta: float) -> void:
 	if is_change_weapon && Engine.get_physics_frames() % 90 == 0:
 		Engine.time_scale = 1
 		is_change_weapon = false
+
+func getMaxExp():
+	return pow(player_level,2.2) + 15

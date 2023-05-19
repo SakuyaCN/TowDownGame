@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0fmrt6yufqow"]
+
+[ext_resource type="Texture2D" uid="uid://clffkyywl07hu" path="res://Sprites/All_Icons/Blue Circuit.png" id="1_voo0w"]
+[ext_resource type="Script" path="res://ui/widgets/RewardTopItem.gd" id="2_dfkvk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lubxr"]
+font_size = 6
+outline_size = 3
+outline_color = Color(0.301961, 0.301961, 0.301961, 1)
+shadow_size = 0
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(12, 12)
+texture = ExtResource("1_voo0w")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_dfkvk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_lubxr")
+horizontal_alignment = 2
+vertical_alignment = 2

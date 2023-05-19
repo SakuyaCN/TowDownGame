@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rqiyf83563xn"
+path="res://.godot/imported/GUNArtl_Grenade Launcher Fire_01.wav-8a6ab7ca8cbe7dee74218f170a6f73ec.sample"
+
+[deps]
+
+source_file="res://audio/bullet/GUNArtl_Grenade Launcher Fire_01.wav"
+dest_files=["res://.godot/imported/GUNArtl_Grenade Launcher Fire_01.wav-8a6ab7ca8cbe7dee74218f170a6f73ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
