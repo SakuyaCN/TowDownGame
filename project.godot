@@ -27,7 +27,6 @@ RewardServer="*res://autoload/server/RewardServer.gd"
 
 window/size/viewport_width=410
 window/size/viewport_height=230
-window/size/mode=3
 window/size/window_width_override=1536
 window/size/window_height_override=864
 window/stretch/mode="canvas_items"

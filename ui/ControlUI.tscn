@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b8fluhc5dx881"]
+[gd_scene load_steps=25 format=3 uid="uid://b8fluhc5dx881"]
 
 [ext_resource type="Script" path="res://ui/ControlUI.gd" id="1_hodr7"]
 [ext_resource type="Theme" uid="uid://d264vgetmywyw" path="res://ui/theme.tres" id="2_52b7e"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjqkfg0gdxyar" path="res://ui/widgets/Crosshair.tscn" id="3_88kmq"]
 [ext_resource type="Script" path="res://ui/SettingUI.gd" id="4_0nthv"]
 [ext_resource type="AudioStream" uid="uid://ik5t77ml7ave" path="res://audio/CLOTHMvmt_Clothing Rustle Arm_01.wav" id="5_m8t5a"]
+[ext_resource type="PackedScene" uid="uid://dgg8t0vevnaq2" path="res://ui/ModUI.tscn" id="8_hrt6v"]
 [ext_resource type="Texture2D" uid="uid://cck41ti3sn08g" path="res://Sprites/ui/title.png" id="8_ovypj"]
 [ext_resource type="Texture2D" uid="uid://bcy4ifspdj47q" path="res://icon.svg" id="9_ud0yi"]
 
@@ -565,6 +566,9 @@ scrollable = false
 [node name="VBoxContainer2" type="VBoxContainer" parent="MainUI/SettingUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="ModUI" parent="MainUI" instance=ExtResource("8_hrt6v")]
+layout_mode = 1
 
 [node name="TextureRect" parent="." instance=ExtResource("3_88kmq")]
 offset_left = -32.0

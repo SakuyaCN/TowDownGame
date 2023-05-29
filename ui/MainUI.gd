@@ -13,4 +13,5 @@ func _on_setting_pressed() -> void:
 	setting_ui.visible = true
 
 func _on_mod_pressed() -> void:
-	Utils.showToast("WAIT_MORE")
+	#Utils.showToast("WAIT_MORE")
+	pass

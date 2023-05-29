@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgg8t0vevnaq2"]
+
+[ext_resource type="Script" path="res://ui/ModUI.gd" id="1_hwv4e"]
+[ext_resource type="Texture2D" uid="uid://mqew24rgmer" path="res://Sprites/ui/Assets-1-恢复的_03.png" id="2_nista"]
+
+[node name="ModUI" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+script = ExtResource("1_hwv4e")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -94.0
+offset_right = 185.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nista")
+patch_margin_left = 13
+patch_margin_top = 14
+patch_margin_right = 15
+patch_margin_bottom = 20
+
+[node name="Button" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 86.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 8
+text = "本地导入"
+
+[node name="Button2" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 7.0
+offset_right = 172.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 8
+text = "创意工坊"
+
+[node name="Button3" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 7.0
+offset_right = 260.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 8
+text = "CLOSE"
+
+[connection signal="pressed" from="NinePatchRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/Button3" to="." method="_on_button_3_pressed"]
