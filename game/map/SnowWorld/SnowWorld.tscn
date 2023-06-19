@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d102hlcjw7327"]
+[gd_scene load_steps=29 format=3 uid="uid://d102hlcjw7327"]
 
 [ext_resource type="Texture2D" uid="uid://cpxf3dlhf1dai" path="res://game/map/SnowWorld/sprites/ISO_Tile_Snow_01.png" id="1_j778j"]
 [ext_resource type="Script" path="res://game/map/SnowWorld/SnowWorld.gd" id="1_l60ml"]
@@ -6,12 +6,51 @@
 [ext_resource type="Texture2D" uid="uid://mte5uma3uhf3" path="res://game/map/SnowWorld/sprites/ISO_Tile_Ice_01-06.png" id="2_281bt"]
 [ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="2_scm80"]
 [ext_resource type="Texture2D" uid="uid://cguqxsucvcxyd" path="res://game/map/SnowWorld/sprites/ISO_Tile_Water_01.png" id="3_57np8"]
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="3_fjs06"]
+[ext_resource type="Texture2D" uid="uid://bgommu3oa6qj2" path="res://Sprites/top.png" id="4_0gov8"]
 [ext_resource type="Script" path="res://game/hero/Camera2D.gd" id="5_60uct"]
 [ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="6_7b54p"]
 [ext_resource type="Texture2D" uid="uid://bpurqbdocvt5" path="res://game/map/SnowWorld/sprites/ISO_Tile_Snow_01_ToStone_02.png" id="6_yparh"]
 [ext_resource type="Texture2D" uid="uid://c2roun4ttf6j8" path="res://game/map/SnowWorld/sprites/ISO_Tile_Dirt_01_Grass_01.png" id="7_bldlo"]
 [ext_resource type="Texture2D" uid="uid://b1fgigapnvisl" path="res://game/map/SnowWorld/sprites/ISO_Tile_Dirt_01_GrassPatch_02.png" id="8_j3n48"]
 [ext_resource type="Texture2D" uid="uid://buegiog1jacfv" path="res://game/map/SnowWorld/sprites/ISO_Tile_Dirt_02.png" id="9_0h2od"]
+[ext_resource type="Script" path="res://game/map/SnowWorld/MonsterBuilder.gd" id="15_3ddcq"]
+
+[sub_resource type="GDScript" id="GDScript_850rg"]
+script/source = "extends CanvasLayer
+
+signal onMonsterJoin()
+
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_button_3_pressed():
+	$Panel.hide()
+	emit_signal(\"onMonsterJoin\")
+
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikyea"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_2nko6"]
+font = ExtResource("3_fjs06")
+font_size = 9
 
 [sub_resource type="Environment" id="Environment_5l1ky"]
 background_mode = 3
@@ -104,6 +143,69 @@ metadata/_edit_horizontal_guides_ = [54.0]
 
 [node name="ControlUI" parent="." instance=ExtResource("2_scm80")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_850rg")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -67.5
+offset_right = 52.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button3" type="Button" parent="CanvasLayer/Panel"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -24.0
+offset_right = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_fjs06")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_ikyea")
+text = "OK"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 22.0
+grow_horizontal = 2
+texture = ExtResource("4_0gov8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 25.0
+offset_right = -7.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Survival_Mode_Info"
+label_settings = SubResource("LabelSettings_2nko6")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("2_3wxy5")
@@ -111,6 +213,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -153,7 +256,9 @@ texture_scale = 0.5
 [node name="CreatePosition" type="Node2D" parent="."]
 position = Vector2(-355, 159)
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
+[node name="MonsterBuilder" type="Node2D" parent="."]
+script = ExtResource("15_3ddcq")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/Panel/Button3" to="CanvasLayer" method="_on_button_3_pressed"]
