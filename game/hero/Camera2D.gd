@@ -21,7 +21,7 @@ func _process(_delta:float)->void :
 		var x = int(lerp(position.x,new_offset.x,0.1))
 		var y = int(lerp(position.y,new_offset.y,0.1))
 		position = Vector2(x,y)
-		Utils.player.light2d.offset = new_offset
+		#Utils.player.light2d.offset = new_offset
 	if center_horizontal:
 		global_position.x = center_horizontal_pos
 	if center_vertical:

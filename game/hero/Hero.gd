@@ -3,7 +3,6 @@ class_name Player
 @onready var anim = $body/AnimatedSprite2D
 @onready var body = $body
 @onready var gun_root = $body/GunRoot
-@onready var light2d = $PointLight2D
 @onready var reward_root = $RewardRoot
 @onready var dash_part = $body/DashParticles2D
 const dash_obj = preload("res://game/hero/DashObj.tscn")
@@ -29,13 +28,12 @@ func _ready():
 	set_process(false)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
 	Utils.player = self
-	
-	PlayerData.add_attachment(preload("res://game/attachments/UniversalExtendedMagazines.tscn").instantiate())
-	PlayerData.add_attachment(preload("res://game/attachments/ExtendedRifleMagazine.tscn").instantiate())
-	PlayerData.add_attachment(preload("res://game/attachments/QuickExpansionMagazine.tscn").instantiate())
-	PlayerData.add_attachment(preload("res://game/attachments/ShotgunShellPouch.tscn").instantiate())
-	PlayerData.add_attachment(preload("res://game/attachments/SubmachineGunMagazine.tscn").instantiate())
-	PlayerData.add_attachment(preload("res://game/attachments/MachineGunMagazine.tscn").instantiate())
+	#PlayerData.add_attachment(preload("res://game/attachments/UniversalExtendedMagazines.tscn").instantiate())
+	#PlayerData.add_attachment(preload("res://game/attachments/ExtendedRifleMagazine.tscn").instantiate())
+	#PlayerData.add_attachment(preload("res://game/attachments/QuickExpansionMagazine.tscn").instantiate())
+	#PlayerData.add_attachment(preload("res://game/attachments/ShotgunShellPouch.tscn").instantiate())
+	#PlayerData.add_attachment(preload("res://game/attachments/SubmachineGunMagazine.tscn").instantiate())
+	#PlayerData.add_attachment(preload("res://game/attachments/MachineGunMagazine.tscn").instantiate())
 	
 func onGameStart():
 	set_physics_process(true)

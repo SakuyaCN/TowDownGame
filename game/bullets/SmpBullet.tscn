@@ -15,7 +15,6 @@ collision_mask = 2147483650
 script = ExtResource("1_ebbkv")
 bullet_impact = ExtResource("2_g3qun")
 bullet_smoke = ExtResource("2_p80ey")
-speed = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)

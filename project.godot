@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="TowDownGame"
+config/name="Don't Stop"
 run/main_scene="res://game/map/Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+run/max_fps=144
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +23,9 @@ PlayerData="*res://autoload/PlayerData.gd"
 ConfigUtils="*res://autoload/ConfigUtils.gd"
 LevelServer="*res://autoload/server/LevelServer.gd"
 RewardServer="*res://autoload/server/RewardServer.gd"
+PlayerServer="*res://autoload/server/PlayerServer.gd"
+MapServer="*res://autoload/server/MapServer.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
 [display]
 
@@ -33,7 +37,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg", "res://addons/scene_manager/plugin.cfg")
 
 [input]
 
@@ -138,8 +142,6 @@ locale/translations=PackedStringArray("res://translation/text.en.translation", "
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
-lights_and_shadows/use_physical_light_units=true
-global_illumination/voxel_gi/quality=1
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true

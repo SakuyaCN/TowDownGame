@@ -260,7 +260,7 @@ radius = 17.0
 
 [node name="Monster2" type="CharacterBody2D"]
 collision_layer = 3
-collision_mask = 2147483648
+collision_mask = 2147483649
 motion_mode = 1
 script = ExtResource("1_4jthf")
 SPEED = 300.0

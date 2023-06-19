@@ -567,7 +567,16 @@ scrollable = false
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Button" type="Button" parent="MainUI/SettingUI"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 199.0
+offset_right = 407.0
+offset_bottom = 227.0
+text = "Exit Game"
+
 [node name="ModUI" parent="MainUI" instance=ExtResource("8_hrt6v")]
+visible = false
 layout_mode = 1
 
 [node name="TextureRect" parent="." instance=ExtResource("3_88kmq")]
@@ -575,6 +584,7 @@ offset_left = -32.0
 offset_top = -33.0
 offset_right = 4.0
 offset_bottom = 3.0
+pivot_offset = Vector2(18, 18)
 mouse_filter = 2
 
 [node name="Control" type="Control" parent="."]
@@ -628,4 +638,5 @@ texture = ExtResource("9_ud0yi")
 [connection signal="item_selected" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/language" to="MainUI/SettingUI" method="_on_language_item_selected"]
 [connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control/shake" to="MainUI/SettingUI" method="_on_shake_value_changed"]
 [connection signal="value_changed" from="MainUI/SettingUI/VBoxContainer/VBoxContainer/Control2/volume" to="MainUI/SettingUI" method="_on_volume_value_changed"]
+[connection signal="pressed" from="MainUI/SettingUI/Button" to="MainUI/SettingUI" method="_on_button_pressed"]
 [connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]

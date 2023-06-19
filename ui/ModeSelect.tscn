@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://birlvpekd8c6a"]
+
+[ext_resource type="Script" path="res://ui/ModeSelect.gd" id="1_hmau3"]
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="1_prdws"]
+[ext_resource type="Texture2D" uid="uid://bgommu3oa6qj2" path="res://Sprites/top.png" id="2_wb0ng"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krl8m"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="ModeSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hmau3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -67.5
+offset_right = 52.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 34.0
+offset_right = -8.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_prdws")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_krl8m")
+text = "Normal_Mode"
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_prdws")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_krl8m")
+text = "Survival_Mode"
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_prdws")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_krl8m")
+text = "WAIT_MORE"
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 22.0
+grow_horizontal = 2
+texture = ExtResource("2_wb0ng")
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

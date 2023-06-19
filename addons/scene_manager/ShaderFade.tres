@@ -1,0 +1,16 @@
+[gd_resource type="Animation" format=3 uid="uid://dxr1r78uxitcq"]
+
+[resource]
+resource_name = "ShaderFade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/dissolve_amount")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}

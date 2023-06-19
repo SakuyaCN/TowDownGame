@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dpvosctidguwu" path="res://game/bullets/assets/debris.png" id="1_p435v"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_idvqk"]
+blend_mode = 1
 particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 1
@@ -17,7 +18,7 @@ curve = SubResource("Curve_sq6gq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_auh7s"]
 particle_flag_disable_z = true
-spread = 99.0
+spread = 70.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_max = 100.0
 angular_velocity_max = 200.0
@@ -25,7 +26,7 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_max = 180.0
 scale_curve = SubResource("CurveTexture_ie73j")
-color = Color(1, 1, 1, 0.67451)
+color = Color(0.94902, 0.423529, 0.45098, 1)
 anim_offset_max = 1.0
 
 [sub_resource type="Animation" id="Animation_qiaaw"]
@@ -69,6 +70,7 @@ texture_filter = 1
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_idvqk")
 emitting = false
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_auh7s")
 texture = ExtResource("1_p435v")
 lifetime = 0.4

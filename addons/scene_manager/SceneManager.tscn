@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://j20v4cg7v8m1"]
+
+[ext_resource type="Script" path="res://addons/scene_manager/SceneManager.gd" id="1_22br8"]
+[ext_resource type="Shader" path="res://addons/scene_manager/Dissolve2d.gdshader" id="2_853wq"]
+[ext_resource type="Animation" uid="uid://dxr1r78uxitcq" path="res://addons/scene_manager/ShaderFade.tres" id="5_anecj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0imdi"]
+shader = ExtResource( "2_853wq" )
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/fade = null
+shader_parameter/inverted = null
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource( "1_22br8" )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( "ShaderMaterial_0imdi" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ShaderFade = ExtResource( "5_anecj" )

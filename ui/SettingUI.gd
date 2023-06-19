@@ -16,12 +16,15 @@ func _ready() -> void:
 		language_ui.select(language)
 		_on_language_item_selected(language)
 
+
 #语言旋转
 func _on_language_item_selected(index: int) -> void:
 	if index == 0:
 		TranslationServer.set_locale("en")
+		$Button.text = "Exit Game"
 	else:
 		TranslationServer.set_locale("zh_CN")
+		$Button.text = "结束游戏"
 	ConfigUtils.setConfig("setting","language",index)
 
 func _on_shake_value_changed(value: float) -> void:
@@ -51,3 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			
 	
+
+
+func _on_button_pressed() -> void:
+	get_tree().quit()

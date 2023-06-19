@@ -60,8 +60,8 @@ mouse_filter = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 12.0
-offset_bottom = 32.0
+offset_top = 4.0
+offset_bottom = 24.0
 grow_horizontal = 2
 alignment = 1
 

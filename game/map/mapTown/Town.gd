@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var map_under = $TileMap
 @onready var pos_start = $TileMap2/Level_1/pos_start
 @onready var pos_end = $TileMap2/Level_1/pos_end
+@onready var pos_level_1 = $TileMap2/Level_1
 @onready var pos_level_5 = $TileMap2/Level_5/pos_start
 @onready var pos_level_11 = $TileMap2/Level_11
 @onready var pos_level_16 = $TileMap2/Level_16
@@ -87,8 +87,11 @@ func roundVictory():
 
 #获取坐标点
 func getPoint():
-	var random_point = Vector2(randi_range(pos_start.global_position.x, pos_end.global_position.x), randi_range(pos_start.global_position.y, pos_end.global_position.y))
-	if [6,7,8,9,10].has(LevelServer.level):
+	var random_point
+	if [1,2,3,4,5].has(LevelServer.level):
+		var node = pos_level_1.get_child(randi()%pos_level_1.get_child_count())
+		random_point = node.global_position
+	elif [6,7,8,9,10].has(LevelServer.level):
 		random_point = pos_level_5.global_position
 	elif [11,12,13,14,15].has(LevelServer.level):
 		var node = pos_level_11.get_child(randi()%pos_level_11.get_child_count())

@@ -24,14 +24,14 @@ func _ready():
 	name = str(Time.get_ticks_usec())
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
-	add_child(navigationAgent2D)
-	navigationAgent2D.max_speed = SPEED
-	navigationAgent2D.velocity_computed.connect(self._on_velocity_computed)
-	navigationAgent2D.avoidance_enabled = true
-	navigationAgent2D.path_desired_distance = 20
-	navigationAgent2D.path_max_distance = 100
-	navigationAgent2D.target_desired_distance = 20
-	navigationAgent2D.target_position = target_player.global_position
+	#add_child(navigationAgent2D)
+	#navigationAgent2D.max_speed = SPEED
+	#navigationAgent2D.velocity_computed.connect(self._on_velocity_computed)
+	#navigationAgent2D.avoidance_enabled = true
+	#navigationAgent2D.path_desired_distance = 20
+	#navigationAgent2D.path_max_distance = 100
+	#navigationAgent2D.target_desired_distance = 20
+	#navigationAgent2D.target_position = target_player.global_position
 
 func setData(data):
 	SPEED = data['speed']
@@ -43,18 +43,17 @@ func _physics_process(delta):
 	#if Engine.get_physics_frames() % 60 :
 	if is_atk || is_die:
 		return
-	elif target_player != null && Engine.get_physics_frames() % 60 == 0:
-		navigationAgent2D.target_position = target_player.global_position
+	elif target_player != null && Engine.get_physics_frames() % 25 == 0:
+		#navigationAgent2D.target_position = target_player.global_position
+		pass
+	
 	if hit:
 		move_and_slide()
-	elif navigationAgent2D.is_inside_tree() && !navigationAgent2D.is_navigation_finished():
-		var next_path_position = navigationAgent2D.get_next_path_position()
+	elif target_player != null:
+		var next_path_position = target_player.global_position
 		var current_agent_position: Vector2 = global_position
 		var new_velocity: Vector2 = (next_path_position - current_agent_position).normalized() * SPEED
-		if navigationAgent2D.avoidance_enabled:
-			navigationAgent2D.set_velocity(new_velocity)
-		else:
-			_on_velocity_computed(new_velocity)
+		_on_velocity_computed(new_velocity)
 
 	if velocity != Vector2.ZERO:
 		anim.play("run")

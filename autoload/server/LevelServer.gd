@@ -12,68 +12,68 @@ var wait_time = 1 #怪物生成间隔
 var wait_time_temp = 0 #怪物生成间隔
 
 var time_dict = {
-	"1" = 20,
-	"2" = 30,
-	"3" = 40,
-	"4" = 50,
-	"5" = 60,
+	"1" = 45,
+	"2" = 45,
+	"3" = 45,
+	"4" = 45,
+	"5" = 45,
 	"6" = 30,
 	"7" = 30,
 	"8" = 30,
 	"9" = 30,
-	"10" = 30,
-	"11" = 30,
-	"12" = 30,
-	"13" = 30,
-	"14" = 30,
-	"15" = 30,
-	"16" = 50,
-	"17" = 50,
-	"18" = 50,
-	"19" = 50,
-	"20" = 50,
-	"21" = 60,
-	"22" = 60,
-	"23" = 60,
-	"24" = 60,
-	"25" = 60,
-	"26" = 90,
-	"27" = 90,
-	"28" = 90,
-	"29" = 90,
-	"30" = 90
+	"10" = 60,
+	"11" = 60,
+	"12" = 60,
+	"13" = 60,
+	"14" = 60,
+	"15" = 60,
+	"16" = 60,
+	"17" = 60,
+	"18" = 60,
+	"19" = 60,
+	"20" = 90,
+	"21" = 90,
+	"22" = 90,
+	"23" = 90,
+	"24" = 90,
+	"25" = 150,
+	"26" = 150,
+	"27" = 150,
+	"28" = 150,
+	"29" = 150,
+	"30" = 150
 }
 
 var monster_attr = {
-	"1" = {'speed' = 50,'hp' = 1,'hurt' = 1},
-	"2" = {'speed' = 55,'hp' = 2,'hurt' = 1},
-	"3" = {'speed' = 60,'hp' = 3,'hurt' = 2},
-	"4" = {'speed' = 70,'hp' = 4,'hurt' = 2},
-	"5" = {'speed' = 80,'hp' = 5,'hurt' = 2},
-	"6" = {'speed' = 120,'hp' = 6,'hurt' = 3},
-	"7" = {'speed' = 120,'hp' = 6,'hurt' = 3},
-	"8" = {'speed' = 120,'hp' = 7,'hurt' = 3},
-	"9" = {'speed' = 120,'hp' = 7,'hurt' = 3},
-	"10" = {'speed' = 120,'hp' = 8,'hurt' = 3},
-	"11" = {'speed' = 100,'hp' = 8,'hurt' = 3},
-	"12" = {'speed' = 100,'hp' = 8,'hurt' = 4},
-	"13" = {'speed' = 100,'hp' = 9,'hurt' = 4},
-	"14" = {'speed' = 100,'hp' = 9,'hurt' = 4},
-	"15" = {'speed' = 100,'hp' = 9,'hurt' = 4},
-	"16" = {'speed' = 80,'hp' = 10,'hurt' = 5},
-	"17" = {'speed' = 80,'hp' = 10,'hurt' = 5},
-	"18" = {'speed' = 80,'hp' = 11,'hurt' = 5},
-	"19" = {'speed' = 80,'hp' = 11,'hurt' = 6},
-	"20" = {'speed' = 80,'hp' = 12,'hurt' = 6},
-	"21" = {'speed' = 150,'hp' = 12,'hurt' = 6},
-	"22" = {'speed' = 150,'hp' = 13,'hurt' = 7},
-	"23" = {'speed' = 150,'hp' = 13,'hurt' = 7},
-	"24" = {'speed' = 150,'hp' = 14,'hurt' = 7},
-	"25" = {'speed' = 150,'hp' = 14,'hurt' = 8},
-	"26" = {'speed' = 100,'hp' = 15,'hurt' = 8},
-	"27" = {'speed' = 100,'hp' = 15,'hurt' = 8},
-	"28" = {'speed' = 100,'hp' = 15,'hurt' = 9},
-	"29" = {'speed' = 100,'hp' = 16,'hurt' = 9},
+	"1" = {'speed' = 90,'hp' = 2,'hurt' = 1},
+	"2" = {'speed' = 90,'hp' = 3,'hurt' = 1},
+	"3" = {'speed' = 90,'hp' = 4,'hurt' = 2},
+	"4" = {'speed' = 90,'hp' = 5,'hurt' = 2},
+	"5" = {'speed' = 90,'hp' = 6,'hurt' = 2},
+	"6" = {'speed' = 70,'hp' = 7,'hurt' = 2},
+	"7" = {'speed' = 70,'hp' = 8,'hurt' = 2},
+	"8" = {'speed' = 70,'hp' = 9,'hurt' = 2},
+	"9" = {'speed' = 70,'hp' = 10,'hurt' = 2},
+	"10" = {'speed' = 65,'hp' = 11,'hurt' = 2},
+	"11" = {'speed' = 65,'hp' = 12,'hurt' = 3},
+	"12" = {'speed' = 65,'hp' = 13,'hurt' = 3},
+	"13" = {'speed' = 65,'hp' = 14,'hurt' = 3},
+	"14" = {'speed' = 65,'hp' = 15,'hurt' = 3},
+	"15" = {'speed' = 65,'hp' = 16,'hurt' = 3},
+	"16" = {'speed' = 80,'hp' = 17,'hurt' = 5},
+	"17" = {'speed' = 80,'hp' = 18,'hurt' = 5},
+	"18" = {'speed' = 80,'hp' = 19,'hurt' = 5},
+	"19" = {'speed' = 80,'hp' = 20,'hurt' = 6},
+	"20" = {'speed' = 80,'hp' = 21,'hurt' = 6},
+	"21" = {'speed' = 150,'hp' = 22,'hurt' = 6},
+	"22" = {'speed' = 150,'hp' = 23,'hurt' = 7},
+	"23" = {'speed' = 150,'hp' = 24,'hurt' = 7},
+	"24" = {'speed' = 150,'hp' = 25,'hurt' = 7},
+	"25" = {'speed' = 150,'hp' = 26,'hurt' = 8},
+	"26" = {'speed' = 100,'hp' = 27,'hurt' = 8},
+	"27" = {'speed' = 100,'hp' = 28,'hurt' = 8},
+	"28" = {'speed' = 100,'hp' = 29,'hurt' = 9},
+	"29" = {'speed' = 100,'hp' = 30,'hurt' = 9},
 	"30" = {'speed' = 100,'hp' = 16,'hurt' = 9}
 }
 
@@ -145,7 +145,7 @@ func victory():
 	if level == 30:
 		Utils.showToast("GAME_SUCCESS")
 	emit_signal("roundVictory")
-	level += 5
+	level += 1
 	PlayerData.reward_point += 1
 	_onNextLevel()
 	#emit_signal("roundVictory")
@@ -153,17 +153,17 @@ func victory():
 func _onNextLevel():
 	emit_signal("onNextLevel",level)
 	if [1,2,3,4,5].has(level):
-		LevelServer.wait_time = 0.7
-	elif [6,7,8,9,10].has(level):
-		LevelServer.wait_time = 0.4
-	elif [11,12,13,14,15].has(level):
 		LevelServer.wait_time = 0.6
+	elif [6,7,8,9,10].has(level):
+		LevelServer.wait_time = 0.7
+	elif [11,12,13,14,15].has(level):
+		LevelServer.wait_time = 0.7
 	elif [16,17,18,19,20].has(level):
-		LevelServer.wait_time = 0.5
-	elif [21,22,23,24,25].has(level):
 		LevelServer.wait_time = 0.4
+	elif [21,22,23,24,25].has(level):
+		LevelServer.wait_time = 0.3
 	elif [26,27,28,29,30].has(level):
-		LevelServer.wait_time = 0.5
+		LevelServer.wait_time = 0.3
 
 func getScoreboard():
 	var score_board_ins = score_board.instantiate()

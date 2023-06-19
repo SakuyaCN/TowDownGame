@@ -1,0 +1,151 @@
+[gd_scene load_steps=11 format=3 uid="uid://7j88mmehfn28"]
+
+[ext_resource type="Script" path="res://game/map/Moon/Moon.gd" id="1_0j57y"]
+[ext_resource type="Texture2D" uid="uid://cm2w5aptjejj0" path="res://game/map/Moon/tileset.png" id="1_u6m6o"]
+[ext_resource type="PackedScene" uid="uid://b8fluhc5dx881" path="res://ui/ControlUI.tscn" id="2_nibbf"]
+[ext_resource type="AudioStream" uid="uid://dd8rqtd44vwn1" path="res://audio/bgm/Cephalopod.mp3" id="3_xmmcd"]
+[ext_resource type="Script" path="res://game/hero/Camera2D.gd" id="6_el8gj"]
+[ext_resource type="Texture2D" uid="uid://mxlhw72f364v" path="res://Sprites/light2.png" id="7_bycil"]
+
+[sub_resource type="Environment" id="Environment_3jhic"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_normalized = true
+glow_blend_mode = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cjycl"]
+texture = ExtResource("1_u6m6o")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_02w2v"]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+sources/2 = SubResource("TileSetAtlasSource_cjycl")
+
+[sub_resource type="GDScript" id="GDScript_3gum3"]
+script/source = "extends Node2D
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
+	var target = Utils.player.global_position
+	var x = int(lerp(global_position.x,target.x,0.2))
+	var y = int(lerp(global_position.y,target.y,0.2))
+	global_position = Vector2(x,y)
+"
+
+[node name="Moon" type="Node2D"]
+script = ExtResource("1_0j57y")
+
+[node name="ControlUI" parent="." instance=ExtResource("2_nibbf")]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_xmmcd")
+volume_db = -10.0
+autoplay = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3jhic")
+
+[node name="CreatePosition" type="Node2D" parent="."]
+position = Vector2(172, 93)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_02w2v")
+cell_quadrant_size = 32
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(655364, 65538, 0, 720900, 65538, 0, 720901, 65538, 0, 786438, 65538, 0, 851974, 65538, 0, 917510, 65538, 0, 983046, 65538, 0, 1048582, 65538, 0, 1114117, 65538, 0, 1048581, 65538, 0, 1114116, 65538, 0, 1179652, 65538, 0, 1114115, 65538, 0, 1048579, 65538, 0, 983043, 65538, 0, 917508, 65538, 0, 851971, 65538, 0, 786436, 65538, 0, 851972, 65538, 0, 917509, 65538, 0, 851973, 65538, 0, 983044, 65538, 0, 1048580, 65538, 0, 983045, 65538, 0, 786437, 65538, 0, 655365, 65538, 0, 589829, 65538, 0, 524293, 65538, 0, 589828, 65538, 0, 589827, 65538, 0, 720899, 65538, 0, 786435, 65538, 0, 851970, 65538, 0, 917507, 65538, 0, 983042, 65538, 0, 1048578, 65538, 0, 917506, 65538, 0, 786434, 65538, 0, 720898, 65538, 0, 655363, 65538, 0, 851969, 65538, 0, 786433, 65538, 0, 720897, 65538, 0, 917505, 65538, 0, 983041, 65538, 0, 851968, 65538, 0, 655362, 65538, 0, 589826, 65538, 0, 524291, 65538, 0, 458755, 65538, 0, 524292, 65538, 0, 458756, 65538, 0, 393221, 65538, 0, 393220, 65538, 0, 327684, 65538, 0, 327685, 65538, 0, 458757, 65538, 0, 262149, 65538, 0, 393222, 65538, 0, 458758, 65538, 0, 524294, 65538, 0, 589830, 65538, 0, 655367, 65538, 0, 720902, 65538, 0, 786439, 65538, 0, 655366, 65538, 0, 524295, 65538, 0, 589831, 65538, 0, 655368, 65538, 0, 720903, 65538, 0, 786440, 65538, 0, 851976, 65538, 0, 917512, 65538, 0, 983048, 65538, 0, 1048584, 65538, 0, 983047, 65538, 0, 917511, 65538, 0, 851975, 65538, 0, 720904, 65538, 0, 786441, 65538, 0, 917513, 65538, 0, 1114120, 65538, 0, 1114119, 65538, 0, 1179655, 65538, 0, 1114118, 65538, 0, 1048583, 65538, 0, 1179654, 65538, 0, 1245189, 65538, 0, 1179653, 65538, 0, 1245188, 65538, 0, 1245187, 65538, 0, 1179651, 65538, 0, 1114114, 65538, 0, 1310724, 65538, 0, 1376260, 65538, 0, 1310725, 65538, 0, 1376261, 65538, 0, 1310726, 65538, 0, 1245190, 65538, 0, 1310727, 65538, 0, 1245191, 65538, 0, 1179656, 65538, 0, 1048585, 65538, 0, 983049, 65538, 0, 851977, 65538, 0, 1441797, 65538, 0, 1441798, 65538, 0, 1376262, 65538, 0, 1507333, 65538, 0, 917514, 65538, 0, 786432, 65538, 0, 720896, 65538, 0, 655361, 65538, 0, 589825, 65538, 0, 524290, 65538, 0, 458754, 65538, 0, 393219, 65538, 0, 327683, 65538, 0, 196612, 65538, 0, 131077, 65538, 0, 131076, 65538, 0, 262148, 65538, 0, 65540, 65538, 0, 196611, 65538, 0, 262147, 65538, 0, 327682, 65538, 0, 393218, 65538, 0, 458753, 65538, 0, 524289, 65538, 0, 589824, 65538, 0, 655360, 65538, 0, 196613, 65538, 0, 262150, 65538, 0, 327686, 65538, 0, 393223, 65538, 0, 458759, 65538, 0, 524296, 65538, 0, 589832, 65538, 0, 655369, 65538, 0, 720905, 65538, 0, 786442, 65538, 0, 851978, 65538, 0)
+
+[node name="PlayerRoot" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
+
+[node name="Anchor" type="Node2D" parent="TileMap/PlayerRoot"]
+script = SubResource("GDScript_3gum3")
+
+[node name="Camera2D" type="Camera2D" parent="TileMap/PlayerRoot/Anchor"]
+position_smoothing_enabled = true
+script = ExtResource("6_el8gj")
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMap/PlayerRoot/Anchor/Camera2D"]
+position = Vector2(0, -6)
+shadow_enabled = true
+texture = ExtResource("7_bycil")
+texture_scale = 0.5
+
+[node name="MonsterRoot" type="Node2D" parent="TileMap"]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

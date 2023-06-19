@@ -16,7 +16,7 @@ motion_mode = 1
 script = ExtResource("1_wyxm3")
 bullet_impact = ExtResource("2_ogl25")
 bullet_smoke = ExtResource("3_jq64f")
-speed = 350
+speed = 800
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -26,6 +26,5 @@ texture = ExtResource("4_3f6k5")
 shape = SubResource("CircleShape2D_m3nq5")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.7
 texture = ExtResource("5_bq71x")
 texture_scale = 0.5

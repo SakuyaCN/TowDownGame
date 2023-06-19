@@ -10,7 +10,7 @@ background_mode = 3
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 0.6
-glow_blend_mode = 1
+glow_blend_mode = 0
 glow_hdr_threshold = 0.2
 
 [node name="test" type="NavigationRegion2D"]

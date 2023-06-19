@@ -1,6 +1,5 @@
 extends "res://game/guns/BaseGun.gd"
 
-
 func _process(delta):
 	super._process(delta)
 	queue_redraw()

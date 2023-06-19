@@ -45,6 +45,8 @@ func _ready() -> void:
 func loadBag():
 	for item in am_list_node.get_children():
 		item.queue_free()
+	am_list_node.get_children().clear()
+	await get_tree().create_timer(0.01).timeout
 	for item in PlayerData.player_am_list:
 		if !am_list_node.has_node(str(item)) && PlayerData.player_am_list[item].gun == null:
 			var ins = attachmont_item_pre.instantiate()
@@ -104,8 +106,8 @@ func checkTouchUp(id,node:WeaponAmItem):
 	if node.state:
 		choose_gun.addAttachMent(am)
 		loadWeaponAm()
-		loadBag()
 		Utils.showToast("INVENTORY_AM_UP")
+		loadBag()
 
 func checkTouchDown(am:BaseAttachment):
 	choose_gun.removeAttachMent(am)

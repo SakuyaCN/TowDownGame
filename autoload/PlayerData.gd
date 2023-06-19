@@ -19,24 +19,24 @@ var player_fire_rate = 1: #全局武器间隔
 	set(value):
 		player_fire_rate = value
 		emit_signal("onPlayerFireRateChange",player_fire_rate)
-var player_ammo = 50:#子弹数量
+var player_ammo = 100:#子弹数量
 	set(value):
 		player_ammo = value
 		emit_signal("onAmmoChange",player_ammo)
 var player_am_list = {} #配件列表
 var player_weapon_list = {} #武器列表
 var player_reward = {} #奖励列表
-var player_hp_max = 10: #最大血量
+var player_hp_max = 5: #最大血量
 	set(value):
 		player_hp_max = value
 		emit_signal("onHpChange",player_hp,player_hp_max)
-var player_hp = 10: #当前血量
+var player_hp = 5: #当前血量
 	set(value):
 		player_hp = value
 		emit_signal("onHpChange",player_hp,player_hp_max)
 		if player_hp <= 0:
 			emit_signal("onPlayerDeath")
-var gold = 1225:
+var gold = 20:
 	set(value):
 		gold = value
 		emit_signal("onGoldChange",gold)

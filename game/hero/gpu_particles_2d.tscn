@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdc7huj4d7tnk"]
+[gd_scene load_steps=8 format=3 uid="uid://cdc7huj4d7tnk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qeryj"]
+blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_jlf4i"]
-offsets = PackedFloat32Array(0.00271739, 0.826087, 1)
-colors = PackedColorArray(0.992252, 1, 0.0484131, 1, 0.486275, 0.486275, 0.486275, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.00271739, 0.866029, 1)
+colors = PackedColorArray(1, 0.890623, 0.0968534, 1, 0.486275, 0.486275, 0.486275, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gmjer"]
 gradient = SubResource("Gradient_jlf4i")
@@ -37,14 +40,17 @@ script/source = "extends GPUParticles2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	emitting = true
+	await get_tree().create_timer(0.3).timeout
+	queue_free()
 "
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_qeryj")
 position = Vector2(10, -1)
 emitting = false
-amount = 20
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_6wlxw")
-lifetime = 0.22
+lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0

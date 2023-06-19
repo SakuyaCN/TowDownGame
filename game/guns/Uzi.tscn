@@ -38,6 +38,7 @@ script = ExtResource("1_20150")
 weapon_id = 9
 image = ExtResource("2_2kjwi")
 weapon_name = "Uzi"
+weapon_type = "SUBMACHINE_GUNSRELOAD"
 bullet_scene = ExtResource("3_tnqfi")
 damage = 0.5
 bullet_speed = 300
