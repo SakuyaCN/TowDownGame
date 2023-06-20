@@ -71,6 +71,7 @@ var canvasLayer:CanvasLayer
 var player:Player
 var freeze_frame = false
 var shake = 1.0 #振动幅度
+var pause_state = false #暂停状态
 var is_game_start = false #游戏是否开始
 
 var is_inv_show = false #是否展示背包

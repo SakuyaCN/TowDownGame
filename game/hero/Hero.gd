@@ -6,6 +6,7 @@ class_name Player
 @onready var reward_root = $RewardRoot
 @onready var dash_part = $body/DashParticles2D
 const dash_obj = preload("res://game/hero/DashObj.tscn")
+const level_up_effect = preload("res://game/hero/effect/LevelUpEffect.tscn")
 
 var gun = null
 
@@ -26,6 +27,7 @@ func _init() -> void:
 func _ready():
 	set_physics_process(false)
 	set_process(false)
+	PlayerData.onPlayerLevelChange.connect(self.onPlayerLevelChange)
 	PlayerData.playerWeaponListChange.connect(self.playerWeaponListChange)
 	Utils.player = self
 	#PlayerData.add_attachment(preload("res://game/attachments/UniversalExtendedMagazines.tscn").instantiate())
@@ -35,6 +37,10 @@ func _ready():
 	#PlayerData.add_attachment(preload("res://game/attachments/SubmachineGunMagazine.tscn").instantiate())
 	#PlayerData.add_attachment(preload("res://game/attachments/MachineGunMagazine.tscn").instantiate())
 	
+func onPlayerLevelChange(level):
+	var ins = level_up_effect.instantiate()
+	add_child(ins)
+
 func onGameStart():
 	set_physics_process(true)
 	set_process(true)

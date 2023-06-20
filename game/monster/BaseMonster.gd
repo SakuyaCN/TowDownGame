@@ -25,12 +25,6 @@ func _ready():
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
 	#add_child(navigationAgent2D)
-	#navigationAgent2D.max_speed = SPEED
-	#navigationAgent2D.velocity_computed.connect(self._on_velocity_computed)
-	#navigationAgent2D.avoidance_enabled = true
-	#navigationAgent2D.path_desired_distance = 20
-	#navigationAgent2D.path_max_distance = 100
-	#navigationAgent2D.target_desired_distance = 20
 	#navigationAgent2D.target_position = target_player.global_position
 
 func setData(data):
@@ -40,19 +34,19 @@ func setData(data):
 	knockback_def = 5
 
 func _physics_process(delta):
+	if idle_frame_num > 0:
+		Utils.showHitLabel(idle_frame_num,self)
+		idle_frame_num = 0
 	#if Engine.get_physics_frames() % 60 :
 	if is_atk || is_die:
 		return
-	elif target_player != null && Engine.get_physics_frames() % 25 == 0:
-		#navigationAgent2D.target_position = target_player.global_position
-		pass
-	
 	if hit:
 		move_and_slide()
 	elif target_player != null:
 		var next_path_position = target_player.global_position
+		#var next_path_position = navigationAgent2D.get_next_path_position()
 		var current_agent_position: Vector2 = global_position
-		var new_velocity: Vector2 = (next_path_position - current_agent_position).normalized() * SPEED
+		var new_velocity: Vector2 = current_agent_position.direction_to(next_path_position) * SPEED
 		_on_velocity_computed(new_velocity)
 
 	if velocity != Vector2.ZERO:
@@ -91,6 +85,7 @@ func hitFlash(collisionResult,bullet:Bullet):
 	await get_tree().create_timer(bullet.knockback_time).timeout.connect(func timeout():
 		sprite_body.get_node("AnimatedSprite2D").material = null; hit = false )
 
+var idle_frame_num = 0
 func onHit(hit_num,is_show_label = true):
 	var nodes = get_tree().get_nodes_in_group("reward")
 	var temp_hurt = 0
@@ -99,6 +94,8 @@ func onHit(hit_num,is_show_label = true):
 			var num = node.call("beforeAtk",self,hit_num)
 			temp_hurt += num
 	hit_num += temp_hurt
+	if is_show_label:
+		idle_frame_num += hit_num
 	if HP:
 		HP -= hit_num
 		if HP <= 0:
@@ -106,10 +103,9 @@ func onHit(hit_num,is_show_label = true):
 	for node in nodes:
 		if node.connect_afterAtk:
 			node.call("afterAtk",self,hit_num)
-	if is_show_label:
-		Utils.showHitLabel(hit_num,self)
 
 func onDie():
+	is_die = true
 	PlayerData.player_exp += 1
 	if death_callback:
 		death_callback.call(self)
@@ -118,7 +114,6 @@ func onDie():
 	for node in nodes:
 		if node.connect_kill:
 			node.call("onKill",self)
-	is_die = true
 	set_physics_process(false)
 	get_node("CollisionShape2D").call_deferred("set_disabled",true)
 	anim.play("die")

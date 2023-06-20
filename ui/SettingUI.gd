@@ -48,10 +48,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = true
 		elif visible:
 			hide()
-			get_tree().paused = false
-			if Utils.is_game_start:
-				Utils.crosshairChange(true)
-				Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+			if !Utils.pause_state:
+				get_tree().paused = false
+				if Utils.is_game_start:
+					Utils.crosshairChange(true)
+					Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			
 	
 

@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxrfu5s45qvon"]
+[gd_scene load_steps=4 format=3 uid="uid://cxrfu5s45qvon"]
 
 [ext_resource type="Script" path="res://ui/widgets/HitLabel.gd" id="1_p8e6f"]
 [ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="1_sv7pc"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f1w54"]
+blend_mode = 1
+
 [node name="HitLabel" type="Label"]
 texture_filter = 1
+material = SubResource("CanvasItemMaterial_f1w54")
 offset_left = -45.0
 offset_top = -14.0
 offset_right = 46.0

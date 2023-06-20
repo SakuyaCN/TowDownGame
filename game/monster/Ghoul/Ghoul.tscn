@@ -257,6 +257,7 @@ height = 22.0
 
 [node name="Ghoul" type="CharacterBody2D"]
 collision_layer = 3
+motion_mode = 1
 script = ExtResource("1_4ew87")
 
 [node name="UndeadShadow" type="Sprite2D" parent="."]

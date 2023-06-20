@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://mdoqemvcaejm"]
+
+[ext_resource type="Script" path="res://ui/snow/ChooseUI.gd" id="1_g2q18"]
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="1_qs763"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cawk1"]
+bg_color = Color(0.372549, 0.505882, 0.607843, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_3oq43"]
+font = ExtResource("1_qs763")
+font_size = 8
+outline_size = 1
+outline_color = Color(0.356863, 0.360784, 0.333333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wgveh"]
+font = ExtResource("1_qs763")
+font_size = 6
+
+[node name="Choose" type="Panel"]
+custom_minimum_size = Vector2(80, 0)
+offset_right = 80.0
+offset_bottom = 141.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cawk1")
+script = ExtResource("1_g2q18")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 6.0
+offset_right = 16.0
+offset_bottom = 38.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 38.0
+offset_right = 75.0
+offset_bottom = 61.0
+text = "道具名称"
+label_settings = SubResource("LabelSettings_3oq43")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 65.0
+offset_right = 75.0
+offset_bottom = 137.0
+text = "道具名称说明"
+label_settings = SubResource("LabelSettings_wgveh")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true

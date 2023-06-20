@@ -14,8 +14,11 @@ MAIN_UI_QUIT,Quit,退出
 MAIN_UI_MOD,Mod,模组
 ,,
 WAIT_MORE,Coming soon,敬请期待
-,,
-,,
+Normal_Mode,Normal Mode,常规模式
+Survival_Mode,Survival Mode,生存模式
+Survival_Mode_Info,"In Survival Mode, there will be an endless supply of ammunition and an endless horde of monsters. The monsters will gradually become stronger as time passes. Hold on until the end!",生存模式中将有数不尽的弹药，同时会有有数不尽的怪物，怪物会随着时间推移逐渐变强，坚持到最后！
+LIFT_TIME,Survival Time:,生存时间：
+MONSTER_LEVEL_UP,Monster power level increased!,怪物实力等级提升！
 ,,
 SETTING_LANGUAGE,language,语言
 SETTING_BASIC,Basic,基础
@@ -139,3 +142,12 @@ REWARD BLUE BACTERIA,Blue Bacteria,蓝色细菌
 REWARD BLUE BACTERIA INFO,"Each time you kill an enemy, it will provide an increase of 0.1 maximum health points (up to a maximum of 100) that can be held as an item.",每次击杀一个敌人会提供0.1点生命值上限（上限为100，最多持有一个物品）
 REWARD BLUE CIRCUIT,Blue Circuit,蓝色电路
 REWARD BLUE CIRCUIT INFO,"There is a chance to deliver an electric shock when hitting an enemy, dealing an additional 25% damage.",命中敌人有概率造成一次电击，额外获得造成25%的伤害
+,,
+Firearm enhancement,Firearm enhancement,枪械强化
+Firearm enhancement info,Base firing rate of all firearms increased by 10% (stackable up to 10 layers),所有枪械基础射速提高10%（最高叠加10层）
+Firepower Enhancement,Firepower Enhancement,火力强化
+Firepower Enhancement info,Increase the base damage of all your firearms by 10% (stackable up to a maximum of 20 layers),使你的所有枪械基础伤害提高10%（最高叠加20层）
+Quick Reload Magazine,Quick Reload Magazine,快速弹夹
+Quick Reload Magazine info,Increase reload speed of all firearms by 5% (stackable up to a maximum of 10 layers),所有枪械换弹速度提高5%（最高叠加10层）
+Aim Enhancement,Aim Enhancement,瞄准强化
+Aim Enhancement info,"Firearm damage has a 10% chance to deal 150% damage (stackable up to 10 layers, with 100% chance)",枪械伤害有10%的概率造成150%的伤害（最高叠加10层，100%的概率）

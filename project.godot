@@ -34,6 +34,7 @@ window/size/viewport_height=230
 window/size/window_width_override=1536
 window/size/window_height_override=864
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://Sprites/1 cursor.png"
 
 [editor_plugins]
 

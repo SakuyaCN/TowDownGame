@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5766vf0e5ckg"]
+[gd_scene load_steps=19 format=3 uid="uid://b5766vf0e5ckg"]
 
 [ext_resource type="Script" path="res://game/guns/BoomBoi.gd" id="1_5fns6"]
 [ext_resource type="Texture2D" uid="uid://bsxk02hl7i4a6" path="res://Sprites/The Tiny Alchemist - Guns/gun5.png" id="2_7wcnc"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://cqdvy2oqigf3n" path="res://audio/bullet/SCIMisc_Reload Alien Tech_05.wav" id="4_0ip26"]
 [ext_resource type="AudioStream" uid="uid://carvr71fdnshp" path="res://audio/LASRGun_Electron Impeller Fire_01.wav" id="5_7ljlq"]
 [ext_resource type="Animation" uid="uid://b42daukxb8wl4" path="res://game/guns/anim/reload.anim" id="6_we6lh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1o134"]
+blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_17ibg"]
 colors = PackedColorArray(0.202513, 0.970151, 1, 1, 0.502386, 0.816418, 1, 1)
@@ -100,6 +103,7 @@ target_position = Vector2(1000, 0)
 
 [node name="Line2D" type="Line2D" parent="RayCast2D"]
 self_modulate = Color(2, 2, 2, 1)
+material = SubResource("CanvasItemMaterial_1o134")
 position = Vector2(1, 0)
 points = PackedVector2Array(0, 0, 100, 0)
 width = 0.0

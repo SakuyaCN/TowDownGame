@@ -21,9 +21,11 @@ func _enter_tree() -> void:
 	get_tree().paused = true
 
 func _exit_tree() -> void:
+	if !Utils.pause_state:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+		get_tree().paused = false
 	Utils.is_inv_show = false
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	get_tree().paused = false
+	
 
 func _ready() -> void:
 	for node in weapon_am_nodes:
