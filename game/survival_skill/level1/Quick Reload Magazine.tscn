@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7ycw1nbkq7nr"]
-
-[ext_resource type="Texture2D" uid="uid://bmpbstqevhh22" path="res://Sprites/skill/Icons/Ability_icons6_23.png" id="1_3iqag"]
+[gd_scene load_steps=2 format=3 uid="uid://c7ycw1nbkq7nr"]
 
 [sub_resource type="GDScript" id="GDScript_ng7h6"]
 script/source = "extends BaseReward
+
+func onRewardStart():
+	PlayerData.base_reload_speed += 0.05 * count
+	print(222)
 "
 
 [node name="Quick Reload Magazine" type="Node2D"]
 script = SubResource("GDScript_ng7h6")
 reward_name = "Quick Reload Magazine"
-reward_image = ExtResource("1_3iqag")
 reward_info = "Quick Reload Magazine info"
 max_count = 10

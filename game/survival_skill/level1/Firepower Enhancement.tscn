@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc0l37kvmqbh5"]
-
-[ext_resource type="Texture2D" uid="uid://5t56k8auojmw" path="res://Sprites/skill/Icons/Ability_icons6_02.png" id="1_nhtuj"]
+[gd_scene load_steps=2 format=3 uid="uid://cc0l37kvmqbh5"]
 
 [sub_resource type="GDScript" id="GDScript_0ii24"]
 script/source = "extends BaseReward
@@ -9,6 +7,5 @@ script/source = "extends BaseReward
 [node name="Firepower Enhancement" type="Node2D"]
 script = SubResource("GDScript_0ii24")
 reward_name = "Firepower Enhancement"
-reward_image = ExtResource("1_nhtuj")
 reward_info = "Firepower Enhancement info"
 max_count = 20

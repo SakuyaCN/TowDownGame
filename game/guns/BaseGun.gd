@@ -152,7 +152,7 @@ func fire(bullet:Bullet,is_bullet = true,is_play = true):
 			return
 	
 	bullet.speed = bullet_speed
-	bullet.hurt = damage
+	bullet.hurt = damage * (1+PlayerData.base_bullet_damage)
 	bullet.knockback_speed = knockback_speed
 	bullet.knockback_time = knockback_time
 	bullet.gun = self
@@ -170,8 +170,9 @@ func reload_ammo():
 		return 
 	if !is_reloading && change_timer.is_stopped() && bullets_count < bullets_max_count:
 		is_reloading = true
-		anim_player.speed_scale = 1 / change_speed
-		change_timer.start(change_speed)
+		var local_speed = change_speed * (1-PlayerData.base_reload_speed) 
+		anim_player.speed_scale = 1 / local_speed
+		change_timer.start(local_speed)
 		audio_reload_ammo.play()
 		playReload()
 
