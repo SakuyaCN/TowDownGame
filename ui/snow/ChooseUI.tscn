@@ -79,3 +79,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

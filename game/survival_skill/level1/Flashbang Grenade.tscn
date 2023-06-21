@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://v7c3hxl00f6k"]
+
+[ext_resource type="Texture2D" uid="uid://bl3fojbga4l0w" path="res://Sprites/skill/Icons/Ability_icons6_06.png" id="1_j867g"]
+
+[sub_resource type="GDScript" id="GDScript_8yu8n"]
+script/source = "extends BaseReward
+
+@onready var stun_effect = preload(\"res://game/survival_effect/StunEffect.tscn\")
+
+func afterAtk(monster:BaseMonster,hit_num):#怪物收到伤害后触发
+	if !monster.is_boss && randi()%100 < 5 * count:
+		var ins = stun_effect.instantiate()
+		ins.monster = monster
+		ins.time = 1
+		monster.addEffect(ins)
+"
+
+[node name="Flashbang Grenade" type="Node2D"]
+script = SubResource("GDScript_8yu8n")
+reward_name = "Flashbang Grenade"
+reward_image = ExtResource("1_j867g")
+reward_info = "Flashbang Grenade info"
+max_count = 10
+connect_afterAtk = true

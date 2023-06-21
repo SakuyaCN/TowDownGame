@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name BaseMonster
 
+@export var is_boss = false
 @export var SPEED = 50.0
 @export var hurt = 1
 @export var HP = 5
@@ -12,7 +13,7 @@ var audio_hit = AudioStreamPlayer2D.new()
 @onready var anim :AnimatedSprite2D = get_node("body/AnimatedSprite2D")
 
 var target_player:Player = Utils.player
-
+var state_array = []
 var hit = false
 var is_die = false
 var is_flip
@@ -59,6 +60,9 @@ func _physics_process(delta):
 		anim.play("idle")
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	if state_array.has(Utils.STATE_TYPE.STUN):
+		anim.play("idle")
+		return
 	velocity = safe_velocity
 	move_and_slide()
 
@@ -86,7 +90,9 @@ func hitFlash(collisionResult,bullet:Bullet):
 		sprite_body.get_node("AnimatedSprite2D").material = null; hit = false )
 
 var idle_frame_num = 0
-func onHit(hit_num,is_show_label = true):
+func onHit(hit_num,is_show_label = true,is_death_effect = true):
+	if PlayerData.base_aim_enh > 0 && PlayerData.base_aim_enh > randi()%100:
+		hit_num *= 1.5
 	var nodes = get_tree().get_nodes_in_group("reward")
 	var temp_hurt = 0
 	for node in nodes:
@@ -94,27 +100,31 @@ func onHit(hit_num,is_show_label = true):
 			var num = node.call("beforeAtk",self,hit_num)
 			temp_hurt += num
 	hit_num += temp_hurt
+	hit_num = snapped(hit_num,0.01)
 	if is_show_label:
 		idle_frame_num += hit_num
 	if HP:
 		HP -= hit_num
 		if HP <= 0:
-			onDie()
+			onDie(is_death_effect)
 	for node in nodes:
 		if node.connect_afterAtk:
 			node.call("afterAtk",self,hit_num)
 
-func onDie():
+func onDie(is_death_effect = true):
 	is_die = true
 	PlayerData.player_exp += 1
 	if death_callback:
 		death_callback.call(self)
 	var nodes = get_tree().get_nodes_in_group("reward")
 	var temp_hurt = 0
-	for node in nodes:
-		if node.connect_kill:
-			node.call("onKill",self)
+	if is_death_effect:
+		for node in nodes:
+			if node.connect_kill:
+				node.call("onKill",self)
 	set_physics_process(false)
+	for item in get_node("EffectRoot").get_children():
+		item.queue_free()
 	get_node("CollisionShape2D").call_deferred("set_disabled",true)
 	anim.play("die")
 	get_tree().create_tween().tween_property(get_node("UndeadShadow"),"scale",Vector2.ZERO,0.3)
@@ -123,3 +133,6 @@ func onDie():
 	
 func setDeathCallBack(death_callback:Callable):
 	self.death_callback = death_callback
+
+func addEffect(node):
+	get_node("EffectRoot").add_child(node)

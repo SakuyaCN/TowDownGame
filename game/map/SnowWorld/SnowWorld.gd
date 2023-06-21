@@ -29,3 +29,6 @@ func onMonsterJoin():
 	Utils.crosshairChange(true)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	builder.start()
+
+func addEffectNode(node):
+	$EffectRoot.add_child(node)

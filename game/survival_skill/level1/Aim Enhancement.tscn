@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqsw6qd1n2u3m"]
+[gd_scene load_steps=3 format=3 uid="uid://dqsw6qd1n2u3m"]
+
+[ext_resource type="Texture2D" uid="uid://dnevdje835aad" path="res://Sprites/skill/Icons/Ability_icons6_01.png" id="1_kjmjw"]
 
 [sub_resource type="GDScript" id="GDScript_y7f4j"]
 script/source = "extends BaseReward
 
+func onRewardStart():
+	PlayerData.base_aim_enh += 10
 "
 
 [node name="Aim Enhancement" type="Node2D"]
 script = SubResource("GDScript_y7f4j")
 reward_name = "Aim Enhancement"
+reward_image = ExtResource("1_kjmjw")
 reward_info = "Aim Enhancement info"
 max_count = 10

@@ -41,10 +41,13 @@ var gold = 20:
 		gold = value
 		emit_signal("onGoldChange",gold)
 
-var player_damage = 0 #玩家基础伤害
+var player_speed = 1.0 #玩家额外移速加成
+var player_damage = 0.3 #玩家基础伤害
 var base_bullet_damage = 0 #子弹伤害增幅
 var base_bullet_speed = 0 #射速增幅
 var base_reload_speed = 0 #换弹增幅
+var base_aim_enh = 0 #子弹暴击增幅
+var base_magazine_count = 0 #子弹数量加成
 var reward_point = 0:
 	set(value):
 		reward_point = value

@@ -32,13 +32,13 @@ func getShopList(is_reload = false):
 
 func addReward(rw:BaseReward):
 	if Utils.player:
-		if Utils.player.reward_root.has_node(str(rw.id)):
-			var node = Utils.player.reward_root.get_node(str(rw.id))
+		if Utils.player.reward_root.has_node(rw.reward_name):
+			var node = Utils.player.reward_root.get_node(str(rw.reward_name))
 			if node.count < node.max_count:
 				node.count += 1
 			emit_signal("onRewardAdd",node)
 		else:
-			rw.name = str(rw.id)
+			rw.name = rw.reward_name
 			Utils.player.reward_root.add_child(rw)
 			emit_signal("onRewardAdd",rw)
 

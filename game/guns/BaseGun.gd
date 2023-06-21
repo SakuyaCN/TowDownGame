@@ -62,6 +62,7 @@ func _init():
 	change_timer.timeout.connect(self.reload_over)
 	
 func _ready() -> void:
+	add_to_group("guns")
 	PlayerData.onPlayerFireRateChange.connect(self.onPlayerFireRateChange)
 	add_child(attachments_node)
 	bullets_count = bullets_max_count
@@ -77,6 +78,7 @@ func onPlayerFireRateChange(rate):
 
 #更新枪械配置
 func updateGun():
+	bullets_max_count = int(bullets_max_count * (1+PlayerData.base_magazine_count))
 	timer.wait_time = 1.0 / fire_rate
 	PlayerData.emit_signal("onWeaponBulletsChange",bullets_count,bullets_max_count) 
 

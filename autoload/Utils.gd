@@ -2,6 +2,10 @@ extends Node
 
 const shop_pre = preload("res://ui/widgets/ShopPanel.tscn")
 
+enum STATE_TYPE {
+	STUN #眩晕
+}
+
 enum GUN_TYPE { #枪械类型
 	ASSAULT_RIFLES = 1 << 0, #突击步枪
 	SUBMACHINE_GUNSRELOAD = 1 << 1, #冲锋枪

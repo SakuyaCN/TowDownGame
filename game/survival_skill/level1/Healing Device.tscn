@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://2d4hm45a8bcy"]
+
+[ext_resource type="Texture2D" uid="uid://7od7f1tix040" path="res://Sprites/skill/Icons/Ability_icons6_51.png" id="1_w6r0c"]
+[ext_resource type="Texture2D" uid="uid://bkiq1xk4b7gjc" path="res://Sprites/hp.png" id="2_wwfto"]
+
+[sub_resource type="GDScript" id="GDScript_pxuat"]
+script/source = "extends BaseReward
+
+var time_tick = 0
+var is_ok = false
+
+func beforeAtk(monster:BaseMonster,hit_num):#怪物收到伤害前触发
+	time_tick = 0
+	return 0
+
+func beforePlayerHit(hit_num):
+	time_tick = 0
+
+func _on_timer_timeout() -> void:
+	time_tick += 1
+	if time_tick >= 3:
+		is_ok = true
+	else:
+		is_ok = false
+	$GPUParticles2D.emitting = is_ok
+	if is_ok:
+		PlayerData.addPlayerHp(1)
+"
+
+[sub_resource type="Curve" id="Curve_8pfnu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.330532, 0.490909), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5x5df"]
+curve = SubResource("Curve_8pfnu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hfh76"]
+emission_shape = 1
+emission_sphere_radius = 29.96
+particle_flag_disable_z = true
+direction = Vector3(0, -50, 0)
+spread = 27.95
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_5x5df")
+color = Color(1.2, 1.2, 1.2, 1)
+
+[node name="Healing Device" type="Node2D"]
+script = SubResource("GDScript_pxuat")
+reward_name = "Healing Device"
+reward_image = ExtResource("1_w6r0c")
+reward_info = "Healing Device info"
+connect_beforeAtk = true
+connect_beforePlayerHit = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_hfh76")
+texture = ExtResource("2_wwfto")
+trail_lifetime = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

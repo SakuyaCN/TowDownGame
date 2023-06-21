@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://3unmqdt15u1c"]
+
+[ext_resource type="Texture2D" uid="uid://7j4616whaekl" path="res://Sprites/skill/Icons/Ability_icons6_07.png" id="1_6ure8"]
+
+[sub_resource type="GDScript" id="GDScript_lw7gd"]
+script/source = "extends BaseReward
+
+const pre = preload(\"res://game/survival_effect/GuidanceDeviceEffect.tscn\")
+
+var ins
+
+func onRewardStart():
+	if ins:
+		pass
+	else:
+		ins = pre.instantiate()
+		Utils.player.add_child(ins)
+
+func beforeAtk(monster:BaseMonster,hit_num):#怪物收到伤害前触发
+	if ins.monster_array.has(monster):
+		return hit_num * count * 0.1
+	return 0
+"
+
+[node name="Guidance Device" type="Node2D"]
+script = SubResource("GDScript_lw7gd")
+reward_name = "Guidance Device"
+reward_image = ExtResource("1_6ure8")
+reward_info = "Guidance Device info"
+max_count = 10
+connect_beforeAtk = true

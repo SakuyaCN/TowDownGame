@@ -14,6 +14,7 @@ var SPEED = 100.0
 var is_run = false
 var is_dead = false #是否死亡
 var is_shoot = false #是否在射击
+var is_hit = false
 var is_knockback = false #后坐力
 var knockback_speed = 0 #后坐力速度
 var is_dash = false
@@ -36,7 +37,10 @@ func _ready():
 	#PlayerData.add_attachment(preload("res://game/attachments/ShotgunShellPouch.tscn").instantiate())
 	#PlayerData.add_attachment(preload("res://game/attachments/SubmachineGunMagazine.tscn").instantiate())
 	#PlayerData.add_attachment(preload("res://game/attachments/MachineGunMagazine.tscn").instantiate())
-	
+
+func updateHero():
+	SPEED = 100 * PlayerData.player_speed
+
 func onPlayerLevelChange(level):
 	var ins = level_up_effect.instantiate()
 	add_child(ins)

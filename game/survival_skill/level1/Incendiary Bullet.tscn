@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6cxhbi4hgag2"]
+
+[ext_resource type="Texture2D" uid="uid://dl6ftvwf6yh00" path="res://Sprites/skill/Icons/Ability_icons6_05.png" id="1_gs4xs"]
+
+[sub_resource type="GDScript" id="GDScript_wwbtc"]
+script/source = "extends BaseReward
+
+const effect = preload(\"res://game/survival_effect/IncendiaryEffect.tscn\")
+
+func onKill(monster:BaseMonster): #击杀后触发
+	var ins = effect.instantiate()
+	ins.scale *= 1+(count * 0.1)
+	ins.demage = (count * 0.5) * PlayerData.player_damage
+	ins.global_position = monster.global_position
+	get_tree().call_group(\"world\",\"addEffectNode\",ins)
+"
+
+[node name="Incendiary Bullet" type="Node2D"]
+script = SubResource("GDScript_wwbtc")
+reward_name = "Incendiary Bullet"
+reward_image = ExtResource("1_gs4xs")
+reward_info = "Incendiary Bullet info"
+max_count = 10
+connect_kill = true

@@ -28,10 +28,16 @@ const level_choose_pre = preload(\"res://ui/snow/ChooseUI.tscn\")
 signal onMonsterJoin()
 
 var skill_level_1 = [
+	preload(\"res://game/survival_skill/level1/Guidance Device.tscn\"),
+	preload(\"res://game/survival_skill/level1/Power Core.tscn\"),
+	preload(\"res://game/survival_skill/level1/Flashbang Grenade.tscn\"),
+	preload(\"res://game/survival_skill/level1/Incendiary Bullet.tscn\"),
+	preload(\"res://game/survival_skill/level1/Healing Device.tscn\"),
 	preload(\"res://game/survival_skill/level1/Aim Enhancement.tscn\"),
 	preload(\"res://game/survival_skill/level1/Firearm enhancement.tscn\"),
 	preload(\"res://game/survival_skill/level1/Firepower Enhancement.tscn\"),
-	preload(\"res://game/survival_skill/level1/Quick Reload Magazine.tscn\")
+	preload(\"res://game/survival_skill/level1/Quick Reload Magazine.tscn\"),
+	preload(\"res://game/survival_skill/level1/Spare Magazine.tscn\")
 ]
 
 func _ready():
@@ -53,17 +59,20 @@ func onPlayerLevelChange(level):
 	get_tree().paused = true
 	await get_tree().create_timer(1).timeout
 	level_choose_bg.visible = true
-	for i in skill_level_1:
+	for i in 4:
 		var ins = level_choose_pre.instantiate()
 		choose_box.add_child(ins)
 		ins.onSelected.connect(self.choose_select)
-		ins.setData(i)
+		ins.setData(skill_level_1[i])
 
 func choose_select():
 	level_choose_bg.visible = false
 	Utils.crosshairChange(true)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	Utils.pause_state = false
+	for item in choose_box.get_children():
+		item.queue_free()
+	get_tree().paused = false
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikyea"]
@@ -91,8 +100,10 @@ background_mode = 3
 glow_enabled = true
 glow_levels/1 = 1.0
 glow_levels/2 = 1.0
+glow_levels/4 = 1.0
 glow_normalized = true
-glow_blend_mode = 0
+glow_intensity = 1.31
+glow_blend_mode = 1
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oyf0b"]
 vertices = PackedVector2Array(1.5, -82, 67, -49, 2, -13, -64, -49)
@@ -183,7 +194,7 @@ func _physics_process(delta: float) -> void:
 	global_position = Vector2(x,y)
 "
 
-[node name="SnowWorld" type="Node2D"]
+[node name="SnowWorld" type="Node2D" groups=["world"]]
 texture_filter = 1
 script = ExtResource("1_l60ml")
 metadata/_edit_horizontal_guides_ = [54.0]
@@ -192,6 +203,7 @@ metadata/_edit_horizontal_guides_ = [54.0]
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 2
 script = SubResource("GDScript_850rg")
 
@@ -343,6 +355,8 @@ texture = ExtResource("6_7b54p")
 texture_scale = 0.5
 
 [node name="MonsterRoot" type="Node2D" parent="."]
+
+[node name="EffectRoot" type="Node2D" parent="."]
 
 [node name="CreatePosition" type="Node2D" parent="."]
 position = Vector2(-374, 135)

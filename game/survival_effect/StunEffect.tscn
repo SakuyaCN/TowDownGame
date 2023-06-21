@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://btitq6vtd1ric"]
+
+[ext_resource type="Texture2D" uid="uid://dtkcyutepn6su" path="res://Sprites/effect/stun.png" id="1_bwh31"]
+
+[sub_resource type="GDScript" id="GDScript_4lspf"]
+script/source = "extends Node2D
+
+var time = 1
+var monster:BaseMonster
+
+func _ready() -> void:
+	$Timer.start(time)
+	monster.state_array.append(Utils.STATE_TYPE.STUN)
+
+
+func _on_timer_timeout() -> void:
+	monster.state_array.erase(Utils.STATE_TYPE.STUN)
+	queue_free()
+"
+
+[node name="StunEffect" type="Node2D"]
+script = SubResource("GDScript_4lspf")
+
+[node name="Stun" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_bwh31")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

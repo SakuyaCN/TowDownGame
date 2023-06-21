@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ubtkyce763dl"]
+[gd_scene load_steps=3 format=3 uid="uid://ubtkyce763dl"]
+
+[ext_resource type="Texture2D" uid="uid://5t56k8auojmw" path="res://Sprites/skill/Icons/Ability_icons6_02.png" id="1_vdk6a"]
 
 [sub_resource type="GDScript" id="GDScript_2nyai"]
 script/source = "extends BaseReward
 
 func onRewardStart():
-	PlayerData.base_bullet_speed += 0.1 * count
-	print(222)
+	PlayerData.base_bullet_speed += 0.1
 "
 
 [node name="Firearm enhancement" type="Node2D"]
 script = SubResource("GDScript_2nyai")
 reward_name = "Firearm enhancement"
+reward_image = ExtResource("1_vdk6a")
 reward_info = "Firearm enhancement info"
 max_count = 10

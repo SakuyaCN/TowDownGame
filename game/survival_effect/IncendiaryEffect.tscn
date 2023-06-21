@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://djep37f0oaolg"]
+
+[ext_resource type="Texture2D" uid="uid://dbg1k5mklw5n4" path="res://Sprites/effect/Flame.png" id="1_66yrs"]
+
+[sub_resource type="GDScript" id="GDScript_eabf6"]
+script/source = "extends Node2D
+
+var monster_array :Array[BaseMonster]
+var tick = 0
+var demage = 0
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is BaseMonster:
+		monster_array.append(body)
+
+func _on_timer_timeout() -> void:
+	tick += 1
+	for monster in monster_array:
+		monster.onHit(demage,true,false)
+	if tick == 3:
+		queue_free()
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is BaseMonster:
+		monster_array.erase(body)
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_io471"]
+
+[sub_resource type="Gradient" id="Gradient_05wqm"]
+offsets = PackedFloat32Array(0, 0.0490798, 0.0858896, 0.788344, 1)
+colors = PackedColorArray(0.231373, 0.184314, 0.0862745, 0, 0.729942, 0.578412, 0.276034, 0.648649, 1, 0.791882, 0.37882, 1, 0.90625, 0.0248727, 0.0993405, 1, 0.905882, 0.0235294, 0.0980392, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vbxnp"]
+gradient = SubResource("Gradient_05wqm")
+width = 100
+
+[sub_resource type="Curve" id="Curve_2fba5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_31i27"]
+curve = SubResource("Curve_2fba5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eheno"]
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_31i27")
+color = Color(1, 1, 1, 0.454902)
+color_ramp = SubResource("GradientTexture1D_vbxnp")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0tmq"]
+radius = 26.0768
+
+[node name="IncendiaryEffect" type="Node2D"]
+script = SubResource("GDScript_eabf6")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_io471")
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_eheno")
+texture = ExtResource("1_66yrs")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_a0tmq")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

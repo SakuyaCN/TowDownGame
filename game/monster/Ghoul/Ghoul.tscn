@@ -277,3 +277,5 @@ frame_progress = 0.598055
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -13)
 shape = SubResource("CapsuleShape2D_x86uc")
+
+[node name="EffectRoot" type="Node2D" parent="."]

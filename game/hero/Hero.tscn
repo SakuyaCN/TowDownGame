@@ -334,7 +334,7 @@ scale_max = 3.0
 scale_curve = SubResource("CurveTexture_5ggjt")
 color = Color(0.956863, 0.956863, 0.956863, 1)
 
-[node name="Hero" type="CharacterBody2D"]
+[node name="Hero" type="CharacterBody2D" groups=["hero"]]
 material = ExtResource("1_e1xul")
 collision_layer = 9
 motion_mode = 1

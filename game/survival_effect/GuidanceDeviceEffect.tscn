@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf7dq6fcpv73o"]
+
+[sub_resource type="GDScript" id="GDScript_im8dp"]
+script/source = "extends Node2D
+
+var color = Color.INDIAN_RED
+var monster_array = []
+
+func _ready() -> void:
+	color.a = 0.3
+	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(self,\"color:a\",0,1)
+	tween.tween_callback(self.tween_finish)
+
+func tween_finish():
+	set_process(false)
+
+func _process(delta: float) -> void:
+	queue_redraw()
+
+func _draw() -> void:
+	draw_circle($Area2D.position,25,color)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is BaseMonster:
+		monster_array.append(body)
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is BaseMonster:
+		monster_array.erase(body)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ig3m"]
+radius = 25.0
+
+[node name="GuidanceDeviceEffect" type="Node2D"]
+scale = Vector2(5, 5)
+script = SubResource("GDScript_im8dp")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -1.6)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8ig3m")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
