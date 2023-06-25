@@ -1,0 +1,227 @@
+[gd_scene load_steps=13 format=3 uid="uid://b5npvlllq6sm1"]
+
+[ext_resource type="Script" path="res://game/equip/EquipOnFloor.gd" id="1_vm7af"]
+[ext_resource type="Texture2D" uid="uid://cxkg2hxdgf34a" path="res://Sprites/light.png" id="2_wdcbn"]
+[ext_resource type="Texture2D" uid="uid://die8toapequn2" path="res://game/hero/undead_shadow.png" id="3_r1vet"]
+[ext_resource type="Texture2D" uid="uid://t0txnlfu2j08" path="res://Sprites/equip/Slice 10.png" id="4_4popx"]
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="5_4wn1k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1pkyr"]
+
+[sub_resource type="Shader" id="Shader_2r6ar"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color:source_color = vec4(1);
+uniform float line_thickness : hint_range(0, 20) = 0.0;
+uniform bool add_margins = true;
+
+void vertex() {
+    if (add_margins) {
+        VERTEX += (UV * 2.0 - 1.0) * line_thickness;
+    }
+}
+
+void fragment() {
+    vec2 uv = UV;
+    
+    if (add_margins) {
+        vec2 texture_pixel_size = vec2(1.0) / (vec2(1.0) / TEXTURE_PIXEL_SIZE + vec2(line_thickness * 2.0));
+        
+        uv = (uv - texture_pixel_size * line_thickness) * TEXTURE_PIXEL_SIZE / texture_pixel_size;
+        
+        if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
+            COLOR.a = 0.0;
+        } else {
+            COLOR = texture(TEXTURE, uv);
+        }
+    } else {
+        COLOR = texture(TEXTURE, uv);
+    }
+    
+    vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+    
+    if (line_thickness < 0.1) {
+        vec4 color = texture(TEXTURE, uv);
+        COLOR = color;
+    } else {
+        float outline = texture(TEXTURE, uv + vec2(-size.x, 0)).a;
+        outline += texture(TEXTURE, uv + vec2(0, size.y)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x, 0)).a;
+        outline += texture(TEXTURE, uv + vec2(0, -size.y)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.866, size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.5, size.y * 0.866)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.866, size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.5, size.y * 0.866)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.866, -size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.5, -size.y * 0.866)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.866, -size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.5, -size.y * 0.866)).a;
+        outline = min(outline, 1.0);
+        
+        vec4 color = texture(TEXTURE, uv);
+        COLOR = mix(color, line_color, outline - color.a);
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1kg0"]
+shader = SubResource("Shader_2r6ar")
+shader_parameter/line_color = Color(0.811765, 0.356863, 0.101961, 1)
+shader_parameter/line_thickness = 2.0
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_c03o3"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-29, -0.25, 0, 0.25, 0, -22, -0.25, 0, 0.25, 0, -29, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="Animation" id="Animation_lh1bb"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UndeadShadow:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -29, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8lc2s"]
+_data = {
+"new_animation": SubResource("Animation_c03o3"),
+"show": SubResource("Animation_lh1bb")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1632"]
+font = ExtResource("5_4wn1k")
+font_size = 9
+outline_size = 2
+outline_color = Color(0.560784, 0.560784, 0.560784, 1)
+
+[node name="EquipOnFloor" type="Node2D"]
+script = ExtResource("1_vm7af")
+
+[node name="Light" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+texture = ExtResource("2_wdcbn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_1pkyr")
+
+[node name="UndeadShadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -1)
+texture = ExtResource("3_r1vet")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_n1kg0")
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 16.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("4_4popx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "show"
+libraries = {
+"": SubResource("AnimationLibrary_8lc2s")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -46.0
+offset_right = 64.0
+offset_bottom = -23.0
+text = "touch e"
+label_settings = SubResource("LabelSettings_l1632")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

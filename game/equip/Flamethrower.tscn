@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dr7c7kbxxii15"]
+
+[ext_resource type="Texture2D" uid="uid://cqykipme4mhjr" path="res://Sprites/equip/Slice 3.png" id="1_dejol"]
+[ext_resource type="Texture2D" uid="uid://rtlf7xlm0ars" path="res://Sprites/effect/part/fire_01.png" id="2_gnyg2"]
+
+[sub_resource type="GDScript" id="GDScript_phdet"]
+script/source = "extends BaseEquip
+"
+
+[sub_resource type="Gradient" id="Gradient_hv87i"]
+offsets = PackedFloat32Array(0, 0.485207, 0.757396)
+colors = PackedColorArray(0.909804, 0.545292, 0.442575, 1, 1, 0, 0.00728941, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1hio1"]
+gradient = SubResource("Gradient_hv87i")
+
+[sub_resource type="Curve" id="Curve_qklu6"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -196.364), 0.0, 0.0, 0, 0, Vector2(0.143631, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mwf2v"]
+curve = SubResource("Curve_qklu6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wgqhe"]
+emission_shape = 1
+emission_sphere_radius = 0.01
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 50.0
+gravity = Vector3(0, -300, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = 32.0
+angular_velocity_max = 32.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+linear_accel_curve = SubResource("CurveTexture_mwf2v")
+scale_min = 0.2
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_1hio1")
+
+[node name="Flamethrower" type="Node2D"]
+script = SubResource("GDScript_phdet")
+equip_name = "Flamethrower"
+equip_image = ExtResource("1_dejol")
+equip_info = "Flamethrower info"
+cd_time = 45
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_wgqhe")
+texture = ExtResource("2_gnyg2")

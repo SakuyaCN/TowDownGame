@@ -13,7 +13,6 @@ config_version=5
 config/name="Don't Stop"
 run/main_scene="res://game/map/Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-run/max_fps=144
 config/icon="res://icon.svg"
 
 [autoload]
@@ -26,6 +25,7 @@ RewardServer="*res://autoload/server/RewardServer.gd"
 PlayerServer="*res://autoload/server/PlayerServer.gd"
 MapServer="*res://autoload/server/MapServer.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+EquipServer="*res://autoload/server/EquipServer.gd"
 
 [display]
 
@@ -131,6 +131,16 @@ mouse_right={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(132, 9),"global_position":Vector2(136, 50),"factor":1.0,"button_index":2,"pressed":true,"double_click":false,"script":null)
 ]
 }
+q={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"echo":false,"script":null)
+]
+}
+space={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+]
+}
 
 [input_devices]
 
@@ -139,6 +149,12 @@ pointing/emulate_touch_from_mouse=true
 [internationalization]
 
 locale/translations=PackedStringArray("res://translation/text.en.translation", "res://translation/text.zh_CN.translation")
+
+[layer_names]
+
+2d_physics/layer_1="围墙"
+2d_physics/layer_2="怪物"
+2d_physics/layer_5="拾取道具"
 
 [rendering]
 

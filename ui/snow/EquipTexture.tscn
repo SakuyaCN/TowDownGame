@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://v3tmci34tsh6"]
+
+[ext_resource type="Script" path="res://ui/snow/EquipTexture.gd" id="2_0122d"]
+[ext_resource type="Texture2D" uid="uid://t0txnlfu2j08" path="res://Sprites/equip/Slice 10.png" id="3_r8x5d"]
+[ext_resource type="Texture2D" uid="uid://bpyvb6mlccxjj" path="res://Sprites/equip_bg.png" id="3_xtjjd"]
+[ext_resource type="FontFile" uid="uid://dy05l0eg8wun5" path="res://fonts/px.ttf" id="4_ybpwg"]
+[ext_resource type="Texture2D" uid="uid://msjntg1rn2o1" path="res://Sprites/ui/key/tile_0235.png" id="5_jiiii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd27i"]
+bg_color = Color(0.6, 0.345098, 0.286275, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_7swiv"]
+font = ExtResource("4_ybpwg")
+font_size = 6
+outline_size = 2
+outline_color = Color(0.376471, 0.376471, 0.376471, 1)
+
+[node name="TextureRect" type="Panel"]
+custom_minimum_size = Vector2(16, 16)
+theme_override_styles/panel = SubResource("StyleBoxFlat_hd27i")
+script = ExtResource("2_0122d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(13, 13)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r8x5d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(0, 0, 0, 0.67451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("3_xtjjd")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Q"
+label_settings = SubResource("LabelSettings_7swiv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Key" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 2.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jiiii")
+expand_mode = 1
+stretch_mode = 5

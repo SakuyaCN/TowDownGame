@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://i0lposuqr8kn"]
+
+[ext_resource type="Texture2D" uid="uid://bycalpkrdtcpx" path="res://Sprites/skill/Icons/Ability_icons6_61.png" id="1_2i3gt"]
+
+[sub_resource type="GDScript" id="GDScript_djor1"]
+script/source = "extends BaseReward
+
+func beforePlayerHit(hit_num):#玩家收到伤害前触发
+	return -count
+"
+
+[node name="Grizzly Armor" type="Node2D"]
+script = SubResource("GDScript_djor1")
+reward_name = "Grizzly Armor"
+reward_image = ExtResource("1_2i3gt")
+reward_info = "Grizzly Armor info"
+connect_beforePlayerHit = true

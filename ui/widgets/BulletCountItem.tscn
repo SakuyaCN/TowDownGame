@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://ui/widgets/BulletCountItem.gd" id="2_qqwbi"]
 
 [node name="TextureRect" type="TextureRect"]
-custom_minimum_size = Vector2(6, 0)
-offset_right = 6.0
+custom_minimum_size = Vector2(5, 0)
+offset_right = 4.0
 offset_bottom = 6.0
 pivot_offset = Vector2(3, 4)
 texture = ExtResource("1_l1liw")

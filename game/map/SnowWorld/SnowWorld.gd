@@ -29,6 +29,12 @@ func onMonsterJoin():
 	Utils.crosshairChange(true)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	builder.start()
+	
+	EquipServer.addEquipOnFloor(preload("res://game/equip/High-Energy Particle Cannon.tscn").instantiate(),Utils.player.global_position)
+	EquipServer.addEquipOnFloor(preload("res://game/equip/Flamethrower.tscn").instantiate(),Utils.player.global_position+ Vector2(20,20))
 
 func addEffectNode(node):
 	$EffectRoot.add_child(node)
+
+func addEquip(ins):
+	$EquipRoot.add_child(ins)

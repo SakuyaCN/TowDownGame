@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=3 uid="uid://bb8glx1yljy7x"]
+
+[ext_resource type="Texture2D" uid="uid://t0txnlfu2j08" path="res://Sprites/equip/Slice 10.png" id="1_bbwr6"]
+[ext_resource type="Texture2D" uid="uid://6cng77rsgedk" path="res://game/bullets/assets/lights2.png" id="2_w22r5"]
+[ext_resource type="AudioStream" uid="uid://dlc85g3xs8cr5" path="res://audio/equip/LASRGun_Flange Cannon Fire_01.wav" id="3_s0rdg"]
+
+[sub_resource type="GDScript" id="GDScript_fjvsi"]
+script/source = "extends BaseEquip
+
+@onready var line_2d = $Root/Line2D
+
+var array :Array[BaseMonster]
+
+func openFire():
+	super.openFire()
+	$Root/Line2D/Area2D/CollisionShape2D.disabled = false
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	tween.tween_property(line_2d,\"width\",15,0.3)
+	tween.tween_property(line_2d,\"width\",0,0.3).set_delay(0.3)
+	tween.tween_callback(self.fireFinish)
+	$Root/Line2D/GPUParticles2D2.emitting = true
+	$Timer.start()
+	$AudioStreamPlayer2D.play()
+
+func _on_area_2d_body_entered(body):
+	if body is BaseMonster:
+		array.append(body)
+
+func _on_area_2d_body_exited(body):
+	if body is BaseMonster:
+		array.erase(body)
+
+func fireFinish():
+	$Root/Line2D/Area2D/CollisionShape2D.disabled = true
+	array.clear()
+	$Timer.stop()
+
+func _on_timer_timeout():
+	for monster in array:
+		if monster:
+			hitMonster(monster)
+
+func hitMonster(monster:BaseMonster):
+	monster.onHit(PlayerData.player_damage * 5)
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_io75d"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ge4pd"]
+colors = PackedColorArray(0.202513, 0.970151, 1, 1, 0.502386, 0.816418, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_0kfs2"]
+offsets = PackedFloat32Array(0.52071, 1)
+colors = PackedColorArray(0.584314, 0.92549, 0.945098, 1, 0.462745, 0.854902, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gxsir"]
+gradient = SubResource("Gradient_0kfs2")
+
+[sub_resource type="Curve" id="Curve_3ettu"]
+_data = [Vector2(0, 0.227273), 0.0, 0.0, 0, 0, Vector2(0.531165, 0.690909), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_urfko"]
+curve = SubResource("Curve_3ettu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ip0hx"]
+emission_shape = 3
+emission_box_extents = Vector3(250, 5, 1)
+particle_flag_disable_z = true
+spread = 90.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 50.0
+angular_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+angle_max = 360.0
+scale_min = 0.3
+scale_curve = SubResource("CurveTexture_urfko")
+color_ramp = SubResource("GradientTexture1D_gxsir")
+hue_variation_min = 0.55
+hue_variation_max = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw32c"]
+size = Vector2(515, 15)
+
+[node name="High-Energy Particle Cannon" type="Node2D"]
+script = SubResource("GDScript_fjvsi")
+equip_name = "High-Energy Particle Cannon"
+equip_image = ExtResource("1_bbwr6")
+equip_info = "High-Energy Particle Cannon info"
+cd_time = 1
+
+[node name="Root" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Line2D" type="Line2D" parent="Root"]
+material = SubResource("CanvasItemMaterial_io75d")
+position = Vector2(16, 0)
+points = PackedVector2Array(0, 0, 500, 0)
+width = 0.0
+gradient = SubResource("Gradient_ge4pd")
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+antialiased = true
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Root/Line2D"]
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(250, 1)
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_ip0hx")
+texture = ExtResource("2_w22r5")
+lifetime = 0.5
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="Root/Line2D"]
+position = Vector2(-7, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Root/Line2D/Area2D"]
+position = Vector2(257.5, -0.5)
+shape = SubResource("RectangleShape2D_dw32c")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_s0rdg")
+
+[connection signal="body_entered" from="Root/Line2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Root/Line2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

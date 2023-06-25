@@ -153,6 +153,8 @@ func onHit(hurt):
 			var num = node.call("beforePlayerHit",hurt)
 			temp_hurt += num
 	hurt += temp_hurt
+	if hurt < 1:
+		hurt = 1
 	PlayerData.player_hp -= hurt
 	Utils.showHitLabel(hurt,self)
 	get_tree().call_group("control","hit")
@@ -176,3 +178,10 @@ func showDash():
 	dash.global_position = global_position
 	dash.flip_h = body.scale.x != 1
 	get_tree().root.call_deferred("add_child",dash)
+
+func addEquip(equip):
+	if $EquipRoot.get_child_count() > 0:
+		var child = $EquipRoot.get_child(0)
+		$EquipRoot.remove_child(child)
+		EquipServer.addEquipOnFloor(child,global_position)
+	$EquipRoot.add_child(equip)

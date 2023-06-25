@@ -41,6 +41,8 @@ var skill_level_1 = [
 ]
 
 func _ready():
+	EquipServer.onEquipRemove.connect(self.onEquipRemove)
+	EquipServer.onEquipAdd.connect(self.onEquipAdd)
 	get_parent().get_node(\"MonsterBuilder\").onTimeTick.connect(self.onTimeTick)
 	PlayerData.onPlayerLevelChange.connect(self.onPlayerLevelChange)
 
@@ -73,6 +75,13 @@ func choose_select():
 	for item in choose_box.get_children():
 		item.queue_free()
 	get_tree().paused = false
+
+func onEquipAdd(ins):
+	$HBoxContainer.add_child(ins)
+
+func onEquipRemove(ins):
+	$HBoxContainer.remove_child(ins)
+	ins.queue_free()
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikyea"]
@@ -296,17 +305,31 @@ clip_text = true
 text_overrun_behavior = 1
 
 [node name="time_label" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -46.0
-offset_right = 34.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_right = -8.0
 offset_bottom = 23.0
-grow_horizontal = 2
+grow_horizontal = 0
 text = "LIFT_TIME"
 label_settings = SubResource("LabelSettings_ctmu7")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -21.0
+offset_right = 37.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -365,6 +388,8 @@ position = Vector2(-374, 135)
 script = ExtResource("15_3ddcq")
 
 [node name="Timer" type="Timer" parent="MonsterBuilder"]
+
+[node name="EquipRoot" type="Node2D" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/Panel/Button3" to="CanvasLayer" method="_on_button_3_pressed"]
 [connection signal="timeout" from="MonsterBuilder/Timer" to="MonsterBuilder" method="_on_timer_timeout"]

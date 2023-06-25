@@ -43,7 +43,7 @@ func start() -> void:
 #创建一个怪物
 func createMonster(monster):
 	var ins = monster.instantiate()
-	ins.setData(level_data[level])
+	ins.setaData(level_data[level])
 	var pos = getPosition()
 	if pos:
 		ins.global_position = pos
