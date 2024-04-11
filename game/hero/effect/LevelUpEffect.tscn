@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dk2car7a0ikr"]
+[gd_scene load_steps=18 format=3 uid="uid://dk2car7a0ikr"]
 
 [ext_resource type="Texture2D" uid="uid://ckf61ykrmyryf" path="res://Sprites/effect/vfx_energy-Sheet.png" id="1_f3v53"]
 
@@ -6,14 +6,12 @@
 script/source = "extends Node2D
 
 func _ready() -> void:
+	print(123)
 	$AnimatedSprite2D.play(\"default\")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	queue_free()
 "
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ua8fk"]
-blend_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l14rr"]
 atlas = ExtResource("1_f3v53")
@@ -118,17 +116,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 16.0
+"speed": 14.0
 }]
 
 [node name="LevelUpEffect" type="Node2D"]
-process_mode = 2
+process_mode = 3
 script = SubResource("GDScript_jyjl0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1.5, 1.5, 1.5, 1)
-material = SubResource("CanvasItemMaterial_ua8fk")
-position = Vector2(0, -32)
+position = Vector2(0, -31)
 sprite_frames = SubResource("SpriteFrames_osnbv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

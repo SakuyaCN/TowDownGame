@@ -36,7 +36,7 @@ var player_hp = 5: #当前血量
 		emit_signal("onHpChange",player_hp,player_hp_max)
 		if player_hp <= 0:
 			emit_signal("onPlayerDeath")
-var gold = 20:
+var gold = 9999:
 	set(value):
 		gold = value
 		emit_signal("onGoldChange",gold)

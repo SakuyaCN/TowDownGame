@@ -22,11 +22,12 @@ var is_atk = false
 var death_callback :Callable
 
 func _ready():
+	var node = Node2D.new()
+	node.name = "EffectRoot"
+	add_child(node)
 	name = str(Time.get_ticks_usec())
 	audio_hit.stream = load("res://audio/body_hit_finisher_52.wav")
 	add_child(audio_hit)
-	#add_child(navigationAgent2D)
-	#navigationAgent2D.target_position = target_player.global_position
 
 func setData(data):
 	SPEED = data['speed']

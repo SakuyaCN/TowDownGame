@@ -201,10 +201,10 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "show"
 libraries = {
 "": SubResource("AnimationLibrary_8lc2s")
 }
+autoplay = "show"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0

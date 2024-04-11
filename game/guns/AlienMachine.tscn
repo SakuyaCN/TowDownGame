@@ -50,7 +50,7 @@ shake_vector = Vector2(1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_a7fs4")
-offset = Vector2(6, -1)
+offset = Vector2(6, -2.96077)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -24,18 +24,16 @@ point_count = 3
 curve = SubResource("Curve_qklu6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wgqhe"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 0.01
-particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 50.0
-gravity = Vector3(0, -300, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 angular_velocity_min = 32.0
 angular_velocity_max = 32.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, -300, 0)
 linear_accel_min = 100.0
 linear_accel_max = 100.0
 linear_accel_curve = SubResource("CurveTexture_mwf2v")

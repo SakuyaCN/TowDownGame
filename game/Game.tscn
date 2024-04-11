@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://3xak3o8adym7"]
 
 [ext_resource type="PackedScene" uid="uid://c711joqeud4pp" path="res://game/map/Main.tscn" id="1_14x22"]
 

@@ -291,20 +291,20 @@ point_count = 2
 curve = SubResource("Curve_lbkqq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hmw5a"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 28.13
-particle_flag_disable_z = true
+angle_min = 15.0
+angle_max = 100.0
+angle_curve = SubResource("CurveTexture_pje6m")
 direction = Vector3(-1, 0, 0)
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 orbit_velocity_min = 0.05
 orbit_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
 linear_accel_max = 19.7
 linear_accel_curve = SubResource("CurveTexture_2ultx")
-angle_min = 15.0
-angle_max = 100.0
-angle_curve = SubResource("CurveTexture_pje6m")
 scale_min = 0.0
 scale_curve = SubResource("CurveTexture_bdoqj")
 color_ramp = SubResource("GradientTexture1D_ub1nm")
@@ -320,14 +320,12 @@ point_count = 2
 curve = SubResource("Curve_nb30i")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d7ox4"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 3.0
-particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
-gravity = Vector3(0, 0, 0)
 initial_velocity_max = 25.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 tangential_accel_max = 15.0
 scale_min = 2.0
 scale_max = 3.0
