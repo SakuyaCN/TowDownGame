@@ -49,9 +49,9 @@ func onPlayerDeath():
 	ins.setOnClick(func callback(success):
 		if success:
 			LevelServer.isPause(false)
-			PlayerData.resurrectPlayer(PlayerData.player_hp_max)
+			PlayerData.resurrectPlayer(PlayerData.player_hp_max, 100)
 		else:
-			PlayerData.resurrectPlayer(1)
+			PlayerData.resurrectPlayer(1, 20)
 			onRoundEnd()
 		)
 	$CanvasLayer.add_child(ins)
