@@ -72,11 +72,15 @@ var player_exp = 0:
 		emit_signal("onPlayerExpChange",player_exp,max)
 
 #设置血量
-func resurrectPlayer(hp):
+func resurrectPlayer(hp, ammo_percentage):
 	if hp >= player_hp_max:
 		player_hp = player_hp_max
 	else:
 		player_hp = hp
+	if Utils.player.gun != null:
+		var player_ammo_percentage = (player_ammo / Utils.player.gun.bullets_max_count) * 100
+		if player_ammo_percentage < ammo_percentage:
+			player_ammo = Utils.player.gun.bullets_max_count * ammo_percentage * 0.01
 	emit_signal("onPlayerResurrect")
 
 #回复血量
